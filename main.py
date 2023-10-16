@@ -2,7 +2,8 @@
 # We will be the best
 # We are the best
 # Less gooo boiss !!!
-age = 19
-print(age)
-year = 2023
-print(f"The Year is {year}")
+name = input("What is your name?: ")
+age = int(input("What is your age?: "))
+place = input("Where are you from?: ")
+
+print(f"Hi {name} from {place}, you are {age} years old, aren't you?")
