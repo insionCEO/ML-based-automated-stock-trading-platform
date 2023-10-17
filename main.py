@@ -7,3 +7,4 @@ age = int(input("What is your age?: "))
 place = input("Where are you from?: ")
 
 print(f"Hi {name} from {place}, you are {age} years old, aren't you?")
+print("Bye!")
