@@ -7,8 +7,8 @@ from tensorflow.keras.models import load_model
 app = Flask(__name__)
 
 # Load the pre-trained model
-model_path = "path_to_your_trained_model"  # Replace with the actual path
-model = load_model(model_path)
+# model_path = "path_to_your_trained_model"  # Replace with the actual path
+# model = load_model(model_path)
 
 
 def generate_signals(stock_symbol):
@@ -54,7 +54,7 @@ def generate_signals(stock_symbol):
     return signals_df
 
 
-@app.route("/get_signals", methods=["GET"])
+@app.route("/get_signals/<stock_symbol>", methods=["GET"])
 def get_signals():
     stock_symbol = request.args.get("stock_symbol")
     if not stock_symbol:
