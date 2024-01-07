@@ -13,7 +13,7 @@ scaler = StandardScaler()
 def predict(symbol):
     try:
         # Load the pre-trained model for the specified symbol
-        model_path = f"/content/models/{symbol}.h5"
+        model_path = f"{symbol}.h5"
         classifier = load_model(model_path)
 
         # Get data from the request
