@@ -1,9 +1,10 @@
 import Navbar from "./Navbar";
 import Billing from "./Billing";
 import CardDeal from "./CardDeal";
-import Business from "./Business";
+import Research from "./Research";
 import Clients from "./Clients";
 import CTA from "./CTA";
+import Query from "./Query";
 import Stats from "./Stats";
 import Footer from "./Footer";
 import Testimonials from "./Testimonials";
@@ -13,9 +14,10 @@ export {
   Navbar,
   Billing,
   CardDeal,
-  Business,
+  Research,
   Clients,
   CTA,
+  Query,
   Stats,
   Footer,
   Testimonials,
