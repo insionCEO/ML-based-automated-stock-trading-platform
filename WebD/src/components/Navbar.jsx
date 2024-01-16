@@ -38,11 +38,10 @@ const Navbar = () => {
 					{toggle && (
 						<div
 							id="userDropdown"
-							className="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-16 right-0 mt-2 p-2"
-							onClick={(e) => e.stopPropagation()} // Stop event propagation to prevent immediate closing
+							className="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-900 dark:divide-gray-600 absolute top-16 right-0 mt-2 p-2"
+							onClick={(e) => e.stopPropagation()}
 						>
 							<div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-								{/* <div>{user.name}</div> */}
 								<div className="font-medium truncate">{user.email}</div>
 							</div>
 							<ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
@@ -88,16 +87,22 @@ const Navbar = () => {
 			<img src={logo} alt="TensorForce" className="w-[124px] h-[32px]" />
 
 			<ul className="list-none sm:flex hidden items-center flex-1 ml-6">
-				{navLinks.map((nav, index) => (
-					<li
-						key={nav.id}
-						className={`font-poppins font-normal cursor-pointer text-[16px] ${
-							index === navLinks.length - 1 ? "mr-0" : "mr-10"
-						} text-white`}
-					>
-						<a href={`#${nav.id}`}>{nav.title}</a>
-					</li>
-				))}
+				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+					<a href="/#home">Home</a>
+				</li>
+
+				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+					<a href="/#features">Features</a>
+				</li>
+				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+					<a href="/#product">Product</a>
+				</li>
+				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+					<a href="/#clients">Clients</a>
+				</li>
+				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}>
+					<a href="/contact">Contact Us</a>
+				</li>
 			</ul>
 
 			{renderProfileButton()}
@@ -116,16 +121,21 @@ const Navbar = () => {
 					} p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
 				>
 					<ul className="list-none flex flex-col justify-end items-center flex-1">
-						{navLinks.map((nav, index) => (
-							<li
-								key={nav.id}
-								className={`font-poppins font-normal cursor-pointer text-[16px] ${
-									index === navLinks.length - 1 ? "mr-0" : "mb-4"
-								} text-white`}
-							>
-								<a href={`#${nav.id}`}>{nav.title}</a>
-							</li>
-						))}
+						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+							<a href="/#home">Home</a>
+						</li>
+						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+							<a href="/#features">Features</a>
+						</li>
+						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+							<a href="/#product">Product</a>
+						</li>
+						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+							<a href="/#clients">Clients</a>
+						</li>
+						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}>
+							<a href="/contact">Contact Us</a>
+						</li>
 					</ul>
 				</div>
 			</div>
