@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@emailjs/browser": "^3.12.1",
+    "axios": "^1.6.5",
+    "emailjs": "^4.0.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.2",
     "react": "^18.2.0",
