@@ -1,28 +1,18 @@
 import styles from "../style";
 import Button from "./Button";
-import { robot } from "../assets";
 
 const CTA = () => (
-  <section
-    className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow`}
-  >
+  <section className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow`}>
     <div className="flex-1 flex flex-col">
-      <h2 className={styles.heading2}>
-        Start Predicting <br className="sm:block hidden" /> with TensorForce
-      </h2>
+      <h2 className={styles.heading2}>Let’s try our service now!</h2>
       <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        Optimize your Investments Now
+        Everything you need to accept card payments and grow your business
+        anywhere on the planet.
       </p>
-      <div className="mt-10">
-        <Button label="Sign Up Now" />
-      </div>
     </div>
-    <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
-      <img
-        src={robot}
-        alt="billing"
-        className="w-[500px] h-[500px] relative z-[5]"
-      />
+
+    <div className={`${styles.flexCenter} sm:ml-10 ml-0 sm:mt-0 mt-10`}>
+      <Button />
     </div>
   </section>
 );

@@ -1,19 +1,4 @@
-import {
-  people01,
-  people02,
-  people03,
-  facebook,
-  instagram,
-  linkedin,
-  twitter,
-  airbnb,
-  binance,
-  coinbase,
-  dropbox,
-  send,
-  shield,
-  star,
-} from "../assets";
+import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star  } from "../assets";
 
 export const navLinks = [
   {
@@ -21,16 +6,16 @@ export const navLinks = [
     title: "Home",
   },
   {
-    id: "pricing",
-    title: "Pricing",
+    id: "features",
+    title: "Features",
   },
   {
-    id: "about_us",
-    title: "About Us",
+    id: "product",
+    title: "Product",
   },
   {
-    id: "contact_us",
-    title: "Contact Us",
+    id: "clients",
+    title: "Clients",
   },
 ];
 
@@ -62,24 +47,25 @@ export const feedback = [
   {
     id: "feedback-1",
     content:
-      "Since using TensorForce, my investment performance has significantly improved.",
-    name: "Jane Doe",
-    title: "Trader, ABC Investments",
+      "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.",
+    name: "Herman Jensen",
+    title: "Founder & Leader",
     img: people01,
   },
   {
     id: "feedback-2",
     content:
-      "I highly recommend TensorForce for anyone interested in predicting stock prices.",
-    name: "John Smith",
-    title: "Investor, XYZ Capital",
+      "Money makes your life easier. If you're lucky to have it, you're lucky.",
+    name: "Steve Mark",
+    title: "Founder & Leader",
     img: people02,
   },
   {
     id: "feedback-3",
-    content: "TensorForce is an essential tool for any serious investor.",
-    name: "Ben Clock",
-    title: "CEO, Acme Holdings",
+    content:
+      "It is usually people in the money business, finance, and international trade that are really rich.",
+    name: "Kenn Gallagher",
+    title: "Founder & Leader",
     img: people03,
   },
 ];
@@ -103,73 +89,65 @@ export const stats = [
 ];
 
 export const footerLinks = [
-  // {
-  //   // title: "Useful Links",
-  //   // links: [
-  //   //   {
-  //   //     name: "Content",
-  //   //     link: "https://www.TensorForce.com/content/",
-  //   //   },
-  //   //   {
-  //   //     name: "How it Works",
-  //   //     link: "https://www.TensorForce.com/how-it-works/",
-  //   //   },
-  //   //   {
-  //   //     name: "Create",
-  //   //     link: "https://www.TensorForce.com/create/",
-  //   //   },
-  //   //   {
-  //   //     name: "Explore",
-  //   //     link: "https://www.TensorForce.com/explore/",
-  //   //   },
-  //   //   {
-  //   //     name: "Terms & Services",
-  //   //     link: "https://www.TensorForce.com/terms-and-services/",
-  //   //   },
-  //   // ],
-  // },
-  // {
-  // title: "Community",
-  // links: [
-  //   {
-  //     name: "Help Center",
-  //     link: "https://www.TensorForce.com/help-center/",
-  //   },
-  //   {
-  //     name: "Partners",
-  //     link: "https://www.TensorForce.com/partners/",
-  //   },
-  //   {
-  //     name: "Suggestions",
-  //     link: "https://www.TensorForce.com/suggestions/",
-  //   },
-  //   {
-  //     name: "Blog",
-  //     link: "https://www.TensorForce.com/blog/",
-  //   },
-  //   {
-  //     name: "Newsletters",
-  //     link: "https://www.TensorForce.com/newsletters/",
-  //   },
-  // ],
-  // },
   {
-    title: "FAQs",
+    title: "Useful Links",
     links: [
       {
-        name: "Knowledge Base",
+        name: "Content",
+        link: "https://www.TensorForce.com/content/",
+      },
+      {
+        name: "How it Works",
+        link: "https://www.TensorForce.com/how-it-works/",
+      },
+      {
+        name: "Create",
+        link: "https://www.TensorForce.com/create/",
+      },
+      {
+        name: "Explore",
+        link: "https://www.TensorForce.com/explore/",
+      },
+      {
+        name: "Terms & Services",
+        link: "https://www.TensorForce.com/terms-and-services/",
+      },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      {
+        name: "Help Center",
+        link: "https://www.TensorForce.com/help-center/",
+      },
+      {
+        name: "Partners",
+        link: "https://www.TensorForce.com/partners/",
+      },
+      {
+        name: "Suggestions",
+        link: "https://www.TensorForce.com/suggestions/",
+      },
+      {
+        name: "Blog",
+        link: "https://www.TensorForce.com/blog/",
+      },
+      {
+        name: "Newsletters",
+        link: "https://www.TensorForce.com/newsletters/",
+      },
+    ],
+  },
+  {
+    title: "Partner",
+    links: [
+      {
+        name: "Our Partner",
         link: "https://www.TensorForce.com/our-partner/",
       },
       {
-        name: "Contact Us",
-        link: "https://www.TensorForce.com/become-a-partner/",
-      },
-      {
-        name: "User Guide",
-        link: "https://www.TensorForce.com/become-a-partner/",
-      },
-      {
-        name: "Terms of Service",
+        name: "Become a Partner",
         link: "https://www.TensorForce.com/become-a-partner/",
       },
     ],
