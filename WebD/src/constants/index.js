@@ -108,23 +108,23 @@ export const footerLinks = [
   //   // links: [
   //   //   {
   //   //     name: "Content",
-  //   //     link: "https://www.hoobank.com/content/",
+  //   //     link: "https://www.TensorForce.com/content/",
   //   //   },
   //   //   {
   //   //     name: "How it Works",
-  //   //     link: "https://www.hoobank.com/how-it-works/",
+  //   //     link: "https://www.TensorForce.com/how-it-works/",
   //   //   },
   //   //   {
   //   //     name: "Create",
-  //   //     link: "https://www.hoobank.com/create/",
+  //   //     link: "https://www.TensorForce.com/create/",
   //   //   },
   //   //   {
   //   //     name: "Explore",
-  //   //     link: "https://www.hoobank.com/explore/",
+  //   //     link: "https://www.TensorForce.com/explore/",
   //   //   },
   //   //   {
   //   //     name: "Terms & Services",
-  //   //     link: "https://www.hoobank.com/terms-and-services/",
+  //   //     link: "https://www.TensorForce.com/terms-and-services/",
   //   //   },
   //   // ],
   // },
@@ -133,23 +133,23 @@ export const footerLinks = [
   // links: [
   //   {
   //     name: "Help Center",
-  //     link: "https://www.hoobank.com/help-center/",
+  //     link: "https://www.TensorForce.com/help-center/",
   //   },
   //   {
   //     name: "Partners",
-  //     link: "https://www.hoobank.com/partners/",
+  //     link: "https://www.TensorForce.com/partners/",
   //   },
   //   {
   //     name: "Suggestions",
-  //     link: "https://www.hoobank.com/suggestions/",
+  //     link: "https://www.TensorForce.com/suggestions/",
   //   },
   //   {
   //     name: "Blog",
-  //     link: "https://www.hoobank.com/blog/",
+  //     link: "https://www.TensorForce.com/blog/",
   //   },
   //   {
   //     name: "Newsletters",
-  //     link: "https://www.hoobank.com/newsletters/",
+  //     link: "https://www.TensorForce.com/newsletters/",
   //   },
   // ],
   // },
@@ -158,19 +158,19 @@ export const footerLinks = [
     links: [
       {
         name: "Knowledge Base",
-        link: "https://www.hoobank.com/our-partner/",
+        link: "https://www.TensorForce.com/our-partner/",
       },
       {
         name: "Contact Us",
-        link: "https://www.hoobank.com/become-a-partner/",
+        link: "https://www.TensorForce.com/become-a-partner/",
       },
       {
         name: "User Guide",
-        link: "https://www.hoobank.com/become-a-partner/",
+        link: "https://www.TensorForce.com/become-a-partner/",
       },
       {
         name: "Terms of Service",
-        link: "https://www.hoobank.com/become-a-partner/",
+        link: "https://www.TensorForce.com/become-a-partner/",
       },
     ],
   },

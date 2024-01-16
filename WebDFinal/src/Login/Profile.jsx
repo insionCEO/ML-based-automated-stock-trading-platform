@@ -1,20 +1,20 @@
-import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+
 const Profile = () => {
-	const { user, isAuthenticated } = useAuth0();
+	const { user, isAuthenticated, isLoading } = useAuth0();
+
+	if (isLoading) {
+		return <div>Loading ...</div>;
+	}
+
 	return (
 		isAuthenticated && (
-			<article className="column">
-				{user?.picture && <img src={user.picture} alt={user?.name} />}
-				<h2>{user?.name}</h2>
-				<ul>
-					{Object.keys(user).map((objkey) => (
-						<li key={i}>
-							{objkey}: {user[objkey]}
-						</li>
-					))}
-				</ul>
-			</article>
+			<div>
+				<img src={user.picture} alt={user.name} />
+				<h2>{user.name}</h2>
+				<p>{user.email}</p>
+			</div>
 		)
 	);
 };

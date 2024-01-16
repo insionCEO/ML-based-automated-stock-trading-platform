@@ -9,7 +9,7 @@ const Navbar = () => {
 	const [toggle, setToggle] = useState(false);
 	return (
 		<nav className="w-full flex py-6 items-center navbar">
-			<img src={logo} alt="HooBank" className="w-[124px] h-[32px]" />
+			<img src={logo} alt="TensorForce" className="w-[124px] h-[32px]" />
 
 			<ul className="list-none sm:flex hidden items-center flex-1 ml-6">
 				{navLinks.map((nav, index) => (
