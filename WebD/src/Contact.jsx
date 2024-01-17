@@ -1,4 +1,7 @@
 import React, { useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import styles from "./style";
 import emailjs from "@emailjs/browser";
 import { Navbar, Button, Footer } from "./components";
@@ -11,7 +14,11 @@ const Contact = () => {
 	const [result, showResult] = useState(false);
 	const form = useRef();
 
-	const sendEmail = (e) => {
+	const showToast = () => {
+		toast.success("Sent Email Successfully");
+	};
+
+	const sendEmail = async (e) => {
 		e.preventDefault();
 
 		const formData = new FormData(form.current);
@@ -50,7 +57,14 @@ const Contact = () => {
 							className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow`}
 						>
 							<div className="flex-1 flex flex-col">
-								<div onSubmit={sendEmail} className="mt-8 mr-20 flex flex-col">
+								<div
+									onSubmit={() => {
+										sendEmail().then(() => {
+											showToast();
+										});
+									}}
+									className="mt-8 mr-20 flex flex-col"
+								>
 									<input
 										name="fullName"
 										type="text"
@@ -78,7 +92,15 @@ const Contact = () => {
 										className={`w-96 h-20 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									<div className="mt-10">
-										<Button label="Submit" onClick={sendEmail} className="hover:bg-gray-700 hover:text-white" />
+										<Button
+											label="Submit"
+											onClick={() => {
+												sendEmail().then(() => {
+													showToast();
+												});
+											}}
+											className="hover:bg-gray-700 hover:text-white"
+										/>
 									</div>
 								</div>
 							</div>
@@ -96,7 +118,10 @@ const Contact = () => {
 						<Footer />
 					</div>
 				</div>
-				<div className="row">{result ? <Result /> : null}</div>
+				<div className="row">
+					<ToastContainer />
+					{result ? <Result /> : null}
+				</div>
 			</div>
 		</form>
 	);
