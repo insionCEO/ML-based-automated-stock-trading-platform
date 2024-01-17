@@ -10,7 +10,7 @@ const Result = () => {
 const Contact = () => {
 	const [result, showResult] = useState(false);
 	const [name, setName] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState("");
+	// const [phoneNumber, setPhoneNumber] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
 	const form = useRef();
@@ -18,7 +18,7 @@ const Contact = () => {
 	const sendEmail = (e) => {
 		e.preventDefault();
 
-		emailjs.sendForm("service_2ple5xi", "template_v7tyw6i", form.current, "RRDZn2aOJpp7EsaMm").then(
+		emailjs.sendForm("service_2ple5xi", "template_v7tyw6i", e.target, "RRDZn2aOJpp7EsaMm").then(
 			(result) => {
 				console.log(result.text);
 			},
@@ -26,7 +26,7 @@ const Contact = () => {
 				console.log(error.text);
 			}
 		);
-		form.current.reset();
+		e.target.reset();
 		showResult(true);
 	};
 
@@ -54,7 +54,7 @@ const Contact = () => {
 										type="text"
 										value={name}
 										onChange={(e) => setName(e.target.value)}
-										placeholder="fullName"
+										placeholder="Name"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
@@ -70,20 +70,21 @@ const Contact = () => {
 										type="email"
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
-										placeholder="email"
+										placeholder="Email"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									<textarea
 										value={message}
 										onChange={(e) => setMessage(e.target.value)}
-										placeholder="message"
+										placeholder="Message"
 										required
 										className={`w-96 h-20 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									<div className="mt-10">
-										<Button label="Submit" onClick={sendEmail} />
+                                        <Button label="Submit" onClick={sendEmail} className="hover:bg-gray-700 hover:text-white" />
 									</div>
+
 								</form>
 							</div>
 							<div>
