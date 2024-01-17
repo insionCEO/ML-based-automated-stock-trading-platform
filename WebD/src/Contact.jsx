@@ -9,30 +9,31 @@ const Result = () => {
 
 const Contact = () => {
 	const [result, showResult] = useState(false);
-	const [name, setName] = useState("");
-	// const [phoneNumber, setPhoneNumber] = useState("");
-	const [email, setEmail] = useState("");
-	const [message, setMessage] = useState("");
 	const form = useRef();
 
 	const sendEmail = (e) => {
 		e.preventDefault();
 
-		emailjs.sendForm("service_2ple5xi", "template_v7tyw6i", e.target, "RRDZn2aOJpp7EsaMm").then(
-			(result) => {
-				console.log(result.text);
-			},
-			(error) => {
-				console.log(error.text);
-			}
-		);
-		e.target.reset();
-		showResult(true);
-	};
+		const formData = new FormData(form.current);
+		const name = formData.get("user_name");
+		const email = formData.get("user_email");
+		const message = formData.get("message");
 
-	setTimeout(()=>{
-		showResult(false);
-	},5000);
+		emailjs
+			.sendForm("service_2ple5xi", "template_v7tyw6i", form.current, "RRDZn2aOJpp7EsaMm")
+			.then((result) => {
+				console.log(result.text);
+
+				showResult(true);
+
+				setTimeout(() => {
+					showResult(false);
+				}, 5000);
+			})
+			.catch((error) => {
+				console.log(error.text);
+			});
+	};
 
 	return (
 		<form ref={form} onSubmit={sendEmail}>
@@ -49,43 +50,37 @@ const Contact = () => {
 							className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-black-gradient-2 rounded-[20px] box-shadow`}
 						>
 							<div className="flex-1 flex flex-col">
-								<form onSubmit={sendEmail} className="mt-8 mr-20 flex flex-col">
+								<div onSubmit={sendEmail} className="mt-8 mr-20 flex flex-col">
 									<input
+										name="fullName"
 										type="text"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
 										placeholder="Name"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									{/* <input
-										type="tel"
-										value={phoneNumber}
-										onChange={(e) => setPhoneNumber(e.target.value)}
-										placeholder="Phone Number"
-										required
-										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
-									/> */}
+                      type="tel"
+                      placeholder="Phone Number"
+                      required
+                      className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
+                    /> */}
 									<input
+										name="email"
 										type="email"
-										value={email}
-										onChange={(e) => setEmail(e.target.value)}
 										placeholder="Email"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									<textarea
-										value={message}
-										onChange={(e) => setMessage(e.target.value)}
+										name="message"
 										placeholder="Message"
 										required
 										className={`w-96 h-20 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									<div className="mt-10">
-                                        <Button label="Submit" onClick={sendEmail} className="hover:bg-gray-700 hover:text-white" />
+										<Button label="Submit" onClick={sendEmail} className="hover:bg-gray-700 hover:text-white" />
 									</div>
-
-								</form>
+								</div>
 							</div>
 							<div>
 								<iframe
