@@ -30,6 +30,10 @@ const Contact = () => {
 		showResult(true);
 	};
 
+	setTimeout(()=>{
+		showResult(false);
+	},5000);
+
 	return (
 		<form ref={form} onSubmit={sendEmail}>
 			<div className="bg-primary w-full overflow-hidden">
@@ -50,30 +54,30 @@ const Contact = () => {
 										type="text"
 										value={name}
 										onChange={(e) => setName(e.target.value)}
-										placeholder="Name"
+										placeholder="fullName"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
-									<input
+									{/* <input
 										type="tel"
 										value={phoneNumber}
 										onChange={(e) => setPhoneNumber(e.target.value)}
 										placeholder="Phone Number"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
-									/>
+									/> */}
 									<input
 										type="email"
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
-										placeholder="Email"
+										placeholder="email"
 										required
 										className={`w-96 h-10 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
 									<textarea
 										value={message}
 										onChange={(e) => setMessage(e.target.value)}
-										placeholder="Message"
+										placeholder="message"
 										required
 										className={`w-96 h-20 py-3 px-4 bg-white font-poppins font-medium text-[18px] text-black outline-none rounded-[10px] mb-4`}
 									/>
