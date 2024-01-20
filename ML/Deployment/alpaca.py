@@ -1,5 +1,8 @@
-#  This is Final Working Deployment API
-from flask import Flask, request, jsonify
+from alpaca.trading.client import TradingClient
+from alpaca.trading.requests import MarketOrderRequest
+from alpaca.trading.enums import OrderSide, TimeInForce
+
+from flask import Flask, jsonify, request
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -8,13 +11,15 @@ import yfinance as yf
 
 app = Flask(__name__)
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # data = request.get_json()
+trading_client = TradingClient('PKG4VOGE0PVSH7IXL7LV', 'hlxi9zj0PRlnkhzc91muqY1aIoZF6NfMb53MvucR', paper=True)
+
+@app.route('/predict_and_trade', methods=['POST'])
+def predict_and_trade():
+    data = request.get_json()
 
     # Extract stock symbol from the request
-    # stock_symbol = data.get('stock_symbol', 'AAPL')
-    stock_symbol = "INFY.NS "
+    stock_symbol = data.get('stock_symbol', 'AAPL')
+
     try:
         # Fetch historical data for the given stock symbol
         df = yf.download(stock_symbol)[["Adj Close"]].pct_change(1)
@@ -46,6 +51,25 @@ def predict():
 
         # Convert predictions to -1, 0, or 1
         prediction = np.where(prediction == 0, -1, 1)
+
+        # Decide on order type based on prediction
+        if prediction == 1:
+            # Place a market order to buy
+            market_order_data = MarketOrderRequest(
+                symbol=stock_symbol,
+                qty=1,  # You may adjust the quantity based on your strategy
+                side=OrderSide.BUY,
+                time_in_force=TimeInForce.DAY
+            )
+            trading_client.submit_order(order_data=market_order_data)
+        elif prediction == -1:
+           market_order_data = MarketOrderRequest(
+                symbol=stock_symbol,
+                qty=1,  # You may adjust the quantity based on your strategy
+                side=OrderSide.SELL,
+                time_in_force=TimeInForce.DAY
+            )
+           trading_client.submit_order(order_data=market_order_data)
 
         return jsonify({'prediction': int(prediction[0])})
     
