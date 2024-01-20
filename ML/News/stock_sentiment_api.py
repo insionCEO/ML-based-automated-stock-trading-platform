@@ -18,7 +18,7 @@ def get_sentiment():
         data = request.get_json()
         symbol = data['symbol']
 
-        current_date = datetime.now()
+        current_date = datetime.datetime.now()
         six_months_ago = current_date - timedelta(days=180)
         current_date = current_date.strftime("%Y-%m-%d")
         six_months_ago = six_months_ago.strftime("%Y-%m-%d")
