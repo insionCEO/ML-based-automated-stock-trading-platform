@@ -6,6 +6,18 @@ from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import MarketOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce
 import time
+import datetime
+
+import pytz
+
+eastern = pytz.timezone('US/Eastern')
+
+def is_market_open():
+    current_time = datetime.datetime.now(eastern).time()
+    market_open_time = datetime.time(9, 30)
+    market_close_time = datetime.time(16, 0)
+    return market_open_time <= current_time <= market_close_time
+
 
 def run_strategy_for_symbol(symbol, trading_client):
     pos_held = False
@@ -16,68 +28,71 @@ def run_strategy_for_symbol(symbol, trading_client):
     X = np.array([close_list[i-5:i] for i in range(5, len(close_list))])
     y = [1 if close_list[i] > np.mean(close_list[i - 5:i]) else 0 for i in range(5, len(close_list))]
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0, random_state=42)
 
     rf = RandomForestClassifier()
-    rf.fit(X_train, y_train)
+    rf.fit(X,y)
 
     while True:
-        stock_data = yf.download(symbol, period="1d", interval="5m")
-        close_list = stock_data['Close'].to_numpy()
-        symbol_alpaca = symbol.replace('-', '/')
-        x = close_list[-5:].reshape(1, -1)
-        latest_price = close_list[-1]
-        pred = rf.predict(x)
+        if is_market_open():
+            stock_data = yf.download(symbol, period="1d", interval="5m")
+            close_list = stock_data['Close'].to_numpy()
+            symbol_alpaca = symbol.replace('-', '/')
+            x = close_list[-5:].reshape(1, -1)
+            latest_price = close_list[-1]
+            pred = rf.predict(x)
 
-        if pred == 1 and not pos_held:
-            print(f"Buy signal for {symbol_alpaca}")
+            if pred == 1 and not pos_held:
+                print(f"Buy signal for {symbol_alpaca}")
 
-            limit_price = float(latest_price) - 0.5
-            take_profit_limit_price = round(latest_price * 1.02, 2)
-            stop_loss_stop_price = round(latest_price * 0.99, 2)
-            loss_per_1 = latest_price - stop_loss_stop_price
-            percent_1_cash = float(trading_client.get_account().cash) / 100
-            qty_to_buy = min(100, percent_1_cash / loss_per_1)
+                limit_price = float(latest_price) - 0.5
+                take_profit_limit_price = round(latest_price * 1.02, 2)
+                stop_loss_stop_price = round(latest_price * 0.99, 2)
+                loss_per_1 = latest_price - stop_loss_stop_price
+                percent_1_cash = float(trading_client.get_account().cash) / 100
+                qty_to_buy = min(100, percent_1_cash / loss_per_1)
 
-            print("limit_price:", limit_price)
-            print("qty_to_buy:", qty_to_buy)
-            print("take_profit_limit_price:", take_profit_limit_price)
-            print("stop_loss_stop_price:", stop_loss_stop_price)
-            print("percent_1_cash", percent_1_cash)
-            print("loss_per_1", loss_per_1)
+                print("limit_price:", limit_price)
+                print("qty_to_buy:", qty_to_buy)
+                print("take_profit_limit_price:", take_profit_limit_price)
+                print("stop_loss_stop_price:", stop_loss_stop_price)
+                print("percent_1_cash", percent_1_cash)
+                print("loss_per_1", loss_per_1)
 
-            market_order_data = MarketOrderRequest(
-                symbol=symbol_alpaca,
-                qty=int(qty_to_buy),
-                side=OrderSide.BUY,
-                type='limit',
-                order_class="bracket",
-                limit_price=limit_price,
-                stop_loss=dict(stop_price=stop_loss_stop_price),
-                take_profit=dict(limit_price=take_profit_limit_price),
-                time_in_force=TimeInForce.DAY
-            )
+                market_order_data = MarketOrderRequest(
+                    symbol=symbol_alpaca,
+                    qty=int(qty_to_buy),
+                    side=OrderSide.BUY,
+                    type='limit',
+                    order_class="bracket",
+                    limit_price=limit_price,
+                    stop_loss=dict(stop_price=stop_loss_stop_price),
+                    take_profit=dict(limit_price=take_profit_limit_price),
+                    time_in_force=TimeInForce.DAY
+                )
 
-            market_order = trading_client.submit_order(order_data=market_order_data)
-            pos_held = True
+                market_order = trading_client.submit_order(order_data=market_order_data)
+                pos_held = True
 
-        elif pred == 0 and pos_held:
-            print(f"Sell signal for {symbol_alpaca}")
+            elif pred == 0 and pos_held:
+                print(f"Sell signal for {symbol_alpaca}")
 
-            qty_to_sell = trading_client.get_open_position(symbol_alpaca).qty
-            print(qty_to_sell)
+                qty_to_sell = trading_client.get_open_position(symbol_alpaca).qty
+                print(qty_to_sell)
 
-            market_order_data = MarketOrderRequest(
-                symbol=symbol_alpaca,
-                qty=int(qty_to_sell),
-                side=OrderSide.SELL,
-                time_in_force=TimeInForce.DAY
-            )
+                market_order_data = MarketOrderRequest(
+                    symbol=symbol_alpaca,
+                    qty=int(qty_to_sell),
+                    side=OrderSide.SELL,
+                    time_in_force=TimeInForce.DAY
+                )
 
-            market_order = trading_client.submit_order(order_data=market_order_data)
-            pos_held = False
-
-        # time.sleep(60)
+                market_order = trading_client.submit_order(order_data=market_order_data)
+                pos_held = False
+            # time.sleep(60)
+        else:
+            print("Market is closed. Waiting for it to open...")
+            time.sleep(60)
 
 # List of stocks in the S&P 500
 sp500_symbols = [
