@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-import "./material.css"
+import "./material.css";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 import {
 	Ecommerce,
@@ -75,11 +75,11 @@ const Dashv2 = () => {
 							<Route path="/employees" element={<Employees />} />
 							<Route path="/orders" element={<Orders />} />
 
-							{/* Apps
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} /> */}
+							{/* Apps */}
+							<Route path="/kanban" element={<Kanban />} />
+							<Route path="/editor" element={<Editor />} />
+							<Route path="/calendar" element={<Calendar />} />
+							<Route path="/color-picker" element={<ColorPicker />} />
 
 							{/* Charts */}
 							<Route path="/line" element={<Line />} />
