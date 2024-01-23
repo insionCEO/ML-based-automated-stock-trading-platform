@@ -5,7 +5,7 @@ from lumibot.traders import Trader
 from datetime import datetime 
 from alpaca_trade_api import REST 
 from timedelta import Timedelta 
-from finbert_utils import estimate_sentiment
+# from finbert_utils import estimate_sentiment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 from typing import Tuple 
