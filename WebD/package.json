@@ -24,6 +24,7 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3",
     "react-toastify": "^10.0.4",
+    "react-tradingview-widget": "^1.3.2",
     "sort-by": "^0.0.2",
     "typescript": "^5.3.3"
   },

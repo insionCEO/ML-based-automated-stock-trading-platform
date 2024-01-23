@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FiSettings } from "react-icons/fi";
+// import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import "./material.css";
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -25,8 +25,8 @@ import {
 } from "./pages";
 
 import { useStateContext } from "./contexts/ContextProvider";
-
 import "./App.css";
+import CompanyFinancials from "./CompanyFinancials/CompanyFinancials";
 
 const Dashv2 = () => {
 	const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
@@ -40,18 +40,6 @@ const Dashv2 = () => {
 		>
 			<div className={currentMode === "Dark" ? "dark" : ""}>
 				<div className="flex relative dark:bg-main-dark-bg">
-					<div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-						<TooltipComponent content="Settings" position="Top">
-							<button
-								type="button"
-								className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
-								onClick={() => setThemeSettings(true)}
-								style={{ background: currentColor, borderRadius: "50%" }}
-							>
-								<FiSettings />
-							</button>
-						</TooltipComponent>
-					</div>
 					{activeMenu ? (
 						<div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
 							<Sidebar />
@@ -94,10 +82,13 @@ const Dashv2 = () => {
 								<Route path="/area" element={<Area />} />
 								<Route path="/bar" element={<Bar />} />
 								<Route path="/pie" element={<Pie />} />
-								<Route path="/financial" element={<Financial />} />
+								{/* <Route path="/financial" element={<Financial />} /> */}
 								<Route path="/color-mapping" element={<ColorMapping />} />
 								<Route path="/pyramid" element={<Pyramid />} />
 								<Route path="/stacked" element={<Stacked />} />
+
+								{/* My Routes */}
+								<Route path="/financials" element={<CompanyFinancials />}></Route>
 							</Routes>
 						</div>
 					</div>

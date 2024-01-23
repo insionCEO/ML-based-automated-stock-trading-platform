@@ -11,47 +11,49 @@ import { Cart, Chat, Notification, UserProfile } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
-	<TooltipComponent content={title} position="BottomCenter">
-		<button
-			type="button"
-			onClick={() => customFunc()}
-			style={{ color }}
-			className="relative text-xl rounded-full p-3 hover:bg-light-gray"
-		>
-			<span style={{ background: dotColor }} className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2" />
-			{icon}
-		</button>
-	</TooltipComponent>
+  <TooltipComponent content={title} position="BottomCenter">
+    <button
+      type="button"
+      onClick={() => customFunc()}
+      style={{ color }}
+      className="relative text-xl rounded-full p-3 hover:bg-light-gray"
+    >
+      <span style={{ background: dotColor }} className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2" />
+      {icon}
+    </button>
+  </TooltipComponent>
 );
 
 const Navbar = () => {
-	const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, currentColor } =
-		useStateContext();
+  const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, currentColor } =
+    useStateContext();
 
-	const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
-	console.log(user);
+  const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
+  console.log(user);
 
-	if (isLoading) {
-		return <div>Loading</div>;
-	}
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
 
-	useEffect(() => {
-		const handleResize = () => setScreenSize(window.innerWidth);
+    const handleResizeCallback = () => {
+      handleResize();
+    };
 
-		window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResizeCallback);
 
-		handleResize();
+    return () => window.removeEventListener("resize", handleResizeCallback);
+  }, [setScreenSize]);
 
-		return () => window.removeEventListener("resize", handleResize);
-	}, [screenSize]);
+  useEffect(() => {
+    if (screenSize <= 900) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize, setActiveMenu]);
 
-	useEffect(() => {
-		if (screenSize <= 900) {
-			setActiveMenu(false);
-		} else {
-			setActiveMenu(true);
-		}
-	}, []);
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
 
 	return (
 		<div className="flex justify-between p-2 md:mx-6 relative">

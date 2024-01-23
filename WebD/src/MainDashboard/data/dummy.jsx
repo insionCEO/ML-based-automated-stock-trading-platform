@@ -579,7 +579,7 @@ export const links = [
         icon: <FiPieChart />,
       },
       {
-        name: "financial",
+        name: "financials",
         icon: <RiStockLine />,
       },
       {
