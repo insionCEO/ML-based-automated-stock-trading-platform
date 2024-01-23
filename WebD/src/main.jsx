@@ -12,15 +12,14 @@ import ContextProvider from "./MainDashboard/contexts/ContextProvider";
 import Dashv2 from "./MainDashboard/Dashv2";
 import { registerLicense } from "@syncfusion/ej2-base";
 
-registerLicense("Ngo9BigBOggjHTQxAR8/V1NAaF5cWWVCfEx0RXxbf1x0ZFdMYFhbQXJPMyBoS35RckViW35ecnZcR2ZYVU1+");
-
 const AppWrapper = () => {
 	const { isAuthenticated } = useAuth0();
+	registerLicense("Ngo9BigBOggjHTQxAR8/V1NAaF5cWWVCfEx0RXxbf1x0ZFdMYFhbQXJPMyBoS35RckViW35ecnZcR2ZYVU1+");
 
 	return (
 		<Auth0Provider
-			domain="dev-ovhg6woj2jzt3u4v.au.auth0.com"
-			clientId="IqUZH5W3Y1OP2ueWyUhvC7eaMT0WXbLH"
+			domain="dev-ovhg6woj2jzt3u4i.au.auth0.com"
+			clientId="pEXH5RDJNSLcLz8VAH3Ac5kpI4b6gq8w"
 			authorizationParams={{
 				redirect_uri: window.location.origin,
 			}}
@@ -32,7 +31,7 @@ const AppWrapper = () => {
 						<Route path="/login" element={<Login />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/dashboardv2/*" element={!isAuthenticated ? <Dashv2 /> : <Navigate to="/login" />} />
-						<Route path="*" element={<ErrorPage />} />
+						{/* <Route path="*" element={<ErrorPage />} /> */}
 					</Routes>
 				</Router>
 			</ContextProvider>

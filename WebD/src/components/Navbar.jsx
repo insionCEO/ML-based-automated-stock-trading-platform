@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { close, logo, menu } from "../assets";
 import { navLinks } from "../constants";
 import Button from "./Button";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 	const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
 	const [toggle, setToggle] = useState(false);
+	console.log(user);
 
 	const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const Navbar = () => {
 		if (isLoading) {
 			return null;
 		}
-
+		
 		if (isAuthenticated) {
 			return (
 				<div className="relative ml-auto">
