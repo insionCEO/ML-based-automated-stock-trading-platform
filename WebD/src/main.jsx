@@ -1,19 +1,13 @@
 import React from "react";
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { createRoot } from "react-dom/client";
-import App from "./App";
+import AppRoutes from "./AppRoutes";
 import "./index.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import ErrorPage from "./ErrorPage";
-import Login from "./Login/Login";
-import Contact from "./Contact";
-import Dashboard from "./Dashboard";
 import ContextProvider from "./MainDashboard/contexts/ContextProvider";
-import Dashv2 from "./MainDashboard/Dashv2";
 import { registerLicense } from "@syncfusion/ej2-base";
 
 const AppWrapper = () => {
-	const { isAuthenticated } = useAuth0();
 	registerLicense("Ngo9BigBOggjHTQxAR8/V1NAaF5cWWVCfEx0RXxbf1x0ZFdMYFhbQXJPMyBoS35RckViW35ecnZcR2ZYVU1+");
 
 	return (
@@ -26,13 +20,7 @@ const AppWrapper = () => {
 		>
 			<ContextProvider>
 				<Router>
-					<Routes>
-						<Route path="/" element={<App />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="/dashboardv2/*" element={!isAuthenticated ? <Dashv2 /> : <Navigate to="/login" />} />
-						{/* <Route path="*" element={<ErrorPage />} /> */}
-					</Routes>
+					<AppRoutes />
 				</Router>
 			</ContextProvider>
 		</Auth0Provider>

@@ -1,13 +1,18 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
-
-import { Button } from ".";
 import { userProfileData } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
+import { useAuth0 } from "@auth0/auth0-react";
+import svg from "../../assets/avatar-svgrepo-com.svg";
 import avatar from "../data/avatar.jpg";
 
 const UserProfile = () => {
 	const { isClicked, currentColor, setIsClicked, initialState } = useStateContext();
+	const { logout, user } = useAuth0();
+
+	const handleLogout = () => {
+		logout({ returnTo: window.location.origin });
+	};
 
 	return (
 		<div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -23,18 +28,18 @@ const UserProfile = () => {
 						borderColor: "transparent",
 						padding: "8px",
 					}}
-					onClick={() => console.log("Logout Clicked")}
+					onClick={() => console.log("Cross Clicked")}
 					className={`text-2xl p-3 hover:drop-shadow-xl hover:bg-light-gray`}
 				>
 					<MdOutlineCancel />
 				</button>
 			</div>
 			<div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
-				<img className="rounded-full h-24 w-24" src={avatar} alt="user-profile" />
-				<div>
-					<p className="font-semibold text-xl dark:text-gray-200"> Michael Roberts </p>
+				<img className="rounded-full h-20 w-20" src={user.profile || svg} alt="user-profile" />
+				<div style={{ maxWidth: "100%", overflow: "hidden" }}>
+					<p className="font-semibold text-xl dark:text-gray-200"> {user.name} </p>
 					<p className="text-gray-500 text-sm dark:text-gray-400"> Administrator </p>
-					<p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@shop.com </p>
+					<p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {user.email} </p>
 				</div>
 			</div>
 			<div>
@@ -59,7 +64,18 @@ const UserProfile = () => {
 				))}
 			</div>
 			<div className="mt-5">
-				<Button color="white" bgColor={currentColor} text="Logout" borderRadius="10px" width="full" />
+				{/* <Button color="white" bgColor={currentColor} text="Logout" borderRadius="10px" width="full" /> */}
+				<button
+					type="button"
+					onClick={(e) => {
+						e.preventDefault();
+						handleLogout();
+					}}
+					style={{ backgroundColor: currentColor, color: "white", borderRadius: "10px", width: "full" }}
+					className={`  p-3 w-full hover:drop-shadow-xl`}
+				>
+					Logout
+				</button>
 			</div>
 		</div>
 	);

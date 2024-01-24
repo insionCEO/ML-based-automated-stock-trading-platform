@@ -104,35 +104,36 @@ const Ecommerce = () => {
 			title: "Account Number",
 			iconColor: "#03C9D7",
 			iconBg: "#E5FAFB",
-			pcColor: "red-600",
+			pcColor: "gray-200",
 		},
 		{
 			icon: <BsBoxSeam />,
-			amount: apiData ? apiData.buying_power : "",
+			amount: apiData ? `$${apiData.buying_power}` : "",
 			title: "Buying Power",
 			iconColor: "rgb(255, 244, 229)",
 			iconBg: "rgb(254, 201, 15)",
-			pcColor: "green-600",
+			pcColor: "gray-200",
 		},
 		{
 			icon: <FiBarChart />,
-			amount: apiData ? apiData.cash : "",
+			amount: apiData ? `$${apiData.cash}` : "",
 			title: "Cash",
 			iconColor: "rgb(228, 106, 118)",
 			iconBg: "rgb(255, 244, 229)",
-			pcColor: "green-600",
+			pcColor: "gray-200",
 		},
 		{
 			icon: <HiOutlineRefresh />,
 			amount: apiData
-				? (apiData.equity - apiData.last_equity).toFixed(2)
-					? (apiData.equity - apiData.last_equity >= 0 ? "+" : "-") + Math.abs(apiData.equity - apiData.last_equity).toFixed(2)
-					: -(apiData.equity - apiData.last_equity).toFixed(2)
+				? apiData.equity - apiData.last_equity !== 0
+					? (apiData.equity - apiData.last_equity > 0 ? "+$" : "-$") + Math.abs(apiData.equity - apiData.last_equity).toFixed(2)
+					: "$0.00"
 				: "",
 			title: "Daily Change",
 			iconColor: "rgb(0, 194, 146)",
 			iconBg: "rgb(235, 250, 242)",
-			pcColor: "red-600",
+			pcColor: apiData && apiData.equity - apiData.last_equity >= 0 ? "green-600" : "red-600",
+			percentage: apiData ? `${(((apiData.equity - apiData.last_equity) / apiData.last_equity) * 100).toFixed(2)}%` : "",
 		},
 	];
 
@@ -141,10 +142,7 @@ const Ecommerce = () => {
 			<div className="flex flex-wrap lg:flex-nowrap justify-center ">
 				<div className="flex m-3 flex-wrap justify-center gap-1 items-center">
 					{earningData.map((item) => (
-						<div
-							key={item.title}
-							className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl "
-						>
+						<div key={item.title} className="h-44 text-gray-200 bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
 							<button
 								type="button"
 								style={{ color: item.iconColor, backgroundColor: item.iconBg }}
@@ -153,7 +151,7 @@ const Ecommerce = () => {
 								{item.icon}
 							</button>
 							<p className="mt-3">
-								<span className="text-lg font-semibold">{item.amount}</span>
+								<span className={`text-lg font-semibold text-${item.pcColor}`}>{item.amount}</span>
 								<span className={`text-sm text-${item.pcColor} ml-2`}>{item.percentage}</span>
 							</p>
 							<p className="text-sm text-gray-400  mt-1">{item.title}</p>

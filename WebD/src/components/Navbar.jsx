@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { close, logo, menu } from "../assets";
-import { navLinks } from "../constants";
 import Button from "./Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 	const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
 	const [toggle, setToggle] = useState(false);
-	console.log(user);
+	// console.log(user);
 
 	const navigate = useNavigate();
 
@@ -28,7 +27,7 @@ const Navbar = () => {
 		if (isLoading) {
 			return null;
 		}
-		
+
 		if (isAuthenticated) {
 			return (
 				<div className="relative ml-auto">
@@ -96,7 +95,7 @@ const Navbar = () => {
 
 	return (
 		<nav className="w-full flex py-6 items-center navbar">
-			<img src={logo} alt="TensorForce" className="w-[124px] h-[32px]" />
+			<img src={logo} alt="TensorForce" className="w-[124px] h-[32px]" onClick={() => navigate("/")} />
 
 			<ul className="list-none sm:flex hidden items-center flex-1 ml-6">
 				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
