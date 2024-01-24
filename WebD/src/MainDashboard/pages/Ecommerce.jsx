@@ -4,6 +4,7 @@ import { IoIosMore } from "react-icons/io";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
 import GaugeChart from "react-gauge-chart";
 import { Stacked, Pie, Button, LineChart, SparkLine } from "../components";
+import QuickTrade from "../components/QuickTrade";
 import {
 	earningData,
 	medicalproBranding,
@@ -213,8 +214,8 @@ const Ecommerce = () => {
 					</div>
 				</div>
 				<div>
-					<div className=" rounded-2xl md:w-400 p-4 m-3" style={{ backgroundColor: currentColor }}>
-						<div className="flex justify-between items-center ">
+					<div className=" rounded-2xl md:w-400  mt-3 mb-3" style={{ backgroundColor: currentColor }}>
+						{/* <div className="flex justify-between items-center ">
 							<p className="font-semibold text-white text-2xl">Earnings</p>
 
 							<div>
@@ -244,7 +245,8 @@ const Ecommerce = () => {
 
 						<div className="w-40">
 							<Pie id="pie-chart" data={ecomPieChartData} legendVisiblity={false} height="160px" />
-						</div>
+						</div> */}
+						<QuickTrade/>
 					</div>
 				</div>
 			</div>
