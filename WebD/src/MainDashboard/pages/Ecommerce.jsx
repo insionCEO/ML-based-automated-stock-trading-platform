@@ -95,7 +95,7 @@ const Ecommerce = () => {
 		};
 
 		fetchAccountData();
-	}, []);
+	}, [apiData]);
 
 	const earningData = [
 		{
@@ -124,7 +124,11 @@ const Ecommerce = () => {
 		},
 		{
 			icon: <HiOutlineRefresh />,
-			amount: apiData ? (apiData.last_equity - apiData.equity).toFixed(2) : "",
+			amount: apiData
+				? (apiData.equity - apiData.last_equity).toFixed(2)
+					? (apiData.equity - apiData.last_equity >= 0 ? "+" : "-") + Math.abs(apiData.equity - apiData.last_equity).toFixed(2)
+					: -(apiData.equity - apiData.last_equity).toFixed(2)
+				: "",
 			title: "Daily Change",
 			iconColor: "rgb(0, 194, 146)",
 			iconBg: "rgb(235, 250, 242)",
