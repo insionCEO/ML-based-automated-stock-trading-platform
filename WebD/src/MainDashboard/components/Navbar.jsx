@@ -10,50 +10,57 @@ import svg from "../../assets/avatar-svgrepo-com.svg";
 import { Cart, Chat, Notification, UserProfile } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
 
-const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
-  <TooltipComponent content={title} position="BottomCenter">
-    <button
-      type="button"
-      onClick={() => customFunc()}
-      style={{ color }}
-      className="relative text-xl rounded-full p-3 hover:bg-light-gray"
-    >
-      <span style={{ background: dotColor }} className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2" />
-      {icon}
-    </button>
-  </TooltipComponent>
-);
+const NavButton = ({ title, customFunc, icon, color, dotColor }) => {
+	const handleClick = () => {
+		if (customFunc) {
+			customFunc();
+		}
+	};
+	return (
+		<TooltipComponent content={title} position="BottomCenter">
+			<button
+				type="button"
+				onClick={handleClick}
+				style={{ color }}
+				className="relative text-xl rounded-full p-3 hover:bg-light-gray"
+			>
+				<span style={{ background: dotColor }} className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2" />
+				{icon}
+			</button>
+		</TooltipComponent>
+	);
+};
 
 const Navbar = () => {
-  const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, currentColor } =
-    useStateContext();
+	const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, currentColor } =
+		useStateContext();
 
-  const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
-  console.log(user);
+	const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
+	console.log(user);
 
-  useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
+	useEffect(() => {
+		const handleResize = () => setScreenSize(window.innerWidth);
 
-    const handleResizeCallback = () => {
-      handleResize();
-    };
+		const handleResizeCallback = () => {
+			handleResize();
+		};
 
-    window.addEventListener("resize", handleResizeCallback);
+		window.addEventListener("resize", handleResizeCallback);
 
-    return () => window.removeEventListener("resize", handleResizeCallback);
-  }, [setScreenSize]);
+		return () => window.removeEventListener("resize", handleResizeCallback);
+	}, [setScreenSize]);
 
-  useEffect(() => {
-    if (screenSize <= 900) {
-      setActiveMenu(false);
-    } else {
-      setActiveMenu(true);
-    }
-  }, [screenSize, setActiveMenu]);
+	useEffect(() => {
+		if (screenSize <= 900) {
+			setActiveMenu(false);
+		} else {
+			setActiveMenu(true);
+		}
+	}, [screenSize, setActiveMenu]);
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
+	if (isLoading) {
+		return <div>Loading</div>;
+	}
 
 	return (
 		<div className="flex justify-between p-2 md:mx-6 relative">
@@ -72,13 +79,7 @@ const Navbar = () => {
 					color={currentColor}
 					icon={<BsChatLeft />}
 				/>
-				<NavButton
-					title="Notifications"
-					dotColor="#03C9D7"
-					customFunc={() => handleClick("chat")}
-					color={currentColor}
-					icon={<RiNotification3Line />}
-				/>
+
 				<TooltipComponent content="Profile" position="BottomCenter">
 					<div
 						className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
@@ -94,7 +95,6 @@ const Navbar = () => {
 				</TooltipComponent>
 				{isClicked.cart && <Cart />}
 				{isClicked.chat && <Chat />}
-				{isClicked.notification && <Notification />}
 				{isClicked.userProfile && <UserProfile />}
 			</div>
 		</div>

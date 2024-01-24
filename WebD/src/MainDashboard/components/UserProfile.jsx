@@ -7,7 +7,7 @@ import svg from "../../assets/avatar-svgrepo-com.svg";
 import avatar from "../data/avatar.jpg";
 
 const UserProfile = () => {
-	const { isClicked, currentColor, setIsClicked, initialState } = useStateContext();
+	const { isClicked, currentColor, setIsClicked, initialState, handleClick } = useStateContext();
 	const { logout, user } = useAuth0();
 
 	const handleLogout = () => {
@@ -23,12 +23,11 @@ const UserProfile = () => {
 					type="button"
 					style={{
 						color: "rgb(153, 171, 180)",
-						// backgroundColor: "transparent",
-						borderRadius: "50%", // Set the borderRadius directly in the style attribute
+						borderRadius: "50%",
 						borderColor: "transparent",
 						padding: "8px",
 					}}
-					onClick={() => console.log("Cross Clicked")}
+					onClick={() => handleClick("userProfile")}
 					className={`text-2xl p-3 hover:drop-shadow-xl hover:bg-light-gray`}
 				>
 					<MdOutlineCancel />
