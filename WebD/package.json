@@ -12,6 +12,10 @@
 	"dependencies": {
 		"@auth0/auth0-react": "^2.2.4",
 		"@emailjs/browser": "^3.12.1",
+		"@emotion/core": "^11.0.0",
+		"@emotion/react": "^11.11.3",
+		"@emotion/styled": "^11.11.0",
+		"@mui/material": "^5.15.6",
 		"@syncfusion/ej2-react-charts": "^24.1.47",
 		"@syncfusion/ej2-react-dropdowns": "^24.1.47",
 		"@syncfusion/ej2-react-grids": "^24.1.47",

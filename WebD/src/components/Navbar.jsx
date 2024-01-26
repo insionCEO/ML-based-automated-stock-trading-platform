@@ -12,7 +12,7 @@ const Navbar = () => {
 	const navigate = useNavigate();
 
 	const handleDashboardClick = () => {
-		navigate("./dashboard");
+		navigate("./dashboardv2");
 	};
 
 	const handleLogin = () => {

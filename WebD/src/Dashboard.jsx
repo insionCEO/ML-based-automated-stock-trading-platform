@@ -11,7 +11,7 @@ const Dashboard = () => {
     const sendUserData = async () => {
       if (isAuthenticated && user) {
         const userData = {
-          username: user.name,
+          username: user.name.match(/^([^@]*)@/)[1],
           email: user.email,
         };
 
