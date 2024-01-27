@@ -126,7 +126,10 @@ const Profile = () => {
 						justifyContent="center"
 						alignItems="center"
 					>
-						<Card variant="outlined" sx={{ borderColor: "white" }}>
+						<Card
+							variant="outlined"
+							sx={{ borderColor: "white", borderRadius: "10px" }}
+						>
 							<Grid
 								container
 								direction="column"
@@ -134,6 +137,7 @@ const Profile = () => {
 								style={{
 									color: "white",
 									backgroundColor: "#20232a",
+									borderRadius: "10px",
 								}}
 							>
 								<Grid

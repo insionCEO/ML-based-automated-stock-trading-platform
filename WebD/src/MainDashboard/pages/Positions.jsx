@@ -82,7 +82,7 @@ const FinancialPositionsPage = () => {
 				flexDirection: "column",
 				alignItems: "center",
 				height: "100vh",
-				padding: "20px",
+				paddingBottom: "5em",
 			}}
 		>
 			<div
@@ -168,7 +168,7 @@ const ApexValueUsedChart = ({
 			foreColor: "#FFFFFF",
 		},
 		labels: labels,
-		colors: ["#59CE8F", "#FF1E00"],
+		colors: ["#FF1E00", "#59CE8F"],
 		plotOptions: {
 			pie: {
 				dataLabels: {
