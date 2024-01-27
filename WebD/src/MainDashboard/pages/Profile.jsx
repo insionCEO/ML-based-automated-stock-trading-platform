@@ -8,7 +8,7 @@ import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { coversvg } from "../../assets";
 const styles = {
 	details: {
 		padding: "1em",
@@ -24,32 +24,36 @@ const styles = {
 const Profile = () => {
 	const { user, isLoading } = useAuth0();
 	const [showUpdateForm, setShowUpdateForm] = useState(false);
-	const [apiKey, setApiKey] = useState("");
-	const [apiSecret, setApiSecret] = useState("");
-
-	if (isLoading) {
-		return <div>Loading</div>;
-	}
+	const [apiKey, setApiKey] = useState(null);
+	const [apiSecret, setApiSecret] = useState(null);
 
 	useEffect(() => {
-		// Fetch user's API key and API secret when component mounts
-		const fetchUserKeys = async () => {
-			try {
-				const response = await fetch(`/api/keys/${user.email}`);
-				const data = await response.json();
-				if (data.success) {
-					setApiKey(data.apiKey);
-					setApiSecret(data.apiSecretKey);
-				} else {
-					console.error("Failed to fetch user keys:", data.message);
+		if (!isLoading && user && user.email) {
+			// Add null check for user and user.email
+			// Fetch user's API key and API secret when component mounts
+			const fetchUserKeys = async () => {
+				try {
+					const response = await fetch(
+						`http://localhost:5000/api/keys/${user.email}`
+					);
+					const data = await response.json();
+					if (data.success) {
+						setApiKey(data.apiKey || null);
+						setApiSecret(data.apiSecretKey || null);
+					} else {
+						console.error(
+							"Failed to fetch user keys:",
+							data.message
+						);
+					}
+				} catch (error) {
+					console.error("Error fetching user keys:", error);
 				}
-			} catch (error) {
-				console.error("Error fetching user keys:", error);
-			}
-		};
+			};
 
-		fetchUserKeys();
-	}, []);
+			fetchUserKeys();
+		}
+	}, [isLoading, user]); // Add user as a dependency
 
 	const handleUpdateButtonClick = () => {
 		setShowUpdateForm(true);
@@ -57,17 +61,20 @@ const Profile = () => {
 
 	const handleSaveChanges = async () => {
 		try {
-			const response = await fetch("/api/updateKeys", {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					email: user.email,
-					apiKey: apiKey,
-					apiSecretKey: apiSecret,
-				}),
-			});
+			const response = await fetch(
+				"http://localhost:5000/api/updateKeys",
+				{
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: user.email,
+						apiKey: apiKey,
+						apiSecretKey: apiSecret,
+					}),
+				}
+			);
 			const data = await response.json();
 			console.log(data);
 			// Optionally, update state or show a success message
@@ -76,6 +83,10 @@ const Profile = () => {
 			// Optionally, show an error message to the user
 		}
 	};
+
+	if (isLoading) {
+		return <div>Loading</div>;
+	}
 
 	return (
 		<CssBaseline>
@@ -95,7 +106,7 @@ const Profile = () => {
 						objectFit: "cover",
 						objectPosition: "50% 50%",
 					}}
-					src="https://img.freepik.com/free-vector/dark-black-background-design-with-stripes_1017-38064.jpg?w=2000&t=st=1706340898~exp=1706341498~hmac=4d3391a909bb9392c18225949c9e98f5d6971c1d58c66e3c20332d19c9a67901"
+					src={coversvg}
 				/>
 				<Grid
 					container
@@ -162,10 +173,10 @@ const Profile = () => {
 											{user.email}
 										</Typography>
 										<Typography style={styles.value}>
-											{apiKey}
+											{apiKey === null ? "null" : apiKey}
 										</Typography>
 										<Typography style={styles.value}>
-											{apiSecret}
+											{apiSecret === null ? "null" : apiSecret}
 										</Typography>
 									</Grid>
 								</Grid>
@@ -227,7 +238,7 @@ const Profile = () => {
 										InputLabelProps={{
 											style: { color: "white" },
 										}}
-										value={apiKey}
+										value={apiKey === null ? "null" : apiKey}
 										onChange={(e) => setApiKey(e.target.value)}
 									/>
 									<TextField
@@ -239,7 +250,7 @@ const Profile = () => {
 										InputLabelProps={{
 											style: { color: "white" },
 										}}
-										value={apiSecret}
+										value={apiSecret === null ? "null" : apiSecret}
 										onChange={(e) => setApiSecret(e.target.value)}
 									/>
 									<Grid
