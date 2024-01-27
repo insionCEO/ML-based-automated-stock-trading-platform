@@ -532,7 +532,7 @@ export const links = [
         icon: <IoMdContacts />,
       },
       {
-        name: "customers",
+        name: "Positions",
         icon: <RiContactsLine />,
       },
     ],

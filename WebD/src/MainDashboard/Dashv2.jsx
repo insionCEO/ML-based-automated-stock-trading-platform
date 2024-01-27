@@ -31,6 +31,7 @@ import Profile from "./pages/Profile";
 import { useStateContext } from "./contexts/ContextProvider";
 import "./App.css";
 import CompanyFinancials from "./CompanyFinancials/CompanyFinancials";
+import Positions from "./pages/Positions";
 
 const Dashv2 = () => {
 	const {
@@ -112,7 +113,7 @@ const Dashv2 = () => {
 								<Route path="/dashboard" element={<Dashboard />} />
 
 								{/* {Pages} */}
-								<Route path="/customers" element={<Customers />} />
+								<Route path="/positions" element={<Positions />} />
 								<Route path="/employees" element={<Employees />} />
 								<Route path="/orders" element={<Orders />} />
 
