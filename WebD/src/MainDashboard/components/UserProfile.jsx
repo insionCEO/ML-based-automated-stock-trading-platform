@@ -44,7 +44,7 @@ const UserProfile = () => {
 			<div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
 				<img
 					className="rounded-full h-20 w-20"
-					src={user.profile || svg}
+					src={user.picture || svg}
 					alt="user-profile"
 				/>
 				<div style={{ maxWidth: "100%", overflow: "hidden" }}>

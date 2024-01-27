@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Search from "./Search";
 
 const Header = ({ stockDetails }) => {
 	const [quantity, setQuantity] = useState(0);
-	console.log(stockDetails);
+	// console.log(stockDetails);
+
 	const handleQuantityChange = (e) => {
 		const newQuantity = parseInt(e.target.value, 10);
 		setQuantity(isNaN(newQuantity) ? 0 : newQuantity);
@@ -18,34 +18,34 @@ const Header = ({ stockDetails }) => {
 		executeOrder("sell");
 	};
 
-	const executeOrder = (side) => {
-		const apiUrl = "https://paper-api.alpaca.markets/v2/orders";
-		const apiKey = "PKMOGSI41RDBFAODKTJY";
-		const apiSecretKey = "XZH5NzB8kICqG0wIC40U5ocgQlLNedVW6VWyzxt1";
-
-		const requestData = {
-			side,
-			type: "market",
-			time_in_force: "day",
-			symbol: stockDetails.ticker,
-			qty: quantity.toString(),
+	const executeOrder = async (side) => {
+		const options = {
+			method: "POST",
+			headers: {
+				accept: "application/json",
+				"APCA-API-KEY-ID": "PKI1EBX5LM1D0WUN7WU5",
+				"APCA-API-SECRET-KEY":
+					"CxSsspL84jDujfTUxxGNhWibaexutf18Uf513ABM",
+			},
+			body: JSON.stringify({
+				side,
+				type: "market",
+				time_in_force: "day",
+				symbol: stockDetails.ticker,
+				qty: quantity.toString(),
+			}),
 		};
 
-		const headers = {
-			"APCA-API-KEY-ID": apiKey,
-			"APCA-API-SECRET-KEY": apiSecretKey,
-			accept: "application/json",
-			"content-type": "application/json",
-		};
-
-		axios
-			.post(apiUrl, requestData, { headers })
-			.then((response) => {
-				console.log(`Order placed successfully (${side}):`, response.data);
-			})
-			.catch((error) => {
-				console.error(`Error placing order (${side}):`, error.response ? error.response.data : error.message);
-			});
+		try {
+			const response = await fetch(
+				"https://paper-api.alpaca.markets/v2/orders",
+				options
+			);
+			const data = await response.json();
+			console.log(data);
+		} catch (error) {
+			console.error("Error submitting order:", error);
+		}
 	};
 
 	return (
@@ -56,10 +56,16 @@ const Header = ({ stockDetails }) => {
 					<Search />
 				</div>
 				<div className="grid grid-flow-col grid-rows-none  space-x-4">
-					<button className="bg-green-500 text-white px-4 py-2 rounded-md" onClick={handleMarketBuy}>
+					<button
+						className="bg-green-500 text-white px-4 py-2 rounded-md"
+						onClick={handleMarketBuy}
+					>
 						Market Buy
 					</button>
-					<button className="bg-red-500 text-white px-4 py-2 rounded-md" onClick={handleMarketSell}>
+					<button
+						className="bg-red-500 text-white px-4 py-2 rounded-md"
+						onClick={handleMarketSell}
+					>
 						Market Sell
 					</button>
 					<input

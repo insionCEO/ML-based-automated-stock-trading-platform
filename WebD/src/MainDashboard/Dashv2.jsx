@@ -4,7 +4,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import "./material.css";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
+import {
+	Navbar,
+	Footer,
+	Sidebar,
+	ThemeSettings,
+} from "./components";
 import {
 	Ecommerce,
 	Orders,
@@ -24,12 +29,19 @@ import {
 	Editor,
 } from "./pages";
 
+import Profile from "./pages/Profile";
 import { useStateContext } from "./contexts/ContextProvider";
 import "./App.css";
 import CompanyFinancials from "./CompanyFinancials/CompanyFinancials";
 
 const Dashv2 = () => {
-	const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
+	const {
+		activeMenu,
+		themeSettings,
+		setThemeSettings,
+		currentColor,
+		currentMode,
+	} = useStateContext();
 	return (
 		<Auth0Provider
 			domain="dev-ovhg6woj2jzt3u4i.au.auth0.com"
@@ -46,7 +58,7 @@ const Dashv2 = () => {
 						</div>
 					) : (
 						<div className="w-0 dark:bg-secondary-dark-bg">
-							<Sidebar /> w-0
+							<Sidebar />
 						</div>
 					)}
 					<div
@@ -75,20 +87,29 @@ const Dashv2 = () => {
 								<Route path="/kanban" element={<Kanban />} />
 								<Route path="/editor" element={<Editor />} />
 								<Route path="/calendar" element={<Calendar />} />
-								<Route path="/color-picker" element={<ColorPicker />} />
+								<Route
+									path="/color-picker"
+									element={<ColorPicker />}
+								/>
 
 								{/* Charts */}
-								<Route path="/line" element={<Line />} />
+								<Route path="/profile" element={<Profile />} />
 								<Route path="/area" element={<Area />} />
 								<Route path="/bar" element={<Bar />} />
 								<Route path="/pie" element={<Pie />} />
 								{/* <Route path="/financial" element={<Financial />} /> */}
-								<Route path="/color-mapping" element={<ColorMapping />} />
+								<Route
+									path="/color-mapping"
+									element={<ColorMapping />}
+								/>
 								<Route path="/pyramid" element={<Pyramid />} />
 								<Route path="/stacked" element={<Stacked />} />
 
 								{/* My Routes */}
-								<Route path="/financials" element={<CompanyFinancials />}></Route>
+								<Route
+									path="/financials"
+									element={<CompanyFinancials />}
+								></Route>
 							</Routes>
 						</div>
 					</div>

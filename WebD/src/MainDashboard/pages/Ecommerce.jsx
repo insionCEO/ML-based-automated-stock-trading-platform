@@ -13,6 +13,7 @@ import {
 import QuickTrade from "../components/QuickTrade";
 import MarketSentiment from "../components/MarketSentiment";
 import RecentTrnx from "../components/RecentTrnx";
+import AreaChart from "../components/Charts/AreaChart";
 import {
 	earningData,
 	medicalproBranding,
@@ -226,7 +227,7 @@ const Ecommerce = () => {
 
 			<div className="flex gap-10 flex-wrap justify-center">
 				<div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780  ">
-					<div className="flex justify-between">
+					{/* <div className="flex justify-between">
 						<p className="font-semibold text-xl">Revenue Updates</p>
 						<div className="flex items-center gap-4">
 							<p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl">
@@ -285,8 +286,10 @@ const Ecommerce = () => {
 								height="360px"
 							/>
 						</div>
-					</div>
+					</div> */}
+					<AreaChart />
 				</div>
+
 				<div>
 					<div
 						className=" rounded-2xl md:w-400  mt-3 mb-3"
@@ -321,7 +324,7 @@ const Ecommerce = () => {
 						</div>
 
 						<div className="w-40">
-							<Pie id="pie-chart" data={ecomPieChartData} legendVisiblity={false} height="160px" />
+							<Pie id="pie-chart	" data={ecomPieChartData} legendVisiblity={false} height="160px" />
 						</div> */}
 						<QuickTrade />
 					</div>
