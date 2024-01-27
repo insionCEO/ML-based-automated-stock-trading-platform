@@ -44,6 +44,7 @@ const Navbar = () => {
 						data-dropdown-placement="bottom-start"
 						className="w-10 h-10 rounded-full cursor-pointer"
 						src={user.picture}
+						referrerPolicy="no-referrer"
 						alt="User dropdown"
 						onClick={() => setToggle(!toggle)}
 					/>
@@ -152,11 +153,13 @@ const Navbar = () => {
 				>
 					<a href="/contact">Contact Us</a>
 				</li>
-				<li
-					className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}
-				>
-					<a href="/dashboardv2">Dashboard</a>
-				</li>
+				{isAuthenticated && (
+					<li
+						className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}
+					>
+						<a href="/dashboardv2">Dashboard</a>
+					</li>
+				)}
 			</ul>
 
 			{renderProfileButton()}
@@ -200,6 +203,13 @@ const Navbar = () => {
 						>
 							<a href="/contact">Contact Us</a>
 						</li>
+						{isAuthenticated && (
+							<li
+								className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}
+							>
+								<a href="/dashboardv2">Dashboard</a>
+							</li>
+						)}
 					</ul>
 				</div>
 			</div>

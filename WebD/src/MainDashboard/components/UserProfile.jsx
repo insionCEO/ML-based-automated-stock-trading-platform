@@ -45,12 +45,13 @@ const UserProfile = () => {
 				<img
 					className="rounded-full h-20 w-20"
 					src={user.picture || svg}
+					referrerPolicy="no-referrer"
 					alt="user-profile"
 				/>
 				<div style={{ maxWidth: "100%", overflow: "hidden" }}>
 					<p className="font-semibold text-xl dark:text-gray-200">
 						{" "}
-						{user.name.match(/^([^@]*)@/)[1]}{" "}
+						{user.name}{" "}
 					</p>
 					<p className="text-gray-500 text-sm dark:text-gray-400">
 						{" "}

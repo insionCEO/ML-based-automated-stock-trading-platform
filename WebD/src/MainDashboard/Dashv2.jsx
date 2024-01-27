@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import { Routes, Route } from "react-router-dom";
 import "./material.css";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import {
 	Navbar,
 	Footer,
@@ -11,7 +9,7 @@ import {
 	ThemeSettings,
 } from "./components";
 import {
-	Ecommerce,
+	Dashboard,
 	Orders,
 	Calendar,
 	Employees,
@@ -28,7 +26,7 @@ import {
 	ColorMapping,
 	Editor,
 } from "./pages";
-
+import axios from "axios";
 import Profile from "./pages/Profile";
 import { useStateContext } from "./contexts/ContextProvider";
 import "./App.css";
@@ -42,6 +40,41 @@ const Dashv2 = () => {
 		currentColor,
 		currentMode,
 	} = useStateContext();
+
+	const { user, isAuthenticated, isLoading } = useAuth0();
+
+	useEffect(() => {
+		const sendUserData = async () => {
+			if (isAuthenticated && user) {
+				const userData = {
+					username: user.name,
+					email: user.email,
+				};
+
+				try {
+					const response = await axios.post(
+						"http://localhost:5000/api/authenticate",
+						userData
+					);
+
+					if (response.status === 200) {
+						const responseData = response.data;
+						console.log("Response data:", responseData);
+					} else {
+						console.error("Error sending user data");
+					}
+				} catch (error) {
+					console.error(
+						"Error sending user data:",
+						error.response || error.message || error
+					);
+				}
+			}
+		};
+
+		sendUserData();
+	}, [isAuthenticated, user]);
+
 	return (
 		<Auth0Provider
 			domain="dev-ovhg6woj2jzt3u4i.au.auth0.com"
@@ -75,8 +108,8 @@ const Dashv2 = () => {
 							{themeSettings && <ThemeSettings />}
 							<Routes>
 								{/* Dashboard */}
-								<Route path="/" element={<Ecommerce />} />
-								<Route path="/ecommerce" element={<Ecommerce />} />
+								<Route path="/" element={<Dashboard />} />
+								<Route path="/dashboard" element={<Dashboard />} />
 
 								{/* {Pages} */}
 								<Route path="/customers" element={<Customers />} />

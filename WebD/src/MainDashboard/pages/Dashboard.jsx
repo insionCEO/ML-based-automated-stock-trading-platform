@@ -1,38 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { BsCurrencyDollar } from "react-icons/bs";
-import { IoIosMore } from "react-icons/io";
-import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
-import GaugeChart from "react-gauge-chart";
-import {
-	Stacked,
-	Pie,
-	Button,
-	LineChart,
-	SparkLine,
-} from "../components";
 import QuickTrade from "../components/QuickTrade";
 import MarketSentiment from "../components/MarketSentiment";
 import RecentTrnx from "../components/RecentTrnx";
 import AreaChart from "../components/Charts/AreaChart";
-import {
-	earningData,
-	medicalproBranding,
-	recentTransactions,
-	weeklyStats,
-	dropdownData,
-	SparklineAreaData,
-	ecomPieChartData,
-} from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
-import product9 from "../data/product9.jpg";
 import { MdOutlineSupervisorAccount } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
 import { FiBarChart } from "react-icons/fi";
 import { HiOutlineRefresh } from "react-icons/hi";
 
-const Ecommerce = () => {
+const Dashboard = () => {
 	const { currentColor, currentMode } = useStateContext();
 	const [averageSentiment, setAverageSentiment] = useState(0);
+
 	useEffect(() => {
 		const fetchSentimentData = async () => {
 			const myHeaders = new Headers();
@@ -497,4 +477,4 @@ const Ecommerce = () => {
 	);
 };
 
-export default Ecommerce;
+export default Dashboard;

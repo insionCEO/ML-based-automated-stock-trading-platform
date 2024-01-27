@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -24,19 +24,57 @@ const styles = {
 const Profile = () => {
 	const { user, isLoading } = useAuth0();
 	const [showUpdateForm, setShowUpdateForm] = useState(false);
-
-	// Password Masking
-	const maskSecret = (secret) =>
-		"*".repeat(secret.length - 4) + secret.slice(-4);
-	const secret = "mysecretcode1234";
-	const maskedSecret = maskSecret(secret);
+	const [apiKey, setApiKey] = useState("");
+	const [apiSecret, setApiSecret] = useState("");
 
 	if (isLoading) {
 		return <div>Loading</div>;
 	}
 
+	useEffect(() => {
+		// Fetch user's API key and API secret when component mounts
+		const fetchUserKeys = async () => {
+			try {
+				const response = await fetch(`/api/keys/${user.email}`);
+				const data = await response.json();
+				if (data.success) {
+					setApiKey(data.apiKey);
+					setApiSecret(data.apiSecretKey);
+				} else {
+					console.error("Failed to fetch user keys:", data.message);
+				}
+			} catch (error) {
+				console.error("Error fetching user keys:", error);
+			}
+		};
+
+		fetchUserKeys();
+	}, []);
+
 	const handleUpdateButtonClick = () => {
 		setShowUpdateForm(true);
+	};
+
+	const handleSaveChanges = async () => {
+		try {
+			const response = await fetch("/api/updateKeys", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: user.email,
+					apiKey: apiKey,
+					apiSecretKey: apiSecret,
+				}),
+			});
+			const data = await response.json();
+			console.log(data);
+			// Optionally, update state or show a success message
+		} catch (error) {
+			console.error("Error updating keys:", error);
+			// Optionally, show an error message to the user
+		}
 	};
 
 	return (
@@ -46,7 +84,7 @@ const Profile = () => {
 					display: "flex",
 					flexDirection: "column",
 					minHeight: "100vh",
-					alignItems: "center",	
+					alignItems: "center",
 				}}
 			>
 				<img
@@ -101,11 +139,10 @@ const Profile = () => {
 										<Avatar
 											sx={{ width: 100, height: 100, mb: 1.5 }}
 											src={user.picture}
+											referrerPolicy="no-referrer"
 										/>
 									</Badge>
-									<Typography variant="h6">
-										{user.name.match(/^([^@]*)@/)[1]}
-									</Typography>
+									<Typography variant="h6">{user.name}</Typography>
 									<Typography color="white">Client</Typography>
 								</Grid>
 								<Grid container>
@@ -125,10 +162,10 @@ const Profile = () => {
 											{user.email}
 										</Typography>
 										<Typography style={styles.value}>
-											Detail 2
+											{apiKey}
 										</Typography>
 										<Typography style={styles.value}>
-											{maskedSecret}
+											{apiSecret}
 										</Typography>
 									</Grid>
 								</Grid>
@@ -190,6 +227,8 @@ const Profile = () => {
 										InputLabelProps={{
 											style: { color: "white" },
 										}}
+										value={apiKey}
+										onChange={(e) => setApiKey(e.target.value)}
 									/>
 									<TextField
 										label="ALPACA API-SECRET"
@@ -200,6 +239,8 @@ const Profile = () => {
 										InputLabelProps={{
 											style: { color: "white" },
 										}}
+										value={apiSecret}
+										onChange={(e) => setApiSecret(e.target.value)}
 									/>
 									<Grid
 										item
@@ -214,6 +255,7 @@ const Profile = () => {
 												backgroundColor: "#00c9d7",
 												width: "100%",
 											}}
+											onClick={handleSaveChanges}
 										>
 											Save Changes
 										</Button>
