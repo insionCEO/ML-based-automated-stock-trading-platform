@@ -13,6 +13,12 @@ const AreaChart = () => {
 			},
 			xaxis: {
 				categories: [],
+				labels: {
+					style: {
+						colors: "#ffffff",
+						fontSize: "10px",
+					},
+				},
 			},
 		},
 		series: [
@@ -30,7 +36,8 @@ const AreaChart = () => {
 				headers: {
 					accept: "application/json",
 					"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
-					"APCA-API-SECRET-KEY": import.meta.env.VITE_ALPACA_API_SECRET,
+					"APCA-API-SECRET-KEY": import.meta.env
+						.VITE_ALPACA_API_SECRET,
 				},
 			};
 
@@ -41,9 +48,11 @@ const AreaChart = () => {
 				);
 				const data = await response.json();
 
-				const categories = data.timestamp.map((timestamp) =>
-					new Date(timestamp).toLocaleTimeString()
-				);
+				const categories = data.timestamp.map((timestamp) => {
+					const dateObject = new Date(timestamp * 1000);
+					return dateObject.toLocaleDateString();
+				});
+
 				const seriesData = data.equity;
 
 				setState({
@@ -57,6 +66,11 @@ const AreaChart = () => {
 						},
 						xaxis: {
 							categories: categories,
+							labels: {
+								style: {
+									colors: "#ffffff",
+								},
+							},
 						},
 					},
 					series: [

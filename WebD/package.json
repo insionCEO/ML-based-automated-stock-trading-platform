@@ -24,6 +24,7 @@
 		"ag-grid-react": "^31.0.3",
 		"apexcharts": "^3.45.2",
 		"axios": "^1.6.5",
+		"cal-heatmap": "3.6.2",
 		"emailjs": "^4.0.3",
 		"localforage": "^1.10.0",
 		"match-sorter": "^6.3.3",

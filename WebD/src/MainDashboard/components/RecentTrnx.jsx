@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const RecentTrnx = () => {
 	const { currentColor, currentMode } = useStateContext();
 	const [recentTransactions, setRecentTransactions] = useState([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -12,8 +14,7 @@ const RecentTrnx = () => {
 					"https://paper-api.alpaca.markets/v2/account/activities";
 				const apiKeyId = import.meta.env.VITE_ALPACA_API_KEY;
 				const apiSecretKey = import.meta.env.VITE_ALPACA_API_SECRET;
-				// console.log(apiKeyId, " ", apiSecretKey);
-				
+
 				const options = {
 					method: "GET",
 					headers: {
@@ -34,10 +35,21 @@ const RecentTrnx = () => {
 		fetchData();
 	}, []);
 
+	const handleAllOrdersClick = () => {
+		navigate("/dashboardv2/orders");
+	};
+
 	return (
 		<div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
 			<div className="flex justify-between items-center gap-2">
 				<p className="text-xl font-semibold">Recent Transactions</p>
+				<button
+					type="button"
+					className={`text-sm ${currentColor} hover:underline`}
+					onClick={handleAllOrdersClick}
+				>
+					All Orders
+				</button>
 			</div>
 			<div className="mt-10 w-72 md:w-400">
 				{recentTransactions.map((item) => (

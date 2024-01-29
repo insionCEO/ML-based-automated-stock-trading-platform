@@ -32,6 +32,7 @@ import { useStateContext } from "./contexts/ContextProvider";
 import "./App.css";
 import CompanyFinancials from "./CompanyFinancials/CompanyFinancials";
 import Positions from "./pages/Positions";
+import Heatmap from "./pages/Heatmap";
 
 const Dashv2 = () => {
 	const {
@@ -143,7 +144,8 @@ const Dashv2 = () => {
 								<Route
 									path="/financials"
 									element={<CompanyFinancials />}
-								></Route>
+								/>
+								<Route path="heatmap" element={<Heatmap />} />
 							</Routes>
 						</div>
 					</div>
