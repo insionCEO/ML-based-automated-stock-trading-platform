@@ -20,6 +20,13 @@ const AreaChart = () => {
 					},
 				},
 			},
+			yaxis: {
+				labels: {
+					style: {
+						colors: "#ffffff",
+					},
+				},
+			},
 		},
 		series: [
 			{
@@ -72,6 +79,13 @@ const AreaChart = () => {
 								},
 							},
 						},
+						yaxis: {
+							labels: {
+								style: {
+									colors: "#ffffff",
+								},
+							},
+						},
 					},
 					series: [
 						{
@@ -90,6 +104,9 @@ const AreaChart = () => {
 
 	return (
 		<div>
+			<div>
+				<h1 className="font-bold text-white p-4 text-3xl">Portfolio</h1>
+			</div>
 			<Chart
 				options={state.options}
 				series={state.series}
