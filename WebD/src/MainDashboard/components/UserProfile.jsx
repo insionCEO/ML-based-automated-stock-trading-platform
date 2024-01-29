@@ -5,8 +5,11 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 import svg from "../../assets/avatar-svgrepo-com.svg";
 import avatar from "../data/avatar.jpg";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+	const navigate = useNavigate();
+
 	const {
 		isClicked,
 		currentColor,
@@ -68,6 +71,7 @@ const UserProfile = () => {
 					<div
 						key={index}
 						className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]"
+						onClick={() => navigate(item.nav)}
 					>
 						<button
 							type="button"

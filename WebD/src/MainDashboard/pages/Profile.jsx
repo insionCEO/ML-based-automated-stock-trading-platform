@@ -100,13 +100,16 @@ const Profile = () => {
 			>
 				<img
 					alt="avatar"
+					src={coversvg}
 					style={{
+						filter:
+							"invert(11%) sepia(9%) saturate(2458%) hue-rotate(172deg) brightness(98%) contrast(89%)",
+
 						width: "100%",
 						height: "35vh",
 						objectFit: "cover",
 						objectPosition: "50% 50%",
 					}}
-					src={coversvg}
 				/>
 				<Grid
 					container
@@ -216,7 +219,10 @@ const Profile = () => {
 							justifyContent="center"
 							alignItems="center"
 						>
-							<Card variant="outlined" sx={{ borderColor: "white" }}>
+							<Card
+								variant="outlined"
+								sx={{ borderColor: "white", borderRadius: "10px" }}
+							>
 								<Grid
 									container
 									direction="column"
@@ -225,6 +231,7 @@ const Profile = () => {
 										color: "white",
 										backgroundColor: "#20232a",
 										padding: "1em",
+										borderRadius: "10px",
 									}}
 								>
 									<Typography
@@ -237,6 +244,7 @@ const Profile = () => {
 										label="ALPACA API-KEY"
 										variant="outlined"
 										type="text"
+										color="primary"
 										fullWidth
 										style={{ color: "white", marginBottom: "1em" }}
 										InputLabelProps={{
@@ -268,6 +276,7 @@ const Profile = () => {
 											style={{
 												color: "white",
 												backgroundColor: "#00c9d7",
+												borderRadius: "10px",
 												width: "100%",
 											}}
 											onClick={handleSaveChanges}

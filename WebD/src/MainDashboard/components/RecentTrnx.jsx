@@ -10,10 +10,10 @@ const RecentTrnx = () => {
 			try {
 				const apiUrl =
 					"https://paper-api.alpaca.markets/v2/account/activities";
-				const apiKeyId = "PKI1EBX5LM1D0WUN7WU5";
-				const apiSecretKey =
-					"CxSsspL84jDujfTUxxGNhWibaexutf18Uf513ABM";
-
+				const apiKeyId = import.meta.env.VITE_ALPACA_API_KEY;
+				const apiSecretKey = import.meta.env.VITE_ALPACA_API_SECRET;
+				// console.log(apiKeyId, " ", apiSecretKey);
+				
 				const options = {
 					method: "GET",
 					headers: {
@@ -28,7 +28,6 @@ const RecentTrnx = () => {
 				setRecentTransactions(data.slice(0, 5));
 			} catch (error) {
 				console.error("Error fetching recent transactions:", error);
-				// Implement user-friendly error handling if needed
 			}
 		};
 
@@ -63,7 +62,7 @@ const RecentTrnx = () => {
 					</div>
 				))}
 			</div>
-		</div>	
+		</div>
 	);
 };
 

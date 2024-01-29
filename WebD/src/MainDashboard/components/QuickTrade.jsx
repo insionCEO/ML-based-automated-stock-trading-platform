@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useStateContext } from "../contexts/ContextProvider";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Container = styled.div`
 	margin: 0 auto;
@@ -75,9 +77,9 @@ const QuickTrade = () => {
 				method: "GET",
 				headers: {
 					accept: "application/json",
-					"APCA-API-KEY-ID": "PKI1EBX5LM1D0WUN7WU5",
-					"APCA-API-SECRET-KEY":
-						"CxSsspL84jDujfTUxxGNhWibaexutf18Uf513ABM",
+					"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
+					"APCA-API-SECRET-KEY": import.meta.env
+						.VITE_ALPACA_API_SECRET,
 				},
 			};
 
@@ -87,6 +89,7 @@ const QuickTrade = () => {
 					options
 				);
 				const data = await response.json();
+				console.log(data.bar.c);
 				if (data.bar && data.bar.c) {
 					setMarketPrice(data.bar.c);
 					calculateEstimatedCost();
@@ -99,7 +102,7 @@ const QuickTrade = () => {
 		if (symbol) {
 			fetchMarketPrice();
 		}
-	}, [symbol, marketPrice]);
+	}, [symbol, marketPrice, estimatedCost]);
 
 	const handleChange = (event, newAlignment) => {
 		if (newAlignment === "buy" && alignment !== "buy") {
@@ -127,6 +130,7 @@ const QuickTrade = () => {
 
 	const calculateEstimatedCost = () => {
 		const cost = quantity * marketPrice;
+		console.log(cost);
 		setEstimatedCost(cost.toFixed(2));
 	};
 
@@ -143,9 +147,9 @@ const QuickTrade = () => {
 			method: "POST",
 			headers: {
 				accept: "application/json",
-				"APCA-API-KEY-ID": "PKI1EBX5LM1D0WUN7WU5",
-				"APCA-API-SECRET-KEY":
-					"CxSsspL84jDujfTUxxGNhWibaexutf18Uf513ABM",
+				"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
+				"APCA-API-SECRET-KEY": import.meta.env
+					.VITE_ALPACA_API_SECRET,
 			},
 			body: JSON.stringify({
 				side: alignment,
@@ -153,7 +157,6 @@ const QuickTrade = () => {
 				time_in_force: timeInForce,
 				symbol: symbol,
 				qty: quantity.toString(),
-				// Add limit_price if the order type is "limit"
 				...(orderType === "limit" && { limit_price: limitPrice }),
 			}),
 		};
@@ -164,9 +167,15 @@ const QuickTrade = () => {
 				options
 			);
 			const data = await response.json();
-			console.log(data); // Log the response from the API
+			console.log(data);
+			if (data.message) {
+				toast.error(data.message);
+			} else {
+				toast.success("Order placed successfully!");
+			}
 		} catch (error) {
 			console.error("Error submitting order:", error);
+			toast.error("Error submitting order. Please try again.");
 		}
 	};
 
@@ -280,6 +289,11 @@ const QuickTrade = () => {
 					Place Order
 				</SubmitButton>
 			</Container>
+			<ToastContainer
+				position="top-right"
+				autoClose={2000}
+				hideProgressBar
+			/>
 		</div>
 	);
 };

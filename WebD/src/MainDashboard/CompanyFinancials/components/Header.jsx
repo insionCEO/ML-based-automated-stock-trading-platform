@@ -23,9 +23,8 @@ const Header = ({ stockDetails }) => {
 			method: "POST",
 			headers: {
 				accept: "application/json",
-				"APCA-API-KEY-ID": "PKI1EBX5LM1D0WUN7WU5",
-				"APCA-API-SECRET-KEY":
-					"CxSsspL84jDujfTUxxGNhWibaexutf18Uf513ABM",
+				"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
+				"APCA-API-SECRET-KEY": import.meta.env.VITE_ALPACA_API_SECRET,
 			},
 			body: JSON.stringify({
 				side,

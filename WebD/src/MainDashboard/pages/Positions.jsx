@@ -8,9 +8,9 @@ const options = {
 	method: "GET",
 	headers: {
 		accept: "application/json",
-		"APCA-API-KEY-ID": "PKI1EBX5LM1D0WUN7WU5",
+		"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
 		"APCA-API-SECRET-KEY":
-			"CxSsspL84jDujfTUxxGNhWibaexutf18Uf513ABM",
+		import.meta.env.VITE_ALPACA_API_SECRET,
 	},
 };
 
@@ -115,7 +115,7 @@ const FinancialPositionsPage = () => {
 };
 
 const ApexBuySellTotalChart = ({ buyTotal, sellTotal, chartId }) => {
-	const seriesData = [buyTotal, sellTotal];
+	const seriesData = [buyTotal, -sellTotal];
 	const labels = ["Buy Total", "Sell Total"];
 
 	const options = {
