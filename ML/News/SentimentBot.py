@@ -5,13 +5,12 @@ from lumibot.traders import Trader
 from datetime import datetime 
 from alpaca_trade_api import REST 
 from timedelta import Timedelta 
-# from finbert_utils import estimate_sentiment
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch
 from typing import Tuple 
+import torch
 
-API_KEY = "PKO5VQ1AK5KMT2F1PQHU" 
-API_SECRET = "EkR738ftZ4plWXpLaUDaLxWgDix5jTkP5VskSRfT" 
+API_KEY = "PKZMNP63HL85U73H6BYY" 
+API_SECRET = "UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J" 
 BASE_URL = "https://paper-api.alpaca.markets"
 
 ALPACA_CREDS = {
@@ -106,12 +105,7 @@ broker = Alpaca(ALPACA_CREDS)
 strategy = MLTrader(name='mlstrat', broker=broker, 
                     parameters={"symbol":"SPY", 
                                 "cash_at_risk":.5})
-# strategy.backtest(
-#     YahooDataBacktesting, 
-#     start_date, 
-#     end_date, 
-#     parameters={"symbol":"SPY", "cash_at_risk":.5}
-# )
+
 trader = Trader()
 trader.add_strategy(strategy)
 trader.run_all()
