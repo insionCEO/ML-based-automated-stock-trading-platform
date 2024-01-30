@@ -11,20 +11,16 @@ import {
 import {
 	Dashboard,
 	Orders,
-	Calendar,
-	Employees,
-	Stacked,
-	Pyramid,
+	// Calendar,
+	// Employees,
+	// Stacked,
+	// Pyramid,
 	Contribute,
-	Kanban,
-	Line,
-	Area,
-	Bar,
-	Pie,
-	Financial,
-	ColorPicker,
-	ColorMapping,
-	Editor,
+	// Area,
+	// Bar,
+	// ColorPicker,
+	// ColorMapping,
+	// Editor,
 } from "./pages";
 import axios from "axios";
 import Profile from "./pages/Profile";
@@ -34,6 +30,7 @@ import CompanyFinancials from "./CompanyFinancials/CompanyFinancials";
 import Positions from "./pages/Positions";
 import Heatmap from "./pages/Heatmap";
 import Shop from "./pages/Shop";
+import SentimentPage from "./pages/SentimentPage";
 
 const Dashv2 = () => {
 	const {
@@ -116,30 +113,33 @@ const Dashv2 = () => {
 
 								{/* {Pages} */}
 								<Route path="/positions" element={<Positions />} />
-								<Route path="/employees" element={<Employees />} />
+								{/* <Route path="/employees" element={<Employees />} /> */}
 								<Route path="/orders" element={<Orders />} />
 
 								{/* Apps */}
-								<Route path="/kanban" element={<Kanban />} />
-								<Route path="/editor" element={<Editor />} />
-								<Route path="/calendar" element={<Calendar />} />
-								<Route
+								{/* <Route path="/kanban" element={<Kanban />} /> */}
+								{/* <Route path="/editor" element={<Editor />} /> */}
+								{/* <Route path="/calendar" element={<Calendar />} /> */}
+								{/* <Route
 									path="/color-picker"
 									element={<ColorPicker />}
-								/>
+								/> */}
 
 								{/* Charts */}
 								<Route path="/profile" element={<Profile />} />
-								<Route path="/area" element={<Area />} />
-								<Route path="/bar" element={<Bar />} />
-								<Route path="/pie" element={<Pie />} />
-								{/* <Route path="/financial" element={<Financial />} /> */}
+								{/* <Route path="/area" element={<Area />} /> */}
+								{/* <Route path="/bar" element={<Bar />} /> */}
 								<Route
+									path="/sentiment"
+									element={<SentimentPage />}
+								/>
+								{/* <Route path="/financial" element={<Financial />} /> */}
+								{/* <Route
 									path="/color-mapping"
 									element={<ColorMapping />}
-								/>
-								<Route path="/pyramid" element={<Pyramid />} />
-								<Route path="/stacked" element={<Stacked />} />
+								/> */}
+								{/* <Route path="/pyramid" element={<Pyramid />} /> */}
+								{/* <Route path="/stacked" element={<Stacked />} /> */}
 
 								{/* My Routes */}
 								<Route

@@ -528,11 +528,11 @@ export const links = [
         icon: <AiOutlineShoppingCart />,
       },
       {
-        name: "Profile",
+        name: "profile",
         icon: <IoMdContacts />,
       },
       {
-        name: "Positions",
+        name: "positions",
         icon: <RiContactsLine />,
       },
     ],
@@ -561,21 +561,21 @@ export const links = [
   {
     title: "Charts",
     links: [
-      {
-        name: "line",
-        icon: <AiOutlineStock />,
-      },
-      {
-        name: "area",
-        icon: <AiOutlineAreaChart />,
-      },
+      // {
+      //   name: "line",
+      //   icon: <AiOutlineStock />,
+      // },
+      // {
+      //   name: "area",
+      //   icon: <AiOutlineAreaChart />,
+      // },
 
+      // {
+      //   name: "bar",
+      //   icon: <AiOutlineBarChart />,
+      // },
       {
-        name: "bar",
-        icon: <AiOutlineBarChart />,
-      },
-      {
-        name: "pie",
+        name: "heatmap",
         icon: <FiPieChart />,
       },
       {
@@ -583,11 +583,11 @@ export const links = [
         icon: <RiStockLine />,
       },
       {
-        name: "color-mapping",
+        name: "shop",
         icon: <BsBarChart />,
       },
       {
-        name: "pyramid",
+        name: "sentiment",
         icon: <GiLouvrePyramid />,
       },
       {

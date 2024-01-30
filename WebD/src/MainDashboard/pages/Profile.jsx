@@ -29,8 +29,6 @@ const Profile = () => {
 
 	useEffect(() => {
 		if (!isLoading && user && user.email) {
-			// Add null check for user and user.email
-			// Fetch user's API key and API secret when component mounts
 			const fetchUserKeys = async () => {
 				try {
 					const response = await fetch(
@@ -53,7 +51,7 @@ const Profile = () => {
 
 			fetchUserKeys();
 		}
-	}, [isLoading, user]); // Add user as a dependency
+	}, [isLoading, user]);
 
 	const handleUpdateButtonClick = () => {
 		setShowUpdateForm(true);
@@ -76,11 +74,8 @@ const Profile = () => {
 				}
 			);
 			const data = await response.json();
-			// console.log(data);
-			// Optionally, update state or show a success message
 		} catch (error) {
 			console.error("Error updating keys:", error);
-			// Optionally, show an error message to the user
 		}
 	};
 
@@ -210,7 +205,6 @@ const Profile = () => {
 						</Card>
 					</Grid>
 
-					{/* Form for updating profile */}
 					{showUpdateForm && (
 						<Grid
 							item

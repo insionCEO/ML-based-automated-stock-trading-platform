@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Search from "./Search";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import StockContext from "../context/StockContext";
+import { useContext } from "react";
 
 const Header = ({ stockDetails }) => {
-	const [quantity, setQuantity] = useState(0);
-	// console.log(stockDetails);
+	const [quantity, setQuantity] = useState(undefined);
+	const { stockSymbol } = useContext(StockContext);
 
 	const handleQuantityChange = (e) => {
 		const newQuantity = parseInt(e.target.value, 10);
@@ -24,13 +28,14 @@ const Header = ({ stockDetails }) => {
 			headers: {
 				accept: "application/json",
 				"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
-				"APCA-API-SECRET-KEY": import.meta.env.VITE_ALPACA_API_SECRET,
+				"APCA-API-SECRET-KEY": import.meta.env
+					.VITE_ALPACA_API_SECRET,
 			},
 			body: JSON.stringify({
 				side,
 				type: "market",
 				time_in_force: "day",
-				symbol: stockDetails.ticker,
+				symbol: stockSymbol,
 				qty: quantity.toString(),
 			}),
 		};
@@ -42,8 +47,15 @@ const Header = ({ stockDetails }) => {
 			);
 			const data = await response.json();
 			console.log(data);
+
+			if (data.message) {
+				toast.error(data.message);
+			} else {
+				toast.success(`Order ${side} placed successfully!`);
+			}
 		} catch (error) {
 			console.error("Error submitting order:", error);
+			toast.error("Error submitting order. Please try again.");
 		}
 	};
 
@@ -75,6 +87,17 @@ const Header = ({ stockDetails }) => {
 					></input>
 				</div>
 			</div>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 		</>
 	);
 };
