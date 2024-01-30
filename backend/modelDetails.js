@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const modelsUri =
-	"mongodb+srv://zephop:test123@cluster0.yh1mk1u.mongodb.net/?retryWrites=true&w=majority";
+	"mongodb+srv://customers:c2CyQh1vB8XyNqC5@cluster0.yh1mk1u.mongodb.net/models";
 const modelsConnection = mongoose.createConnection(modelsUri, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -26,9 +26,14 @@ const modelDetailsSchema = new mongoose.Schema({
 		},
 	],
 	price: { type: Number },
+	buyers: [
+		{
+			apiKey: { type: String },
+			apiSecretKey: { type: String },
+		},
+	],
 });
 
-// Use "modeldetail" instead of "modeldetails" as the collection name
 const ModelDetails = modelsConnection.model(
 	"modeldetail",
 	modelDetailsSchema

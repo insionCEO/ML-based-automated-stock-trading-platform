@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const customersUri =
-	"mongodb+srv://zephop:test123@cluster0.yh1mk1u.mongodb.net/?retryWrites=true&w=majority";
+	"mongodb+srv://customers:c2CyQh1vB8XyNqC5@cluster0.yh1mk1u.mongodb.net/customers";
 const customersConnection = mongoose.createConnection(customersUri, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,

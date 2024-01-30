@@ -19,7 +19,7 @@ app.post("/api/createUser", async (req, res) => {
 
 	try {
 		await generateUserIdAndSaveUser(formData);
-		console.log(formData);
+
 		res.status(201).json({ message: "User created successfully!" });
 	} catch (error) {
 		console.error("Error creating user:", error);
@@ -41,7 +41,6 @@ app.post("/api/authenticate", async (req, res) => {
 		const existingUser = await UserDetails.findOne(query);
 
 		if (existingUser) {
-			console.log("Authentication Successful");
 			return res.json({
 				success: true,
 				message: "Authentication Successful",
@@ -51,7 +50,7 @@ app.post("/api/authenticate", async (req, res) => {
 
 			try {
 				await generateUserIdAndSaveUser(formData);
-				console.log(formData);
+
 				res
 					.status(201)
 					.json({ message: "User created successfully!" });
@@ -85,20 +84,16 @@ app.post("/api/models/add", async (req, res) => {
 		const { model_name, description, performance_metrics, price } =
 			req.body;
 
-		// Validate required fields
 		if (!model_name || !price) {
 			return res
 				.status(400)
 				.json({ error: "Missing required fields." });
 		}
 
-		// Get the count of existing models
 		const modelCount = await ModelDetails.countDocuments({});
 
-		// Generate a unique model_id
 		const model_id = modelCount + 1;
 
-		// Create a new model instance
 		const newModel = new ModelDetails({
 			model_id,
 			model_name,
@@ -107,7 +102,6 @@ app.post("/api/models/add", async (req, res) => {
 			price,
 		});
 
-		// Save the model to the database
 		await newModel.save();
 
 		return res
@@ -119,12 +113,41 @@ app.post("/api/models/add", async (req, res) => {
 	}
 });
 
+app.post("/api/models/:model_id/buyers/add", async (req, res) => {
+	try {
+		const { model_id } = req.params;
+		const { apiKey, apiSecretKey } = req.body;
+
+		if (!apiKey || !apiSecretKey) {
+			return res
+				.status(400)
+				.json({ error: "Missing required fields." });
+		}
+
+		const model = await ModelDetails.findOne({ model_id });
+
+		if (!model) {
+			return res.status(404).json({ error: "Model not found." });
+		}
+
+		model.buyers.push({ apiKey, apiSecretKey });
+
+		await model.save();
+
+		return res
+			.status(200)
+			.json({ message: "Buyer added successfully." });
+	} catch (error) {
+		console.error("Error adding buyer:", error);
+		return res.status(500).json({ error: "Internal Server Error" });
+	}
+});
+
 app.post("/api/add-transaction/:userId", async (req, res) => {
 	try {
 		const userId = parseInt(req.params.userId);
-		const transactionData = req.body; // Assuming you send transaction data in the request body
+		const transactionData = req.body;
 
-		// Find the user based on user_id
 		const user = await UserDetails.findOne({
 			"user.user_id": userId,
 		});
@@ -133,10 +156,8 @@ app.post("/api/add-transaction/:userId", async (req, res) => {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		// Add the transaction details to the transactions array
 		user.transactions.push(transactionData);
 
-		// Save the updated user document
 		await user.save();
 
 		return res.json({

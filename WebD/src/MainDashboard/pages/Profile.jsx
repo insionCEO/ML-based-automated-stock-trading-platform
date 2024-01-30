@@ -76,7 +76,7 @@ const Profile = () => {
 				}
 			);
 			const data = await response.json();
-			console.log(data);
+			// console.log(data);
 			// Optionally, update state or show a success message
 		} catch (error) {
 			console.error("Error updating keys:", error);

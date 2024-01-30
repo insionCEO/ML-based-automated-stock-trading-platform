@@ -29,7 +29,7 @@ const Contact = () => {
 		emailjs
 			.sendForm("service_2ple5xi", "template_v7tyw6i", form.current, "RRDZn2aOJpp7EsaMm")
 			.then((result) => {
-				console.log(result.text);
+				// console.log(result.text);
 
 				showResult(true);
 

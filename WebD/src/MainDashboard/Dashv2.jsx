@@ -15,7 +15,7 @@ import {
 	Employees,
 	Stacked,
 	Pyramid,
-	Customers,
+	Contribute,
 	Kanban,
 	Line,
 	Area,
@@ -33,6 +33,7 @@ import "./App.css";
 import CompanyFinancials from "./CompanyFinancials/CompanyFinancials";
 import Positions from "./pages/Positions";
 import Heatmap from "./pages/Heatmap";
+import Shop from "./pages/Shop";
 
 const Dashv2 = () => {
 	const {
@@ -61,7 +62,7 @@ const Dashv2 = () => {
 
 					if (response.status === 200) {
 						const responseData = response.data;
-						console.log("Response data:", responseData);
+						// console.log("Response data:", responseData);
 					} else {
 						console.error("Error sending user data");
 					}
@@ -145,7 +146,9 @@ const Dashv2 = () => {
 									path="/financials"
 									element={<CompanyFinancials />}
 								/>
-								<Route path="heatmap" element={<Heatmap />} />
+								<Route path="/heatmap" element={<Heatmap />} />
+								<Route path="/shop" element={<Shop />} />
+								<Route path="/contribute" element={<Contribute />} />
 							</Routes>
 						</div>
 					</div>

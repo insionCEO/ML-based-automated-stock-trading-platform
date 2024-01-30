@@ -89,7 +89,7 @@ const QuickTrade = () => {
 					options
 				);
 				const data = await response.json();
-				console.log(data.bar.c);
+				// console.log(data.bar.c);
 				if (data.bar && data.bar.c) {
 					setMarketPrice(data.bar.c);
 					calculateEstimatedCost();
@@ -130,7 +130,7 @@ const QuickTrade = () => {
 
 	const calculateEstimatedCost = () => {
 		const cost = quantity * marketPrice;
-		console.log(cost);
+		// console.log(cost);
 		setEstimatedCost(cost.toFixed(2));
 	};
 
@@ -167,7 +167,7 @@ const QuickTrade = () => {
 				options
 			);
 			const data = await response.json();
-			console.log(data);
+			// console.log(data);
 			if (data.message) {
 				toast.error(data.message);
 			} else {
@@ -180,7 +180,7 @@ const QuickTrade = () => {
 	};
 
 	return (
-		<div>
+		<div className="rounded-2xl md:w-400  mt-3 mb-3">
 			<Container className="bg-secondary-dark-bg border-color text-gray-200">
 				<div className="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-gray-200 text-center">
 					Quick Trade
