@@ -1,0 +1,45 @@
+2024-01-31 01:49:12,832: root: INFO: MLTrader : Executing the initialize lifecycle method
+2024-01-31 01:49:13,504: root: INFO: Current backtesting datetime 2020-01-02 08:30:00-05:00
+2024-01-31 01:49:13,505: root: INFO: MLTrader : Executing the before_market_opens lifecycle method
+2024-01-31 01:49:13,506: root: INFO: Current backtesting datetime 2020-01-02 09:30:00-05:00
+2024-01-31 01:49:13,506: root: INFO: MLTrader : Executing the before_starting_trading lifecycle method
+2024-01-31 01:49:13,507: root: INFO: [34mMLTrader : Executing the on_trading_iteration lifecycle method at 2024-01-31 01:49:13[0m
+2024-01-31 01:49:13,507: root: WARNING: quote is not implemented for YahooData, but USD was passed as the quote
+2024-01-31 01:49:13,518: root: WARNING: quote is not implemented for YahooData, but USD was passed as the quote
+2024-01-31 01:49:14,148: root: ERROR: Found array with 0 sample(s) (shape=(0, 5)) while a minimum of 1 is required by StandardScaler.
+2024-01-31 01:49:14,158: root: ERROR: Traceback (most recent call last):
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/strategies/strategy_executor.py", line 831, in run
+    self._run_trading_session()
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/strategies/strategy_executor.py", line 782, in _run_trading_session
+    self._on_trading_iteration()
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/strategies/strategy_executor.py", line 274, in func_output
+    result = func_input(self, *args, **kwargs)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/strategies/strategy_executor.py", line 298, in func_output
+    result = func_input(self, *args, **kwargs)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/strategies/strategy_executor.py", line 87, in func_output
+    return func_input(self, *args, **kwargs)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/strategies/strategy_executor.py", line 378, in _on_trading_iteration
+    on_trading_iteration()
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/tools/decorators.py", line 62, in func_output
+    frame, result = call_function_get_frame(func_input, *args, **kwargs)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/lumibot/tools/decorators.py", line 30, in call_function_get_frame
+    result = func(*args, **kwargs)
+  File "/home/mcb76/Inheritance/ML/Trader.py", line 91, in on_trading_iteration
+    X_train_scaled, X_test_scaled = scale_data(X_train, X_test)
+  File "/home/mcb76/Inheritance/ML/Trader.py", line 47, in scale_data
+    X_test_scaled = sc.transform(X_test)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/sklearn/utils/_set_output.py", line 157, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/sklearn/preprocessing/_data.py", line 1006, in transform
+    X = self._validate_data(
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/sklearn/base.py", line 605, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "/home/mcb76/miniconda3/envs/tensorflow/lib/python3.10/site-packages/sklearn/utils/validation.py", line 967, in check_array
+    raise ValueError(
+ValueError: Found array with 0 sample(s) (shape=(0, 5)) while a minimum of 1 is required by StandardScaler.
+
+2024-01-31 01:49:14,158: root: INFO: MLTrader : Executing the on_bot_crash event method
+2024-01-31 01:49:14,162: root: INFO: Backtesting finished
+2024-01-31 01:49:14,162: root: WARNING: Cannot plot returns because the strategy returns are missing
+2024-01-31 01:49:14,372: root: WARNING: Cannot create a tearsheet because the strategy returns are missing
+2024-01-31 01:49:14,372: backtest_stats: INFO: Backtest took 0:00:01.540278 for a speed of 0.000
