@@ -1,13 +1,12 @@
 export { default as Dashboard } from "./Dashboard";
 export { default as Orders } from "./Orders";
-// export { default as Employees } from "./Employees";
+export { default as Employees } from "./Employees";
 // export { default as Editor } from "./Editor";
 export { default as Contribute } from "./Contribute";
 // export { default as ColorPicker } from "./ColorPicker";
 // export { default as Calendar } from "./Calendar";
 // export { default as Area } from "./Charts/Area";
 // export { default as Bar } from "./Charts/Bar";
-// export { default as ColorMapping } from "./Charts/ColorMapping";
 // export { default as Financial } from "./Charts/Financial";
 // export { default as Line } from "./Charts/Line";
 export { default as SentimentPage } from "./SentimentPage";

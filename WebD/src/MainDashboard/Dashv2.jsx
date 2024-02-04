@@ -12,14 +12,13 @@ import {
 	Dashboard,
 	Orders,
 	// Calendar,
-	// Employees,
+	Employees,
 	// Stacked,
 	// Pyramid,
 	Contribute,
 	// Area,
 	// Bar,
 	// ColorPicker,
-	// ColorMapping,
 	// Editor,
 } from "./pages";
 import axios from "axios";
@@ -113,7 +112,7 @@ const Dashv2 = () => {
 
 								{/* {Pages} */}
 								<Route path="/positions" element={<Positions />} />
-								{/* <Route path="/employees" element={<Employees />} /> */}
+								<Route path="/employees" element={<Employees />} />
 								<Route path="/orders" element={<Orders />} />
 
 								{/* Apps */}
@@ -134,10 +133,6 @@ const Dashv2 = () => {
 									element={<SentimentPage />}
 								/>
 								{/* <Route path="/financial" element={<Financial />} /> */}
-								{/* <Route
-									path="/color-mapping"
-									element={<ColorMapping />}
-								/> */}
 								{/* <Route path="/pyramid" element={<Pyramid />} /> */}
 								{/* <Route path="/stacked" element={<Stacked />} /> */}
 

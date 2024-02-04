@@ -7,12 +7,20 @@ import {
 	generateUserIdAndSaveUser,
 } from "./userDetails.js";
 import ModelDetails from "./modelDetails.js";
+import Alpaca from "@alpacahq/alpaca-trade-api";
 
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
+
+const alpaca = new Alpaca({
+	keyId: "PKXQ63AJJLRUQHYJKLIS",
+	secretKey: "uWrne0JlFVcXEn8Be8qpl5dVtg9e06H8bhdXDs8J",
+	paper: true,
+	usePolygon: false,
+});
 
 app.post("/api/createUser", async (req, res) => {
 	const formData = req.body;
@@ -113,7 +121,7 @@ app.post("/api/models/add", async (req, res) => {
 	}
 });
 
-app.post("/api/models/:model_id/buyers/add", async (req, res) => {
+app.post("/api/models/buyers/add/:model_id", async (req, res) => {
 	try {
 		const { model_id } = req.params;
 		const { apiKey, apiSecretKey } = req.body;
@@ -220,6 +228,59 @@ app.get("/api/keys/:email", async (req, res) => {
 		res
 			.status(500)
 			.json({ success: false, message: "Internal server error" });
+	}
+});
+
+app.get("/api/models/buyers/:model_id", async (req, res) => {
+	const { model_id } = req.params;
+
+	try {
+		const model = await ModelDetails.findOne({ model_id: model_id });
+
+		if (!model) {
+			return res.status(404).json({ message: "Model not found" });
+		}
+
+		res.json(model.buyers);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Internal server error" });
+	}
+});
+
+app.get("/fetchAlpacaData", async (req, res) => {
+	try {
+		const data = await alpaca.getAccount();
+		res.json(data);
+	} catch (error) {
+		console.error(
+			"Error fetching data from Alpaca API:",
+			error.message
+		);
+		res.status(500).json({ error: "Internal Server Error" });
+	}
+});
+
+app.get("/news", async (req, res) => {
+	const options = {
+		method: "GET",
+		headers: {
+			"APCA-API-KEY-ID": "PKZMNP63HL85U73H6BYY",
+			"APCA-API-SECRET-KEY":
+				"UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J",
+		},
+	};
+
+	try {
+		const response = await fetch(
+			"https://data.alpaca.markets/v1beta1/news",
+			options
+		);
+		const data = await response.json();
+		res.json(data);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ message: "Server error" });
 	}
 });
 
