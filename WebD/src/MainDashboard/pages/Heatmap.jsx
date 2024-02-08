@@ -8,7 +8,7 @@ const HeatMap = () => {
 	const fetchAlpacaData = async () => {
 		try {
 			const response = await axios.get(
-				"http://localhost:5000/fetchAlpacaData",
+				"https://tensorforce-backend.onrender.com/fetchAlpacaData",
 				{
 					headers: {
 						"Content-Type": "application/json",

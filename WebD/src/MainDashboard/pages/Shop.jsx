@@ -26,14 +26,14 @@ const Shop = () => {
 	const handlePlaceOrder = async (model_id, email) => {
 		// Fetch the API Key and Secret Key from the backend
 		const response = await fetch(
-			`http://localhost:5000/api/keys/${user.email}`
+			`https://tensorforce-backend.onrender.com/api/keys/${user.email}`
 		);
 		const data = await response.json();
 		const { apiKey, apiSecretKey } = data;
 
 		// Check if the user has already bought this model
 		const buyersResponse = await fetch(
-			`http://localhost:5000/api/models/buyers/${model_id}`
+			`https://tensorforce-backend.onrender.com/api/models/buyers/${model_id}`
 		);
 		const buyersData = await buyersResponse.json();
 
@@ -49,7 +49,7 @@ const Shop = () => {
 
 		// Send the model_id, API Key, and Secret Key back to the backend
 		const orderResponse = await fetch(
-			`http://localhost:5000/api/models/buyers/add/${model_id}`,
+			`https://tensorforce-backend.onrender.com/api/models/buyers/add/${model_id}`,
 			{
 				method: "POST",
 				headers: {
@@ -80,7 +80,7 @@ const Shop = () => {
 		const fetchModelDetails = async () => {
 			try {
 				const response = await fetch(
-					"http://localhost:5000/api/fetchModelDetails"
+					"https://tensorforce-backend.onrender.com/api/fetchModelDetails"
 				);
 				const data = await response.json();
 

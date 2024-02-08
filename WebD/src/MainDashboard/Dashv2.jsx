@@ -52,7 +52,7 @@ const Dashv2 = () => {
 
 				try {
 					const response = await axios.post(
-						"http://localhost:5000/api/authenticate",
+						"https://tensorforce-backend.onrender.com/api/authenticate",
 						userData
 					);
 

@@ -44,7 +44,7 @@ const Profile = () => {
 			if (!isLoading && user && user.email) {
 				try {
 					const response = await fetch(
-						`http://localhost:5000/api/keys/${user.email}`
+						`https://tensorforce-backend.onrender.com/api/keys/${user.email}`
 					);
 					const data = await response.json();
 					if (data.success) {
@@ -76,7 +76,7 @@ const Profile = () => {
 	const handleSaveChanges = async () => {
 		try {
 			const response = await fetch(
-				"http://localhost:5000/api/updateKeys",
+				"https://tensorforce-backend.onrender.com/api/updateKeys",
 				{
 					method: "PUT",
 					headers: {

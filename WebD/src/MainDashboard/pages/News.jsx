@@ -76,7 +76,7 @@ const News = () => {
 
 	const fetchData = useCallback(async () => {
 		try {
-			const response = await fetch("http://localhost:5000/news");
+			const response = await fetch("https://tensorforce-backend.onrender.com/news");
 			if (!response.ok) {
 				throw new Error("Failed to fetch data");
 			}

@@ -155,7 +155,7 @@ TensorForce has the potential to address several real-life problems and offer va
    ```bash
    yarn run dev
    ```
-2. The backend server will be running at `http://localhost:5000`.
+2. The backend server will be running at `https://tensorforce-backend.onrender.com`.
 
 ### Machine Learning
 
