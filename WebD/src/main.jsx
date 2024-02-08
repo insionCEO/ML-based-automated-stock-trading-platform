@@ -8,12 +8,12 @@ import ContextProvider from "./MainDashboard/contexts/ContextProvider";
 import { registerLicense } from "@syncfusion/ej2-base";
 
 const AppWrapper = () => {
-	registerLicense("Ngo9BigBOggjHTQxAR8/V1NAaF5cWWVCfEx0RXxbf1x0ZFdMYFhbQXJPMyBoS35RckViW35ecnZcR2ZYVU1+");
+	registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE);
 
 	return (
 		<Auth0Provider
-			domain="dev-ovhg6woj2jzt3u4i.au.auth0.com"
-			clientId="pEXH5RDJNSLcLz8VAH3Ac5kpI4b6gq8w"
+			domain={import.meta.env.VITE_AUTH0_DOMAIN}
+			clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
 			authorizationParams={{
 				redirect_uri: window.location.origin,
 			}}
