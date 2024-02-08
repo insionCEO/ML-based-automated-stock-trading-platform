@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { close, logo, menu } from "../assets";
-import { navLinks } from "../constants";
 import Button from "./Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-	const { isAuthenticated, loginWithRedirect, logout, user, isLoading } = useAuth0();
+	const {
+		isAuthenticated,
+		loginWithRedirect,
+		logout,
+		user,
+		isLoading,
+	} = useAuth0();
 	const [toggle, setToggle] = useState(false);
+	// console.log(user);
 
 	const navigate = useNavigate();
 
 	const handleDashboardClick = () => {
-		navigate("./dashboard");
+		navigate("./dashboardv2");
 	};
 
 	const handleLogin = () => {
@@ -38,6 +44,7 @@ const Navbar = () => {
 						data-dropdown-placement="bottom-start"
 						className="w-10 h-10 rounded-full cursor-pointer"
 						src={user.picture}
+						referrerPolicy="no-referrer"
 						alt="User dropdown"
 						onClick={() => setToggle(!toggle)}
 					/>
@@ -49,9 +56,14 @@ const Navbar = () => {
 							onClick={(e) => e.stopPropagation()}
 						>
 							<div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-								<div className="font-medium truncate">{user.email}</div>
+								<div className="font-medium truncate">
+									{user.email}
+								</div>
 							</div>
-							<ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+							<ul
+								className="py-2 text-sm text-gray-700 dark:text-gray-200"
+								aria-labelledby="avatarButton"
+							>
 								<li>
 									<a
 										href="#"
@@ -62,12 +74,18 @@ const Navbar = () => {
 									</a>
 								</li>
 								<li>
-									<a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+									<a
+										href="#"
+										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+									>
 										Settings
 									</a>
 								</li>
 								<li>
-									<a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+									<a
+										href="#"
+										className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+									>
 										Earnings
 									</a>
 								</li>
@@ -89,34 +107,59 @@ const Navbar = () => {
 				</div>
 			);
 		} else {
-			return <Button onClick={handleLogin} label="Login" styles="ml-auto" />;
+			return (
+				<Button
+					onClick={handleLogin}
+					label="Login"
+					styles="ml-auto"
+				/>
+			);
 		}
 	};
 
 	return (
 		<nav className="w-full flex py-6 items-center navbar">
-			<img src={logo} alt="TensorForce" className="w-[124px] h-[32px]" />
+			<img
+				src={logo}
+				alt="TensorForce"
+				className="w-[124px] h-[32px]"
+				onClick={() => navigate("/")}
+			/>
 
 			<ul className="list-none sm:flex hidden items-center flex-1 ml-6">
-				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+				<li
+					className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+				>
 					<a href="/#home">Home</a>
 				</li>
 
-				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+				<li
+					className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+				>
 					<a href="/#features">Features</a>
 				</li>
-				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+				<li
+					className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+				>
 					<a href="/#product">Product</a>
 				</li>
-				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+				<li
+					className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+				>
 					<a href="/#clients">Clients</a>
 				</li>
-				<li className={`font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white hover:text-blue-500`}>
+				<li
+					className={`font-poppins font-normal cursor-pointer text-[16px] mr-10 text-white hover:text-blue-500`}
+				>
 					<a href="/contact">Contact Us</a>
 				</li>
-				<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}>
-					<a href="/dashboardv2">Dashboard</a>
-				</li>
+				{isAuthenticated && (
+					<li
+						className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}
+					>
+						<a href="/dashboardv2">Dashboard</a>
+					</li>
+				)}
 			</ul>
 
 			{renderProfileButton()}
@@ -135,21 +178,38 @@ const Navbar = () => {
 					} p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}
 				>
 					<ul className="list-none flex flex-col justify-end items-center flex-1">
-						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+						<li
+							className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+						>
 							<a href="/#home">Home</a>
 						</li>
-						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+						<li
+							className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+						>
 							<a href="/#features">Features</a>
 						</li>
-						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+						<li
+							className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+						>
 							<a href="/#product">Product</a>
 						</li>
-						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}>
+						<li
+							className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10 hover:text-blue-500`}
+						>
 							<a href="/#clients">Clients</a>
 						</li>
-						<li className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}>
+						<li
+							className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}
+						>
 							<a href="/contact">Contact Us</a>
 						</li>
+						{isAuthenticated && (
+							<li
+								className={`font-poppins font-normal cursor-pointer text-[16px] text-white hover:text-blue-500`}
+							>
+								<a href="/dashboardv2">Dashboard</a>
+							</li>
+						)}
 					</ul>
 				</div>
 			</div>

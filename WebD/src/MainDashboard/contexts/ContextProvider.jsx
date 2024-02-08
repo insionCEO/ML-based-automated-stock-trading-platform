@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
 	const [currentColor, setCurrentColor] = useState("#03C9D7");
 	const [currentMode, setCurrentMode] = useState("Dark");
 	const [themeSettings, setThemeSettings] = useState(false);
+	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const setMode = (e) => {
 		setCurrentMode(e.target.value);
@@ -30,7 +31,15 @@ export const ContextProvider = ({ children }) => {
 	};
 
 	const handleClick = (clicked) => {
-		setIsClicked({ ...initialState, [clicked]: true });
+		setIsClicked((prevIsClicked) => ({
+			...initialState,
+			[clicked]: !prevIsClicked[clicked],
+		}));
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		setIsSubmitted(true);
 	};
 
 	return (
@@ -51,6 +60,9 @@ export const ContextProvider = ({ children }) => {
 				setThemeSettings,
 				setMode,
 				setColor,
+				isSubmitted,
+				setIsSubmitted,
+				handleSubmit,
 			}}
 		>
 			{children}

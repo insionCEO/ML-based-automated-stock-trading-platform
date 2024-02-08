@@ -28,7 +28,7 @@ const Hero = () => {
 				<p className={`${styles.paragraph} max-w-[470px] mt-5`}>Here you can find and develop your own stock prediction.</p>
 
 				<div className="flex mt-4">
-					{" "}
+					
 					{/* Add a div to wrap the buttons */}
 					<Button label="Try Now" styles="mr-2" /> {/* Add right margin to the first button */}
 					<Button label="Explore Features" />

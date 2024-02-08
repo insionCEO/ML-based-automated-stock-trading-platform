@@ -5,7 +5,12 @@
 @tailwind utilities;
 
 :root {
-	--black-gradient: linear-gradient(144.39deg, #ffffff -278.56%, #6d6d6d -78.47%, #11101d 91.61%);
+	--black-gradient: linear-gradient(
+		144.39deg,
+		#ffffff -278.56%,
+		#6d6d6d -78.47%,
+		#11101d 91.61%
+	);
 	--card-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
 }
 
@@ -42,15 +47,29 @@
 }
 
 .bg-black-gradient {
-	background: linear-gradient(144.39deg, #ffffff -278.56%, #6d6d6d -78.47%, #11101d 91.61%);
+	background: linear-gradient(
+		144.39deg,
+		#ffffff -278.56%,
+		#6d6d6d -78.47%,
+		#11101d 91.61%
+	);
 }
 
 .bg-black-gradient-2 {
-	background: linear-gradient(-168.39deg, #ffffff -278.56%, #6d6d6d -78.47%, #11101d 91.61%);
+	background: linear-gradient(
+		-168.39deg,
+		#ffffff -278.56%,
+		#6d6d6d -78.47%,
+		#11101d 91.61%
+	);
 }
 
 .bg-gray-gradient {
-	background: linear-gradient(153.47deg, rgba(255, 255, 255, 0) -341.94%, #14101d 95.11%);
+	background: linear-gradient(
+		153.47deg,
+		rgba(255, 255, 255, 0) -341.94%,
+		#14101d 95.11%
+	);
 }
 
 .bg-discount-gradient {
@@ -62,7 +81,8 @@
 }
 
 .sidebar {
-	-webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	-webkit-animation: slide-top 0.5s
+		cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -106,7 +126,11 @@
 }
 
 .blue__gradient {
-	background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #214d76 100%);
+	background: linear-gradient(
+		180deg,
+		rgba(188, 165, 255, 0) 0%,
+		#214d76 100%
+	);
 	filter: blur(123px);
 }
 
@@ -118,4 +142,17 @@
 .white__gradient {
 	background: rgba(255, 255, 255, 0.6);
 	filter: blur(750px);
+}
+
+.react-calendar-heatmap .color-scale-1 {
+	fill: #d6e685;
+}
+.react-calendar-heatmap .color-scale-2 {
+	fill: #8cc665;
+}
+.react-calendar-heatmap .color-scale-3 {
+	fill: #44a340;
+}
+.react-calendar-heatmap .color-scale-4 {
+	fill: #1e6823;
 }

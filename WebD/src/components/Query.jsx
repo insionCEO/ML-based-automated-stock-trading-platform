@@ -10,7 +10,7 @@ const Query = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(`Name: ${name}, Phone Number: ${phoneNumber}, Email: ${email}, Message: ${message}`);
+		// console.log(`Name: ${name}, Phone Number: ${phoneNumber}, Email: ${email}, Message: ${message}`);
 	};
 
 	return (

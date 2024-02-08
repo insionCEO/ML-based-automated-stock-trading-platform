@@ -23,7 +23,7 @@ const Dashboard = () => {
 
           if (response.status === 200) {
             const responseData = response.data;
-            console.log("Response data:", responseData);
+            // console.log("Response data:", responseData);
           } else {
             console.error("Error sending user data");
           }
