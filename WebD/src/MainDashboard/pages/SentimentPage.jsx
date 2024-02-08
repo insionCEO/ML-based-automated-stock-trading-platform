@@ -44,12 +44,14 @@ const SentimentPage = () => {
 	};
 
 	const getSentimentType = (sentiment) => {
-		if (sentiment > 0.5) {
-			return "Bullish";
-		} else if (sentiment < 0.5) {
-			return "Bearish";
+		if (typeof sentiment === "undefined") {
+			return "N/A";
+		} else if (sentiment < 0.4) {
+			return "📉 Bearish";
+		} else if (sentiment > 0.75) {
+			return "📈 Bullish";
 		} else {
-			return "Neutral";
+			return "⚖️ Neutral";
 		}
 	};
 
@@ -79,8 +81,8 @@ const SentimentPage = () => {
 		},
 		{
 			headerName: "Sentiment",
-			field: "sentimentData.stocktwitsSentimentScore",
-			valueFormatter: ({ value }) => getSentimentType(value),
+			valueFormatter: ({ data }) =>
+				getSentimentType(data.sentimentData.stocktwitsSentiment),
 			flex: 1,
 			cellStyle: { textAlign: "center" },
 		},
@@ -143,12 +145,7 @@ const SentimentPage = () => {
 			<h1 className="text-white text-4xl font-bold font-poppins p-8">
 				Stock Sentiments
 			</h1>
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "flex-end",
-				}}
-			>
+			<div style={{ display: "flex", justifyContent: "flex-end" }}>
 				<input
 					type="text"
 					className="bg-secondary-dark-bg p-2 m-4 rounded-lg"
@@ -177,23 +174,16 @@ const SentimentPage = () => {
 					<FaSearch size={20} color="#ffffff" />
 				</button>
 			</div>
-			<style>
-				{`.ag-header-cell-label {
-                    justify-content: center;
-                }`}
-			</style>
+			<style>{`.ag-header-cell-label { justify-content: center; }`}</style>
 			<div
 				className="ag-theme-quartz-dark"
-				style={{
-					width: "70%",
-					flex: "1",
-				}}
+				style={{ width: "70%", flex: "1" }}
 			>
 				<AgGridReact
 					rowData={rowData}
 					columnDefs={columns}
 					onGridReady={onGridReady}
-				></AgGridReact>
+				/>
 			</div>
 		</div>
 	);

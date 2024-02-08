@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import Dashv2 from "./MainDashboard/Dashv2";
 import { Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./components/Loading";
 
 const ProtectedRoute = ({ element }) => {
 	const { user } = useAuth0();
@@ -34,10 +35,15 @@ const AppRoutes = () => {
 			<Route path="/" element={<App />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/contact" element={<Contact />} />
-			<Route path="/dashboardv2/*" element={<ProtectedRoute element={<Dashv2 />} />} />
+			<Route
+				path="/dashboardv2/*"
+				element={<ProtectedRoute element={<Dashv2 />} />}
+			/>
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>
-	) : null;
+	) : (
+		<Loading />
+	);
 };
 
 export default AppRoutes;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import QuickTrade from "../components/QuickTrade";
 import MarketSentiment from "../components/MarketSentiment";
 import RecentTrnx from "../components/RecentTrnx";
@@ -10,45 +10,11 @@ import { FiBarChart } from "react-icons/fi";
 import { HiOutlineRefresh } from "react-icons/hi";
 
 const Dashboard = () => {
-	const { currentColor, currentMode } = useStateContext();
-	const [averageSentiment, setAverageSentiment] = useState(0);
-
-	useEffect(() => {
-		const fetchSentimentData = async () => {
-			const myHeaders = new Headers();
-			myHeaders.append("Content-Type", "application/json");
-
-			const raw = JSON.stringify({
-				symbol: "SPY",
-			});
-
-			const requestOptions = {
-				method: "POST",
-				headers: myHeaders,
-				body: raw,
-				redirect: "follow",
-			};
-
-			try {
-				const response = await fetch(
-					"http://localhost:5050/get_sentiment",
-					requestOptions
-				);
-				// console.log("RESPONSE", response);
-				const result = await response.text();
-				// console.log("Result", result);
-
-				setAverageSentiment(parseFloat(result));
-			} catch (error) {
-				console.error("Error fetching sentiment:", error);
-			}
-		};
-
-		fetchSentimentData();
-		// console.log("Sentiment: ", averageSentiment);
-	}, []);
+	const { currentColor} = useStateContext();
 
 	const [apiData, setApiData] = useState(null);
+	const [averageSentiment, setAverageSentiment] = useState(0);
+	const [marketStatus, setMarketStatus] = useState(null);
 
 	useEffect(() => {
 		const fetchAccountData = async () => {
@@ -80,8 +46,6 @@ const Dashboard = () => {
 		fetchAccountData();
 	}, []);
 
-	const [marketStatus, setMarketStatus] = useState(null);
-
 	useEffect(() => {
 		const fetchMarketStatus = async () => {
 			try {
@@ -107,57 +71,93 @@ const Dashboard = () => {
 		fetchMarketStatus();
 	}, []);
 
-	const earningData = [
-		{
-			icon: <MdOutlineSupervisorAccount />,
-			amount: apiData ? apiData.account_number : "",
-			title: "Account Number",
-			iconColor: "#03C9D7",
-			iconBg: "#E5FAFB",
-			pcColor: "gray-200",
-		},
-		{
-			icon: <BsBoxSeam />,
-			amount: apiData ? `$${apiData.buying_power}` : "",
-			title: "Buying Power",
-			iconColor: "rgb(255, 244, 229)",
-			iconBg: "rgb(254, 201, 15)",
-			pcColor: "gray-200",
-		},
-		{
-			icon: <FiBarChart />,
-			amount: apiData ? `$${apiData.cash}` : "",
-			title: "Cash",
-			iconColor: "rgb(228, 106, 118)",
-			iconBg: "rgb(255, 244, 229)",
-			pcColor: "gray-200",
-		},
-		{
-			icon: <HiOutlineRefresh />,
-			amount: apiData
-				? apiData.equity - apiData.last_equity !== 0
-					? (apiData.equity - apiData.last_equity > 0
-							? "+$"
-							: "-$") +
-					  Math.abs(apiData.equity - apiData.last_equity).toFixed(2)
-					: "$0.00"
-				: "",
-			title: "Daily Change",
-			iconColor: "rgb(0, 194, 146)",
-			iconBg: "rgb(235, 250, 242)",
-			pcColor:
-				apiData && apiData.equity - apiData.last_equity >= 0
-					? "green-600"
-					: "red-600",
-			percentage: apiData
-				? `${(
-						((apiData.equity - apiData.last_equity) /
-							apiData.last_equity) *
-						100
-				  ).toFixed(2)}%`
-				: "",
-		},
-	];
+	useEffect(() => {
+		const fetchSentimentData = async () => {
+			const myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			const raw = JSON.stringify({
+				symbol: "SPY",
+			});
+
+			const requestOptions = {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow",
+			};
+
+			try {
+				const response = await fetch(
+					"http://localhost:5050/get_sentiment",
+					requestOptions
+				);
+				const result = await response.text();
+				setAverageSentiment(parseFloat(result));
+			} catch (error) {
+				console.error("Error fetching sentiment:", error);
+			}
+		};
+
+		fetchSentimentData();
+	}, []);
+
+	const earningData = useMemo(
+		() => [
+			{
+				icon: <MdOutlineSupervisorAccount />,
+				amount: apiData ? apiData.account_number : "",
+				title: "Account Number",
+				iconColor: "#03C9D7",
+				iconBg: "#E5FAFB",
+				pcColor: "gray-200",
+			},
+			{
+				icon: <BsBoxSeam />,
+				amount: apiData ? `$${apiData.buying_power}` : "",
+				title: "Buying Power",
+				iconColor: "rgb(255, 244, 229)",
+				iconBg: "rgb(254, 201, 15)",
+				pcColor: "gray-200",
+			},
+			{
+				icon: <FiBarChart />,
+				amount: apiData ? `$${apiData.cash}` : "",
+				title: "Cash",
+				iconColor: "rgb(228, 106, 118)",
+				iconBg: "rgb(255, 244, 229)",
+				pcColor: "gray-200",
+			},
+			{
+				icon: <HiOutlineRefresh />,
+				amount: apiData
+					? apiData.equity - apiData.last_equity !== 0
+						? (apiData.equity - apiData.last_equity > 0
+								? "+$"
+								: "-$") +
+						  Math.abs(apiData.equity - apiData.last_equity).toFixed(
+								2
+						  )
+						: "$0.00"
+					: "",
+				title: "Daily Change",
+				iconColor: "rgb(0, 194, 146)",
+				iconBg: "rgb(235, 250, 242)",
+				pcColor:
+					apiData && apiData.equity - apiData.last_equity >= 0
+						? "green-600"
+						: "red-600",
+				percentage: apiData
+					? `${(
+							((apiData.equity - apiData.last_equity) /
+								apiData.last_equity) *
+							100
+					  ).toFixed(2)}%`
+					: "",
+			},
+		],
+		[apiData]
+	);
 
 	return (
 		<div className="mt-12 mb-24">

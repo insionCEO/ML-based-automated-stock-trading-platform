@@ -1,30 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import ReactApexChart from "react-apexcharts";
+import { HashLoader } from "react-spinners";
 
 const options = {
 	method: "GET",
 	headers: {
 		accept: "application/json",
 		"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
-		"APCA-API-SECRET-KEY":
-		import.meta.env.VITE_ALPACA_API_SECRET,
+		"APCA-API-SECRET-KEY": import.meta.env.VITE_ALPACA_API_SECRET,
 	},
 };
 
+const Loader = () => (
+	<div className="flex flex-col items-center justify-center h-full">
+		<HashLoader className="" color="#79E6EA" size={60} />
+		<p className="mt-8 text-white text-2xl font-semibold animate-pulse">
+			Loading...
+		</p>
+	</div>
+);
+
 const FinancialPositionsPage = () => {
+	const [loading, setLoading] = useState(true);
 	const [positions, setPositions] = useState([]);
-	const [BuyCost, setBuyCost] = useState(0);
+	const [buyCost, setBuyCost] = useState(0);
 	const [sellCostBasis, setSellCostBasis] = useState(0);
 	const [totalBuyingPower, setTotalBuyingPower] = useState(0);
 
 	useEffect(() => {
-		fetch("https://paper-api.alpaca.markets/v2/positions", options)
-			.then((response) => response.json())
-			.then((data) => {
-				const rowData = data.map((position) => ({
+		Promise.all([
+			fetch(
+				"https://paper-api.alpaca.markets/v2/positions",
+				options
+			),
+			fetch("https://paper-api.alpaca.markets/v2/account", options),
+		])
+			.then(([positionsRes, accountRes]) =>
+				Promise.all([positionsRes.json(), accountRes.json()])
+			)
+			.then(([positionsData, accountData]) => {
+				const rowData = positionsData.map((position) => ({
 					Symbol: position.symbol,
 					Quantity: position.qty,
 					"Avg Entry Price": parseFloat(position.avg_entry_price),
@@ -48,31 +66,29 @@ const FinancialPositionsPage = () => {
 
 				setBuyCost(buyTotal);
 				setSellCostBasis(sellTotal);
-
+				setTotalBuyingPower(parseFloat(accountData.buying_power));
 				setPositions(rowData);
 			})
-			.catch((err) => console.error(err));
+			.catch((err) => console.error(err))
+			.finally(() => setLoading(false));
 	}, []);
 
-	useEffect(() => {
-		fetch("https://paper-api.alpaca.markets/v2/account", options)
-			.then((response) => response.json())
-			.then((data) => {
-				const totalBuyingPower = parseFloat(data.buying_power);
-				setTotalBuyingPower(totalBuyingPower);
-			})
-			.catch((err) => console.error(err));
-	}, []);
+	const colDefs = useMemo(
+		() => [
+			{ field: "Symbol" },
+			{ field: "Quantity" },
+			{ field: "Avg Entry Price" },
+			{ field: "Side" },
+			{ field: "Market Value" },
+			{ field: "Unrealized P/L" },
+			{ field: "Current Price" },
+		],
+		[]
+	);
 
-	const [colDefs, setColDefs] = useState([
-		{ field: "Symbol" },
-		{ field: "Quantity" },
-		{ field: "Avg Entry Price" },
-		{ field: "Side" },
-		{ field: "Market Value" },
-		{ field: "Unrealized P/L" },
-		{ field: "Current Price" },
-	]);
+	if (loading) {
+		return <Loader />;
+	}
 
 	return (
 		<div
@@ -93,12 +109,12 @@ const FinancialPositionsPage = () => {
 				}}
 			>
 				<ApexBuySellTotalChart
-					buyTotal={BuyCost}
+					buyTotal={buyCost}
 					sellTotal={sellCostBasis}
 					chartId="chart1"
 				/>
 				<ApexValueUsedChart
-					buyTotal={BuyCost}
+					buyTotal={buyCost}
 					sellTotal={sellCostBasis}
 					totalBuyingPower={totalBuyingPower}
 					chartId="chart2"
@@ -115,8 +131,11 @@ const FinancialPositionsPage = () => {
 };
 
 const ApexBuySellTotalChart = ({ buyTotal, sellTotal, chartId }) => {
-	const seriesData = [buyTotal, -sellTotal];
-	const labels = ["Buy Total", "Sell Total"];
+	const seriesData = useMemo(
+		() => [buyTotal, -sellTotal],
+		[buyTotal, sellTotal]
+	);
+	const labels = useMemo(() => ["Buy Total", "Sell Total"], []);
 
 	const options = {
 		chart: {
@@ -156,11 +175,23 @@ const ApexValueUsedChart = ({
 	chartId,
 	totalBuyingPower,
 }) => {
-	const usedBuyingPower = buyTotal - sellTotal;
-	const availableBuyingPower = totalBuyingPower - usedBuyingPower;
+	const usedBuyingPower = useMemo(
+		() => buyTotal - sellTotal,
+		[buyTotal, sellTotal]
+	);
+	const availableBuyingPower = useMemo(
+		() => totalBuyingPower - usedBuyingPower,
+		[totalBuyingPower, usedBuyingPower]
+	);
 
-	const seriesData = [usedBuyingPower, availableBuyingPower];
-	const labels = ["Used Buying Power", "Available Buying Power"];
+	const seriesData = useMemo(
+		() => [usedBuyingPower, availableBuyingPower],
+		[usedBuyingPower, availableBuyingPower]
+	);
+	const labels = useMemo(
+		() => ["Used Buying Power", "Available Buying Power"],
+		[]
+	);
 
 	const options = {
 		chart: {

@@ -9,6 +9,12 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useAuth0 } from "@auth0/auth0-react";
 import { coversvg } from "../../assets";
+import Loading from "../../components/Loading";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const styles = {
 	details: {
 		padding: "1em",
@@ -19,6 +25,12 @@ const styles = {
 		borderTop: "1px solid #e1e1e1",
 		color: "#899499",
 	},
+	closeButton: {
+		position: "absolute",
+		top: "10px",
+		right: "10px",
+		color: "white",
+	},
 };
 
 const Profile = () => {
@@ -28,8 +40,8 @@ const Profile = () => {
 	const [apiSecret, setApiSecret] = useState(null);
 
 	useEffect(() => {
-		if (!isLoading && user && user.email) {
-			const fetchUserKeys = async () => {
+		const fetchUserKeys = async () => {
+			if (!isLoading && user && user.email) {
 				try {
 					const response = await fetch(
 						`http://localhost:5000/api/keys/${user.email}`
@@ -47,14 +59,18 @@ const Profile = () => {
 				} catch (error) {
 					console.error("Error fetching user keys:", error);
 				}
-			};
+			}
+		};
 
-			fetchUserKeys();
-		}
+		fetchUserKeys();
 	}, [isLoading, user]);
 
 	const handleUpdateButtonClick = () => {
 		setShowUpdateForm(true);
+	};
+
+	const handleCloseForm = () => {
+		setShowUpdateForm(false);
 	};
 
 	const handleSaveChanges = async () => {
@@ -68,66 +84,172 @@ const Profile = () => {
 					},
 					body: JSON.stringify({
 						email: user.email,
-						apiKey: apiKey,
+						apiKey,
 						apiSecretKey: apiSecret,
 					}),
 				}
 			);
 			const data = await response.json();
+			if (data.success) {
+				toast.success("Changes saved successfully!");
+				setShowUpdateForm(false);
+			} else {
+				toast.error("Failed to save changes. Please try again.");
+			}
 		} catch (error) {
 			console.error("Error updating keys:", error);
+			toast.error("An error occurred while saving changes.");
 		}
 	};
 
 	if (isLoading) {
-		return <div>Loading</div>;
+		return <Loading />;
 	}
 
 	return (
-		<CssBaseline>
-			<div
+		<div
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				minHeight: "100vh",
+				alignItems: "center",
+			}}
+		>
+			<ToastContainer />
+			<img
+				alt="avatar"
+				src={coversvg}
 				style={{
-					display: "flex",
-					flexDirection: "column",
-					minHeight: "100vh",
-					alignItems: "center",
+					filter:
+						"invert(11%) sepia(9%) saturate(2458%) hue-rotate(172deg) brightness(98%) contrast(89%)",
+					width: "100%",
+					height: "35vh",
+					objectFit: "cover",
+					objectPosition: "50% 50%",
+				}}
+			/>
+			<Grid
+				container
+				direction={{ xs: "column", md: "row" }}
+				spacing={4}
+				justifyContent="center"
+				alignItems="center"
+				style={{
+					position: "relative",
+					marginTop: "-30vh",
 				}}
 			>
-				<img
-					alt="avatar"
-					src={coversvg}
-					style={{
-						filter:
-							"invert(11%) sepia(9%) saturate(2458%) hue-rotate(172deg) brightness(98%) contrast(89%)",
-
-						width: "100%",
-						height: "35vh",
-						objectFit: "cover",
-						objectPosition: "50% 50%",
-					}}
-				/>
 				<Grid
-					container
-					direction={{ xs: "column", md: "row" }}
-					spacing={4}
+					item
+					xs={12}
+					md={6}
 					justifyContent="center"
 					alignItems="center"
-					style={{
-						position: "relative",
-						marginTop: "-30vh",
-					}}
 				>
+					<Card
+						variant="outlined"
+						sx={{ borderColor: "white", borderRadius: "10px" }}
+					>
+						<Grid
+							container
+							direction="column"
+							alignItems="center"
+							style={{
+								color: "white",
+								backgroundColor: "#20232a",
+								borderRadius: "10px",
+							}}
+						>
+							<Grid
+								item
+								sx={{ p: "1.5rem 0rem", textAlign: "center" }}
+							>
+								<Badge
+									overlap="circular"
+									anchorOrigin={{
+										vertical: "bottom",
+										horizontal: "left",
+									}}
+								>
+									<Avatar
+										sx={{ width: 100, height: 100, mb: 1.5 }}
+										src={user.picture}
+										referrerPolicy="no-referrer"
+									/>
+								</Badge>
+								<Typography variant="h6">{user.name}</Typography>
+								<Typography color="white">Client</Typography>
+							</Grid>
+							<Grid container>
+								<Grid item xs={6}>
+									<Typography style={styles.details}>
+										Email
+									</Typography>
+									<Typography style={styles.details}>
+										API KEY
+									</Typography>
+									<Typography style={styles.details}>
+										API SECRET
+									</Typography>
+								</Grid>
+								<Grid item xs={6} sx={{ textAlign: "end" }}>
+									<Typography style={styles.value}>
+										{user.email}
+									</Typography>
+									<Typography style={styles.value}>
+										{apiKey === null ? "null" : apiKey}
+									</Typography>
+									<Typography style={styles.value}>
+										{apiSecret === null ? "null" : apiSecret}
+									</Typography>
+								</Grid>
+							</Grid>
+							<Grid
+								item
+								style={styles.details}
+								sx={{ width: "100%" }}
+							>
+								<Button
+									variant="contained"
+									onClick={handleUpdateButtonClick}
+									sx={{
+										width: "100%",
+										p: 1,
+										my: 2,
+										backgroundColor: "#00c9d7",
+										borderRadius: "10px",
+									}}
+								>
+									Update Profile
+								</Button>
+							</Grid>
+						</Grid>
+					</Card>
+				</Grid>
+
+				{showUpdateForm && (
 					<Grid
 						item
 						xs={12}
-						md={6}
+						md={4}
 						justifyContent="center"
 						alignItems="center"
 					>
 						<Card
 							variant="outlined"
-							sx={{ borderColor: "white", borderRadius: "10px" }}
+							sx={{
+								borderColor: "white",
+								borderRadius: "10px",
+								position: "relative",
+							}}
 						>
+							<IconButton
+								aria-label="close"
+								sx={styles.closeButton}
+								onClick={handleCloseForm}
+							>
+								<CloseIcon />
+							</IconButton>
 							<Grid
 								container
 								direction="column"
@@ -135,156 +257,94 @@ const Profile = () => {
 								style={{
 									color: "white",
 									backgroundColor: "#20232a",
+									padding: "1em",
 									borderRadius: "10px",
 								}}
 							>
+								<Typography
+									variant="h6"
+									style={{ marginBottom: "1em" }}
+								>
+									Update Profile
+								</Typography>
+								<label
+									htmlFor="apiKey"
+									style={{
+										marginBottom: "0.5em",
+										textAlign: "left",
+										width: "100%",
+									}}
+								>
+									API Key
+								</label>
+								<input
+									id="apiKey"
+									type="text"
+									style={{
+										backgroundColor: "#20232a",
+										color: "white",
+										marginBottom: "1em",
+										width: "100%",
+										padding: "0.5em",
+										borderRadius: "5px",
+										border: "1px solid #ffffff",
+										boxSizing: "border-box",
+									}}
+									value={apiKey === null ? "null" : apiKey}
+									onChange={(e) => setApiKey(e.target.value)}
+								/>
+								<label
+									htmlFor="apiSecret"
+									style={{
+										marginBottom: "0.5em",
+										textAlign: "left",
+										width: "100%",
+									}}
+								>
+									API Secret
+								</label>
+
+								<input
+									id="apiSecret"
+									type="password"
+									style={{
+										backgroundColor: "#20232a",
+										color: "white",
+										marginBottom: "1em",
+										width: "100%",
+										padding: "0.5em",
+										borderRadius: "5px",
+										border: "1px solid #ffffff",
+										boxSizing: "border-box",
+									}}
+									value={apiSecret === null ? "null" : apiSecret}
+									onChange={(e) => setApiSecret(e.target.value)}
+								/>
 								<Grid
 									item
-									sx={{ p: "1.5rem 0rem", textAlign: "center" }}
+									xs={12}
+									style={{ width: "85%", marginBottom: "1em" }}
 								>
-									<Badge
-										overlap="circular"
-										anchorOrigin={{
-											vertical: "bottom",
-											horizontal: "left",
-										}}
-									>
-										<Avatar
-											sx={{ width: 100, height: 100, mb: 1.5 }}
-											src={user.picture}
-											referrerPolicy="no-referrer"
-										/>
-									</Badge>
-									<Typography variant="h6">{user.name}</Typography>
-									<Typography color="white">Client</Typography>
-								</Grid>
-								<Grid container>
-									<Grid item xs={6}>
-										<Typography style={styles.details}>
-											Email
-										</Typography>
-										<Typography style={styles.details}>
-											API KEY
-										</Typography>
-										<Typography style={styles.details}>
-											API SECRET
-										</Typography>
-									</Grid>
-									<Grid item xs={6} sx={{ textAlign: "end" }}>
-										<Typography style={styles.value}>
-											{user.email}
-										</Typography>
-										<Typography style={styles.value}>
-											{apiKey === null ? "null" : apiKey}
-										</Typography>
-										<Typography style={styles.value}>
-											{apiSecret === null ? "null" : apiSecret}
-										</Typography>
-									</Grid>
-								</Grid>
-								<Grid
-									item
-									style={styles.details}
-									sx={{ width: "100%" }}
-								>
-									<Button
-										variant="contained"
-										onClick={handleUpdateButtonClick}
-										sx={{
-											width: "100%",
-											p: 1,
-											my: 2,
+									<button
+										style={{
+											color: "white",
 											backgroundColor: "#00c9d7",
 											borderRadius: "10px",
+											width: "100%",
+											padding: "0.5em",
+											border: "none",
 										}}
+										onClick={handleSaveChanges}
 									>
-										Update Profile
-									</Button>
+										Save Changes
+									</button>
 								</Grid>
 							</Grid>
 						</Card>
 					</Grid>
-
-					{showUpdateForm && (
-						<Grid
-							item
-							xs={12}
-							md={4}
-							justifyContent="center"
-							alignItems="center"
-						>
-							<Card
-								variant="outlined"
-								sx={{ borderColor: "white", borderRadius: "10px" }}
-							>
-								<Grid
-									container
-									direction="column"
-									alignItems="center"
-									style={{
-										color: "white",
-										backgroundColor: "#20232a",
-										padding: "1em",
-										borderRadius: "10px",
-									}}
-								>
-									<Typography
-										variant="h6"
-										style={{ marginBottom: "1em" }}
-									>
-										Update Profile
-									</Typography>
-									<TextField
-										label="ALPACA API-KEY"
-										variant="outlined"
-										type="text"
-										color="primary"
-										fullWidth
-										style={{ color: "white", marginBottom: "1em" }}
-										InputLabelProps={{
-											style: { color: "white" },
-										}}
-										value={apiKey === null ? "null" : apiKey}
-										onChange={(e) => setApiKey(e.target.value)}
-									/>
-									<TextField
-										label="ALPACA API-SECRET"
-										variant="outlined"
-										type="password"
-										fullWidth
-										style={{ color: "white", marginBottom: "1em" }}
-										InputLabelProps={{
-											style: { color: "white" },
-										}}
-										value={apiSecret === null ? "null" : apiSecret}
-										onChange={(e) => setApiSecret(e.target.value)}
-									/>
-									<Grid
-										item
-										xs={12}
-										style={{ width: "85%", marginBottom: "1em" }}
-									>
-										<Button
-											variant="contained"
-											fullWidth
-											style={{
-												color: "white",
-												backgroundColor: "#00c9d7",
-												borderRadius: "10px",
-												width: "100%",
-											}}
-											onClick={handleSaveChanges}
-										>
-											Save Changes
-										</Button>
-									</Grid>
-								</Grid>
-							</Card>
-						</Grid>
-					)}
-				</Grid>
-			</div>
-		</CssBaseline>
+				)}
+			</Grid>
+		</div>
 	);
 };
 

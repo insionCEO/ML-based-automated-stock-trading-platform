@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { useStateContext } from "../contexts/ContextProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -69,10 +68,10 @@ const QuickTrade = () => {
 	const [timeInForce, setTimeInForce] = useState("day");
 	const [alignment, setAlignment] = useState("buy");
 	const [limitPrice, setLimitPrice] = useState(0);
-	const { currentColor } = useStateContext();
 
 	useEffect(() => {
-		const fetchMarketPrice = async () => {
+		let fetchMarketPrice = null;
+		if (symbol) {
 			const options = {
 				method: "GET",
 				headers: {
@@ -83,35 +82,35 @@ const QuickTrade = () => {
 				},
 			};
 
-			try {
-				const response = await fetch(
-					`https://data.alpaca.markets/v2/stocks/${symbol}/bars/latest?feed=iex`,
-					options
-				);
-				const data = await response.json();
-				// console.log(data.bar.c);
-				if (data.bar && data.bar.c) {
-					setMarketPrice(data.bar.c);
-					calculateEstimatedCost();
+			fetchMarketPrice = async () => {
+				try {
+					const response = await fetch(
+						`https://data.alpaca.markets/v2/stocks/${symbol}/bars/latest?feed=iex`,
+						options
+					);
+					const data = await response.json();
+					if (data.bar && data.bar.c) {
+						setMarketPrice(data.bar.c);
+						setEstimatedCost(data.bar.c * quantity);
+					}
+				} catch (error) {
+					console.error("Error fetching market price:", error);
 				}
-			} catch (error) {
-				console.error("Error fetching market price:", error);
-			}
-		};
+			};
 
-		if (symbol) {
 			fetchMarketPrice();
 		}
-	}, [symbol, marketPrice, estimatedCost]);
+
+		return () => {
+			if (fetchMarketPrice) {
+				fetchMarketPrice = null;
+			}
+		};
+	}, [symbol, quantity]);
 
 	const handleChange = (event, newAlignment) => {
-		if (newAlignment === "buy" && alignment !== "buy") {
-			setIsBuy(true);
-			setAlignment("buy");
-		} else if (newAlignment === "sell" && alignment !== "sell") {
-			setIsBuy(false);
-			setAlignment("sell");
-		}
+		setIsBuy(newAlignment === "buy");
+		setAlignment(newAlignment);
 	};
 
 	const handleSymbolChange = (event) => {
@@ -123,15 +122,9 @@ const QuickTrade = () => {
 	};
 
 	const handleQuantityChange = (event) => {
-		const newQuantity = parseInt(event.target.value, 10);
-		setQuantity(isNaN(newQuantity) ? 0 : newQuantity);
-		calculateEstimatedCost();
-	};
-
-	const calculateEstimatedCost = () => {
-		const cost = quantity * marketPrice;
-		// console.log(cost);
-		setEstimatedCost(cost.toFixed(2));
+		const newQuantity = parseInt(event.target.value, 10) || 0;
+		setQuantity(newQuantity);
+		setEstimatedCost(newQuantity * marketPrice);
 	};
 
 	const handleTimeInForceChange = (event) => {
@@ -167,7 +160,6 @@ const QuickTrade = () => {
 				options
 			);
 			const data = await response.json();
-			// console.log(data);
 			if (data.message) {
 				toast.error(data.message);
 			} else {
@@ -196,9 +188,9 @@ const QuickTrade = () => {
 						<ToggleButton
 							value="buy"
 							style={{
-								...(alignment === "buy"
-									? { backgroundColor: "green", color: "white" }
-									: { backgroundColor: "gray", color: "white" }),
+								backgroundColor:
+									alignment === "buy" ? "green" : "gray",
+								color: "white",
 							}}
 						>
 							BUY
@@ -206,9 +198,9 @@ const QuickTrade = () => {
 						<ToggleButton
 							value="sell"
 							style={{
-								...(alignment === "sell"
-									? { backgroundColor: "red", color: "white" }
-									: { backgroundColor: "gray", color: "white" }),
+								backgroundColor:
+									alignment === "sell" ? "red" : "gray",
+								color: "white",
 							}}
 						>
 							SELL
@@ -235,9 +227,6 @@ const QuickTrade = () => {
 					>
 						<option value="market">Market Order</option>
 						<option value="limit">Limit Order</option>
-						{/* <option value="stop">Stop Order</option> */}
-						{/* <option value="stop_limit">Stop Limit Order</option> */}
-						{/* <option value="trailing_stop">Trailing Stop Order</option> */}
 					</SelectField>
 				</InputWrapper>
 
@@ -284,7 +273,9 @@ const QuickTrade = () => {
 
 				<SubmitButton
 					onClick={handleSubmit}
-					style={{ backgroundColor: currentColor }}
+					style={{
+						backgroundColor: alignment === "buy" ? "green" : "red",
+					}}
 				>
 					Place Order
 				</SubmitButton>

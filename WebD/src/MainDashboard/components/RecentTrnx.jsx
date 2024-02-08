@@ -3,8 +3,9 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 
 const RecentTrnx = () => {
-	const { currentColor, currentMode } = useStateContext();
+	const { currentColor } = useStateContext();
 	const [recentTransactions, setRecentTransactions] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -25,10 +26,15 @@ const RecentTrnx = () => {
 				};
 
 				const response = await fetch(apiUrl, options);
+				if (!response.ok) {
+					throw new Error("Failed to fetch recent transactions");
+				}
 				const data = await response.json();
 				setRecentTransactions(data.slice(0, 5));
 			} catch (error) {
 				console.error("Error fetching recent transactions:", error);
+			} finally {
+				setLoading(false);
 			}
 		};
 
@@ -40,7 +46,7 @@ const RecentTrnx = () => {
 	};
 
 	return (
-		<div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
+		<div className="bg-white text-gray-900 dark:bg-secondary-dark-bg dark:text-gray-200 p-6 rounded-2xl">
 			<div className="flex justify-between items-center gap-2">
 				<p className="text-xl font-semibold">Recent Transactions</p>
 				<button
@@ -51,29 +57,37 @@ const RecentTrnx = () => {
 					All Orders
 				</button>
 			</div>
-			<div className="mt-10 w-72 md:w-400">
-				{recentTransactions.map((item) => (
-					<div key={item.id} className="flex justify-between mt-4">
-						<div className="flex gap-4">
-							<button
-								type="button"
-								className="text-2xl rounded-lg p-4 hover:drop-shadow-xl"
-							>
-								{item.symbol}
-							</button>
-							<div>
-								<p className="text-md font-semibold">
-									Order: {item.side}
-								</p>
-								<p className="text-sm text-gray-400">
-									Quantity: {item.qty}
-								</p>
+			{loading ? (
+				<p>Loading...</p>
+			) : recentTransactions.length > 0 ? (
+				<div className="mt-10 w-72 md:w-400">
+					{recentTransactions.map(
+						({ id, symbol, side, qty, pcColor, price }) => (
+							<div key={id} className="flex justify-between mt-4">
+								<div className="flex gap-4">
+									<button
+										type="button"
+										className="text-2xl rounded-lg p-4 hover:drop-shadow-xl"
+									>
+										{symbol}
+									</button>
+									<div>
+										<p className="text-md font-semibold">
+											Order: {side}
+										</p>
+										<p className="text-sm text-gray-400">
+											Quantity: {qty}
+										</p>
+									</div>
+								</div>
+								<p className={`text-${pcColor}`}>{price}</p>
 							</div>
-						</div>
-						<p className={`text-${item.pcColor}`}>{item.price}</p>
-					</div>
-				))}
-			</div>
+						)
+					)}
+				</div>
+			) : (
+				<p>No recent transactions available</p>
+			)}
 		</div>
 	);
 };

@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useMemo } from "react";
 import GaugeChart from "react-gauge-chart";
 
 const MarketSentiment = ({ averageSentiment }) => {
-	let sentimentLabel;
-	if (averageSentiment >= 0 && averageSentiment < 0.25) {
-		sentimentLabel = "Negative";
-	} else if (averageSentiment >= 0.25 && averageSentiment < 0.4) {
-		sentimentLabel = "Slightly Negative";
-	} else if (averageSentiment >= 0.4 && averageSentiment < 0.6) {
-		sentimentLabel = "Neutral";
-	} else if (averageSentiment >= 0.6 && averageSentiment < 0.75) {
-		sentimentLabel = "Slightly Positive";
-	} else if (averageSentiment >= 0.75 && averageSentiment <= 1) {
-		sentimentLabel = "Positive";
-	}
+	const sentimentLabel = useMemo(() => {
+		if (averageSentiment >= 0 && averageSentiment < 0.25) {
+			return "Negative";
+		} else if (averageSentiment >= 0.25 && averageSentiment < 0.4) {
+			return "Slightly Negative";
+		} else if (averageSentiment >= 0.4 && averageSentiment < 0.6) {
+			return "Neutral";
+		} else if (averageSentiment >= 0.6 && averageSentiment < 0.75) {
+			return "Slightly Positive";
+		} else if (averageSentiment >= 0.75 && averageSentiment <= 1) {
+			return "Positive";
+		}
+	}, [averageSentiment]);
 
 	return (
 		<div className="flex flex-col bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">

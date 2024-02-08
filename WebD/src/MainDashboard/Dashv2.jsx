@@ -12,7 +12,7 @@ import {
 	Dashboard,
 	Orders,
 	// Calendar,
-	Employees,
+	News,
 	// Stacked,
 	// Pyramid,
 	Contribute,
@@ -112,7 +112,7 @@ const Dashv2 = () => {
 
 								{/* {Pages} */}
 								<Route path="/positions" element={<Positions />} />
-								<Route path="/employees" element={<Employees />} />
+								<Route path="/news" element={<News />} />
 								<Route path="/orders" element={<Orders />} />
 
 								{/* Apps */}

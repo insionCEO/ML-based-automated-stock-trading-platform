@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -38,23 +38,18 @@ const Navbar = () => {
 		setActiveMenu,
 		isClicked,
 		setIsClicked,
-		handleClick,
 		screenSize,
 		setScreenSize,
 		currentColor,
 	} = useStateContext();
 
-	const {
-		isAuthenticated,
-		loginWithRedirect,
-		logout,
-		user,
-		isLoading,
-	} = useAuth0();
+	const { user, isLoading } = useAuth0();
+
+	const handleResize = useCallback(() => {
+		setScreenSize(window.innerWidth);
+	}, [setScreenSize]);
 
 	useEffect(() => {
-		const handleResize = () => setScreenSize(window.innerWidth);
-
 		const handleResizeCallback = () => {
 			handleResize();
 		};
@@ -63,14 +58,10 @@ const Navbar = () => {
 
 		return () =>
 			window.removeEventListener("resize", handleResizeCallback);
-	}, [setScreenSize]);
+	}, [handleResize]);
 
 	useEffect(() => {
-		if (screenSize <= 900) {
-			setActiveMenu(false);
-		} else {
-			setActiveMenu(true);
-		}
+		setActiveMenu(screenSize > 900);
 	}, [screenSize, setActiveMenu]);
 
 	if (isLoading) {
@@ -90,7 +81,12 @@ const Navbar = () => {
 			<div className="flex">
 				<NavButton
 					title="Cart"
-					customFunc={() => handleClick("cart")}
+					customFunc={() =>
+						setIsClicked((prevState) => ({
+							...prevState,
+							cart: !prevState.cart,
+						}))
+					}
 					color={currentColor}
 					icon={<FiShoppingCart />}
 				/>
@@ -98,13 +94,19 @@ const Navbar = () => {
 				<TooltipComponent content="Profile" position="BottomCenter">
 					<div
 						className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-						onClick={() => handleClick("userProfile")}
+						onClick={() =>
+							setIsClicked((prevState) => ({
+								...prevState,
+								userProfile: !prevState.userProfile,
+							}))
+						}
 					>
 						<img
 							className="rounded-full w-8 h-8"
 							src={user.picture || svg}
 							referrerPolicy="no-referrer"
-							/>
+							alt="User Avatar"
+						/>
 						<p>
 							<span className="text-gray-400 text-14"> Hi,</span>
 							<span className="text-gray-400 font-bold ml-1 text-14">
