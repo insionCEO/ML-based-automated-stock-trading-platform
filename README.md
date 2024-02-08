@@ -54,15 +54,15 @@ TensorForce is an ML-based web application designed to let users invest in vario
 3. Heatmap
 4. Shop
 5. News
-6. Stock charts
+6. Stock Charts
 
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/manascb1344/Inheritance)
 - [Demo Video]()
 - [Drive Link to Screenshots of your project]()
-- [Hosted Website Link]()
-- [Hosted Backend Link]()
+- [Hosted Website Link](https://tensorforce.vercel.app/)
+- [Hosted Backend Link](https://tensorforce-backend.onrender.com)
 
 ## 🤖 Tech-Stack
 
@@ -184,7 +184,7 @@ TensorForce has the potential to address several real-life problems and offer va
 ## 👨‍🏫 Mentors
 
 - [Mihir Rathod](https://github.com/m-g-rathod): Email: mihirgrathod23@gmail.com
-- [Vedant Gandhi](https://github.com/): Email
+- [Vedant Gandhi](https://github.com/manascb1344/Inheritance)
 
 ## 📱 Screenshots
 
