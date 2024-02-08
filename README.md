@@ -59,8 +59,8 @@ TensorForce is an ML-based web application designed to let users invest in vario
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/manascb1344/Inheritance)
-- [Demo Video]()
-- [Drive Link to Screenshots of your project]()
+- [Demo Video](https://youtu.be/7jVUaw-HvNQ)
+- [Drive Link to Screenshots of your project](https://drive.google.com/drive/folders/17N-3Atgk4PGumyFLUx3EZT02NXTWsrj_?usp=sharing)
 - [Hosted Website Link](https://tensorforce.vercel.app/)
 - [Hosted Backend Link](https://tensorforce-backend.onrender.com)
 
