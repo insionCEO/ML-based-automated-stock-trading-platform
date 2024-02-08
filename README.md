@@ -86,7 +86,7 @@ TensorForce is an ML-based web application designed to let users invest in vario
 #### Machine Learning
 
 - Python
-- Jupyter Notebbok
+- Jupyter Notebook
 - Tensorflow
 - PyTorch
 
