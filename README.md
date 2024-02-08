@@ -192,8 +192,6 @@ TensorForce has the potential to address several real-life problems and offer va
 ![dashboard](https://github.com/manascb1344/Inheritance/assets/145715221/64d105c3-e54d-41dc-ad9a-ef26ab22748a)
 ![heatmap](https://github.com/manascb1344/Inheritance/assets/145715221/23750edc-f130-4a6b-b1d0-cbffa1653e9e)
 ![order history](https![model shop]![stock positions](https://github.com/manascb1344/Inheritance/assets/145715221/12030b9a-1be5-4769-8e83-65ed99f5fccc)
-(https://github.com/manascb1344/Inheritance/assets/145715221/31892a18-071d-4b57-93bc-15eb90a5c533)
 ![finan![financials](https://github.com/manascb1344/Inheritance/assets/145715221/24051bc5-682b-473a-a2ba-025307f3adcb)
 cial news](https://github.com/manascb1344/Inheritance/assets/145715221/518d3c19-801b-4e2b-be52-2d93bf48436f)
-://github.com/manascb1344/Inheritance/assets/145715221/2f5fb6c6-9b78-4712-9b1d-66bec305c9b4)
 ![stock positions](https://github.com/manascb1344/Inheritance/assets/145715221/ab2bebb0-135f-40e1-b7f3-0aad9a20a803)
