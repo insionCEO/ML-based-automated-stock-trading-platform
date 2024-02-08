@@ -9,9 +9,22 @@
 <div align="center">
    <strong>TensorForce</strong> - An ML-based automated stock trading platform.<br>
   CoC Inheritance 2023 || TensorForce <br> <br>
-  Add any <a href="https://shields.io/">Shields</a> here
+
 </div>
 <hr>
+<div align="center">
+
+![Website](https://img.shields.io/website?url=https%3A%2F%2Ftensorforce.vercel.app%2F)
+![GitHub issues](https://img.shields.io/github/issues/manascb1344/Inheritance)
+![GitHub language count](https://img.shields.io/github/languages/count/manascb1344/Inheritance)
+![GitHub top language](https://img.shields.io/github/languages/top/manascb1344/Inheritance)
+![GitHub issues](https://img.shields.io/github/issues/manascb1344/Inheritance)
+![GitHub repo size](https://img.shields.io/github/repo-size/manascb1344/Inheritance)
+![GitHub License](https://img.shields.io/github/license/manascb1344/Inheritance)
+![GitHub forks](https://img.shields.io/github/forks/manascb1344/Inheritance)
+![GitHub Repo stars](https://img.shields.io/github/stars/manascb1344/Inheritance)
+
+</div>
 
 <details>
 <summary>Table of Contents</summary>
