@@ -1,4 +1,19 @@
-import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star } from "../assets";
+import {
+  people01,
+  people02,
+  people03,
+  facebook,
+  instagram,
+  linkedin,
+  twitter,
+  airbnb,
+  binance,
+  coinbase,
+  dropbox,
+  send,
+  shield,
+  star,
+} from "../assets";
 
 export const navLinks = [
   {
@@ -27,9 +42,9 @@ export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Rewards",
+    title: "Profitable Trades",
     content:
-      "The best credit cards offer some tantalizing combinations of promotions and prizes",
+      "The best trading platforms offer some tantalizing combinations of data analysis and investment opportunities.",
   },
   {
     id: "feature-2",
@@ -41,9 +56,9 @@ export const features = [
   {
     id: "feature-3",
     icon: send,
-    title: "Balance Transfer",
+    title: "Portfolio Transfer",
     content:
-      "A balance transfer credit card can save you a lot of money in interest charges.",
+      "A seamless portfolio transfer can save you a lot of time and effort.",
   },
 ];
 
