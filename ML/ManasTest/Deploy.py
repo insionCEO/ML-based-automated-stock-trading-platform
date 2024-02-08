@@ -10,11 +10,11 @@ app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.get_json()
+    # data = request.get_json()
 
     # Extract stock symbol from the request
-    stock_symbol = data.get('stock_symbol', 'AAPL')
-
+    # stock_symbol = data.get('stock_symbol', 'AAPL')
+    stock_symbol = "INFY.NS "
     try:
         # Fetch historical data for the given stock symbol
         df = yf.download(stock_symbol)[["Adj Close"]].pct_change(1)
