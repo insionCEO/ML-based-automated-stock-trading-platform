@@ -94,13 +94,61 @@ TensorForce has the potential to address several real-life problems and offer va
 - Model Marketplace Fees: Developers who list their trading models on the marketplace can pay fees or commissions for each sale made through the platform.
 - Premium Features: Certain training models or portfolio analysis tools can be offered as premium upgrades for users willing to pay an additional fee.
 
-## 🛠 Project Setup
+## Project Setup: 
 
->Include your project setup basics here. Steps for how someone else can setup your project on their machine. Add any relevant details as well.
+1. Clone the entire repository from GitHub:
+   ```bash
+   git clone https://github.com/manascb1344/Inheritance
+   ```
+   
+### Frontend Setup
+1. Navigate to the `WebD` directory:
+   ```bash
+   cd Inheritance/WebD
+   ```
+2. Install frontend dependencies:
+   ```bash
+   yarn
+   ```
+   
+### Backend Setup
+1. Navigate to the `backend` directory:
+   ```bash
+   cd ../backend
+   ```
+2. Install backend dependencies:
+   ```bash
+   yarn
+   ```
 
-## 💻 Usage
+### Machine Learning Setup
+1. Navigate to the `ML` directory:
+   ```bash
+   cd ../ML
+   ```
+2. Install machine learning dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
->Steps to run your project once its setup. If you have an app or website, list how the user can go about using it.
+## Usage
+
+### Frontend
+1. After completing the frontend setup, start the frontend server:
+   ```bash
+   yarn run dev
+   ```
+2. Access the frontend application in your browser at `http://localhost:3000`.
+
+### Backend
+1. After completing the backend setup, start the backend server:
+   ```bash
+   yarn run dev
+   ```
+2. The backend server will be running at `http://localhost:5000`.
+
+### Machine Learning
+1. After completing the machine learning setup, you can run the machine learning scripts as needed by navigating to the `ML` directory and executing the Python scripts.
 
 ## 👨‍💻 Team Members
 
@@ -108,7 +156,7 @@ TensorForce has the potential to address several real-life problems and offer va
 - [Yash Kadam](https://github.com/kyash99252): Email: yskadam_b22@it.vjti.ac.in
 - [Soham Mukane](https://github.com/ssmukane12): Email: ssmukane_b22@it.vjti.ac.in
 - [Aarya Bodas](https://github.com/aarya-16): Email: aabodas_b22@it.vjti.ac.in
-
+  
 
 ## 👨‍🏫 Mentors
 
