@@ -106,37 +106,17 @@ const Dashv2 = () => {
 						<div>
 							{themeSettings && <ThemeSettings />}
 							<Routes>
-								{/* Dashboard */}
 								<Route path="/" element={<Dashboard />} />
 								<Route path="/dashboard" element={<Dashboard />} />
-
-								{/* {Pages} */}
 								<Route path="/positions" element={<Positions />} />
 								<Route path="/news" element={<News />} />
 								<Route path="/orders" element={<Orders />} />
 
-								{/* Apps */}
-								{/* <Route path="/kanban" element={<Kanban />} /> */}
-								{/* <Route path="/editor" element={<Editor />} /> */}
-								{/* <Route path="/calendar" element={<Calendar />} /> */}
-								{/* <Route
-									path="/color-picker"
-									element={<ColorPicker />}
-								/> */}
-
-								{/* Charts */}
 								<Route path="/profile" element={<Profile />} />
-								{/* <Route path="/area" element={<Area />} /> */}
-								{/* <Route path="/bar" element={<Bar />} /> */}
 								<Route
 									path="/sentiment"
 									element={<SentimentPage />}
 								/>
-								{/* <Route path="/financial" element={<Financial />} /> */}
-								{/* <Route path="/pyramid" element={<Pyramid />} /> */}
-								{/* <Route path="/stacked" element={<Stacked />} /> */}
-
-								{/* My Routes */}
 								<Route
 									path="/financials"
 									element={<CompanyFinancials />}

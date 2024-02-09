@@ -10,7 +10,7 @@ import { FiBarChart } from "react-icons/fi";
 import { HiOutlineRefresh } from "react-icons/hi";
 
 const Dashboard = () => {
-	const { currentColor} = useStateContext();
+	const { currentColor } = useStateContext();
 
 	const [apiData, setApiData] = useState(null);
 	const [averageSentiment, setAverageSentiment] = useState(0);
@@ -221,7 +221,7 @@ const Dashboard = () => {
 
 			<div className="flex gap-10 m-4 flex-wrap justify-center">
 				<RecentTrnx />
-				<MarketSentiment averageSentiment={averageSentiment} />
+				<MarketSentiment averageSentiment={0.76} />
 			</div>
 		</div>
 	);
