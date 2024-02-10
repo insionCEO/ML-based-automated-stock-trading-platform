@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "./styles.css";
-import { Header } from "../.././MainDashboard/components";
-import axios from "axios";
+import { Header } from "../../components";
 
 const HeatMap = () => {
-	const fetchAlpacaData = async () => {
-		try {
-			const response = await axios.get(
-				"https://tensorforce-backend.onrender.com/fetchAlpacaData",
-				{
-					headers: {
-						"Content-Type": "application/json",
-						"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
-						"APCA-API-SECRET-KEY": import.meta.env
-							.VITE_ALPACA_API_SECRET,
-					},
-				}
-			);
+	const [data, setData] = useState({
+		timestamp: [],
+		profit_loss: [],
+	});
 
-			console.log(response.data);
+	const fetchAlpacaData = async () => {
+		const options = {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+				"APCA-API-KEY-ID": import.meta.env.VITE_ALPACA_API_KEY,
+				"APCA-API-SECRET-KEY": import.meta.env
+					.VITE_ALPACA_API_SECRET,
+			},
+		};
+
+		try {
+			const response = await fetch(
+				"https://paper-api.alpaca.markets/v2/account/portfolio/history?period=1A&timeframe=1D&intraday_reporting=market_hours&pnl_reset=per_day",
+				options
+			);
+			const responseData = await response.json();
+
+			const { timestamp, profit_loss } = responseData;
+			setData({ timestamp, profit_loss });
 		} catch (error) {
 			console.error(
 				"Error fetching data from Alpaca API:",
@@ -28,21 +37,9 @@ const HeatMap = () => {
 		}
 	};
 
-	fetchAlpacaData();
-
-	let randomNumbers = Array.from(
-		{ length: 365 },
-		() => Math.floor(Math.random() * 100) - 50
-	);
-	let timestamp = Array.from({ length: 365 }, (_, i) => {
-		let date = new Date();
-		date.setDate(date.getDate() - i);
-		return Math.floor(date.getTime() / 1000);
-	}).reverse();
-	const data = {
-		timestamp: timestamp,
-		profit_loss: randomNumbers,
-	};
+	useEffect(() => {
+		fetchAlpacaData();
+	}, []);
 
 	const heatmapData = data.timestamp.map((ts, i) => {
 		const date = new Date(ts * 1000);
