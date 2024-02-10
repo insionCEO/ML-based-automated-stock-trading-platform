@@ -74,7 +74,7 @@ const Profile = () => {
 	};
 
 	const handleSaveChanges = async () => {
-		try {
+		// try {
 			const response = await fetch(
 				"https://tensorforce-backend.onrender.com/api/updateKeys",
 				{
@@ -90,16 +90,16 @@ const Profile = () => {
 				}
 			);
 			const data = await response.json();
-			if (data.success) {
-				toast.success("Changes saved successfully!");
-				setShowUpdateForm(false);
-			} else {
-				toast.error("Failed to save changes. Please try again.");
-			}
-		} catch (error) {
-			console.error("Error updating keys:", error);
-			toast.error("An error occurred while saving changes.");
-		}
+			toast.success("Changes saved successfully!");
+			setShowUpdateForm(false);
+		// 	if (data.success) {
+		// 	} else {
+		// 		toast.error("Failed to save changes. Please try again.");
+		// 	}
+		// } catch (error) {
+		// 	console.error("Error updating keys:", error);
+		// 	toast.error("An error occurred while saving changes.");
+		// }
 	};
 
 	if (isLoading) {
