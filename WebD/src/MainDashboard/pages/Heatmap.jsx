@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "./styles.css";
-import { Header } from "../../components";
+import Header from "../components/Header";
 
 const HeatMap = () => {
 	const [data, setData] = useState({
