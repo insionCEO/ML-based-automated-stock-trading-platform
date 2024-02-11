@@ -7,6 +7,7 @@ import "./index.css";
 import ContextProvider from "./MainDashboard/contexts/ContextProvider";
 import { registerLicense } from "@syncfusion/ej2-base";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const AppWrapper = () => {
 	registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE);
@@ -23,6 +24,7 @@ const AppWrapper = () => {
 				<Router>
 					<AppRoutes />
 					<Analytics />
+					<SpeedInsights/>
 				</Router>
 			</ContextProvider>
 		</Auth0Provider>
