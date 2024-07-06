@@ -18,7 +18,7 @@ beautifulsoup4==4.12.3
 bidict==0.22.1
 blinker==1.7.0
 ccxt==4.1.78
-certifi==2023.11.17
+certifi==2024.7.4
 cffi==1.16.0
 charset-normalizer==3.3.2
 click==8.1.7
