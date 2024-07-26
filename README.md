@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/26e1c845-ea83-4866-964a-27b4c60f9fce" alt="WhatsApp Image" style="max-width: 100%; height: auto;">
+  <img src="https://github.com/user-attachments/assets/26e1c845-ea83-4866-964a-27b4c60f9fce" alt="Project Logo" style="max-width: 100%; height: auto;">
   <h1><strong>TensorForce</strong> - An ML-based automated stock trading platform.<br>
   CoC Inheritance 2023 || TensorForce<br><br>
   </h1>
