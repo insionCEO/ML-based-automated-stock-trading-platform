@@ -1,8 +1,9 @@
 
 
 <div align="center">
-   <strong>TensorForce</strong> - An ML-based automated stock trading platform.<br>
+  <h1><strong>TensorForce</strong> - An ML-based automated stock trading platform.<br>
   CoC Inheritance 2023 || TensorForce <br> <br>
+  </h1>
 
 </div>
 <hr>
@@ -52,8 +53,7 @@ TensorForce is an ML-based web application designed to let users invest in vario
 
 ## 🎥Demo Video
 
-
-![Watch the video](https://github.com/user-attachments/assets/b0a37842-fda3-4e89-b87c-ac856ec28774)
+https://github.com/user-attachments/assets/b0a37842-fda3-4e89-b87c-ac856ec28774
 
 
 ## 🔗 Links
