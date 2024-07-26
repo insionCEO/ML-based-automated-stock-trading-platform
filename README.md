@@ -1,10 +1,4 @@
-<h1 align="center">
-  <a href="https://github.com/CommunityOfCoders/Inheritance-2023">
-    <img src="https://raw.githubusercontent.com/CommunityOfCoders/Inheritance-2023/main/Untitled.png" alt="CoC Inheritance 2022" width="500" height="166">
-  </a>
-  <br>
-  TensorForce
-</h1>
+
 
 <div align="center">
    <strong>TensorForce</strong> - An ML-based automated stock trading platform.<br>
@@ -55,6 +49,12 @@ TensorForce is an ML-based web application designed to let users invest in vario
 4. Shop
 5. News
 6. Stock Charts
+
+## 🎥Demo Video
+
+
+![Watch the video](https://github.com/user-attachments/assets/b0a37842-fda3-4e89-b87c-ac856ec28774)
+
 
 ## 🔗 Links
 
