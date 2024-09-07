@@ -1,7 +1,8 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 import { themeColors } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -60,10 +61,10 @@ const ThemeSettings = () => {
           <p className="font-semibold text-xl ">Theme Colors</p>
           <div className="flex gap-3">
             {themeColors.map((item, index) => (
-              <TooltipComponent
+              <Tippy
                 key={index}
                 content={item.name}
-                position="TopCenter"
+                placement="top"
               >
                 <div
                   className="relative mt-2 cursor-pointer flex gap-5 items-center"
@@ -82,7 +83,7 @@ const ThemeSettings = () => {
                     />
                   </button>
                 </div>
-              </TooltipComponent>
+              </Tippy>
             ))}
           </div>
         </div>

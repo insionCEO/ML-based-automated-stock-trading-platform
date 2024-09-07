@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from "react-toastify";
-import {
-	GridComponent,
-	ColumnsDirective,
-	ColumnDirective,
-	Resize,
-	Sort,
-	ContextMenu,
-	Filter,
-	Page,
-	ExcelExport,
-	PdfExport,
-	Edit,
-	Inject,
-} from "@syncfusion/ej2-react-grids";
-
 import { Header } from "../components";
 
 const Shop = () => {
@@ -23,6 +8,7 @@ const Shop = () => {
 	const [modelDetails, setModelDetails] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+
 	const handlePlaceOrder = async (model_id, email) => {
 		// Fetch the API Key and Secret Key from the backend
 		const response = await fetch(
@@ -67,15 +53,6 @@ const Shop = () => {
 		}
 	};
 
-	const orderButtonTemplate = (data) => (
-		<button
-			className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-			onClick={() => handlePlaceOrder(data.model_id, user.email)}
-		>
-			Place Order
-		</button>
-	);
-
 	useEffect(() => {
 		const fetchModelDetails = async () => {
 			try {
@@ -85,18 +62,7 @@ const Shop = () => {
 				const data = await response.json();
 
 				if (data.success) {
-					const modifiedData = data.modeldetails.map((model) => {
-						const performanceMetrics = {};
-
-						model.performance_metrics.forEach((metric) => {
-							performanceMetrics[metric.metric_name.toLowerCase()] =
-								metric.value;
-						});
-
-						return { ...model, ...performanceMetrics };
-					});
-
-					setModelDetails(modifiedData);
+					setModelDetails(data.modeldetails);
 				} else {
 					setError(data.message);
 				}
@@ -111,8 +77,6 @@ const Shop = () => {
 		fetchModelDetails();
 	}, []);
 
-	const editing = { allowDeleting: false, allowEditing: false };
-
 	if (isLoading) {
 		return <div>Loading</div>;
 	}
@@ -125,66 +89,29 @@ const Shop = () => {
 			{error && <p>Error: {error}</p>}
 
 			{!loading && !error && (
-				<GridComponent
-					id="gridcomp"
-					dataSource={modelDetails}
-					allowPaging
-					allowSorting
-					allowExcelExport
-					allowPdfExport
-					contextMenuItems={[]}
-					editSettings={editing}
-				>
-					<ColumnsDirective className="bg-secondary-dark-bg">
-						<ColumnDirective
-							field="model_id"
-							headerText="Model ID"
-						/>
-						<ColumnDirective
-							field="model_name"
-							headerText="Model Name"
-						/>
-						<ColumnDirective
-							field="description"
-							headerText="Description"
-						/>
-
-						<ColumnDirective
-							field="accuracy"
-							headerText="Accuracy"
-							template={(field) => `${field.accuracy}%`}
-						/>
-						<ColumnDirective
-							field="precision"
-							headerText="Precision"
-							template={(field) => `${field.precision}%`}
-						/>
-
-						<ColumnDirective field="price" headerText="Price" />
-						<ColumnDirective
-							headerText="Order"
-							template={orderButtonTemplate}
-							textAlign="Center"
-							width="150"
-						/>
-					</ColumnsDirective>
-					<Inject
-						services={[
-							Resize,
-							Sort,
-							ContextMenu,
-							Filter,
-							Page,
-							ExcelExport,
-							Edit,
-							PdfExport,
-						]}
-					/>
-				</GridComponent>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{modelDetails.map((model) => (
+						<div key={model.model_id} className="bg-white p-6 rounded-lg shadow-md">
+							<h2 className="text-xl font-bold mb-2">{model.model_name}</h2>
+							<p className="text-gray-600 mb-4">{model.description}</p>
+							<div className="flex justify-between items-center mb-4">
+								<span className="text-lg font-semibold">${model.price}</span>
+								<div>
+									<span className="mr-2">Accuracy: {model.performance_metrics.find(m => m.metric_name === 'accuracy').value}%</span>
+									<span>Precision: {model.performance_metrics.find(m => m.metric_name === 'precision').value}%</span>
+								</div>
+							</div>
+							<button
+								className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+								onClick={() => handlePlaceOrder(model.model_id, user.email)}
+							>
+								Place Order
+							</button>
+						</div>
+					))}
+				</div>
 			)}
-			<div className="row">
-				<ToastContainer />
-			</div>
+			<ToastContainer />
 		</div>
 	);
 };

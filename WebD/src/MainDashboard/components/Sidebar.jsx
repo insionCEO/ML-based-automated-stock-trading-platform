@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { MdOutlineCancel } from "react-icons/md";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
@@ -38,7 +39,7 @@ const Sidebar = () => {
 							/>
 							<span>TensorForce</span>
 						</Link>
-						<TooltipComponent content="Menu" position="BottomCenter">
+						<Tippy content="Menu" placement="bottom">
 							<button
 								type="button"
 								onClick={() =>
@@ -48,7 +49,7 @@ const Sidebar = () => {
 							>
 								<MdOutlineCancel />
 							</button>
-						</TooltipComponent>
+						</Tippy>
 					</div>
 					<div className="mt-10">
 						{links.map((item) => (

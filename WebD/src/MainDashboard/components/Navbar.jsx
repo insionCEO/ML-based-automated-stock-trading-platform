@@ -2,7 +2,8 @@ import React, { useEffect, useCallback } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import svg from "../../assets/avatar-svgrepo-com.svg";
 import { Cart, UserProfile } from ".";
@@ -15,7 +16,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => {
 		}
 	};
 	return (
-		<TooltipComponent content={title} position="BottomCenter">
+		<Tippy content={title} placement="bottom">
 			<button
 				type="button"
 				onClick={handleClick}
@@ -28,7 +29,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => {
 				/>
 				{icon}
 			</button>
-		</TooltipComponent>
+		</Tippy>
 	);
 };
 
@@ -91,7 +92,7 @@ const Navbar = () => {
 					icon={<FiShoppingCart />}
 				/>
 
-				<TooltipComponent content="Profile" position="BottomCenter">
+				<Tippy content="Profile" placement="bottom">
 					<div
 						className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
 						onClick={() =>
@@ -115,7 +116,7 @@ const Navbar = () => {
 						</p>
 						<MdKeyboardArrowDown className="text-gray-400 text-14" />
 					</div>
-				</TooltipComponent>
+				</Tippy>
 				{isClicked.cart && <Cart />}
 				{isClicked.userProfile && <UserProfile />}
 			</div>

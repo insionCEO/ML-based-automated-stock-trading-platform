@@ -5,12 +5,22 @@ import { createRoot } from "react-dom/client";
 import AppRoutes from "./AppRoutes";
 import "./index.css";
 import ContextProvider from "./MainDashboard/contexts/ContextProvider";
-import { registerLicense } from "@syncfusion/ej2-base";
+// import { registerLicense } from "@syncfusion/ej2-base";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+// let lic = import.meta.env.VITE_SYNCFUSION_LICENSE;
+
+// try {
+// 	const a = registerLicense(lic);
+// 	console.log("License registered successfully");
+// 	console.log("aaaaa", a);
+// } catch (error) {
+// 	console.error("Failed to register license:", error);
+// }
+
+
 
 const AppWrapper = () => {
-	registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE);
 
 	return (
 		<Auth0Provider

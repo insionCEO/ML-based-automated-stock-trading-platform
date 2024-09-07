@@ -8,6 +8,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { HashLoader } from "react-spinners";
+import { Header } from "../components";
 
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
@@ -17,7 +18,7 @@ const Orders = () => {
 	const fetchOrders = useCallback(async () => {
 		try {
 			const response = await fetch(
-				"https://paper-api.alpaca.markets/v2/account/activities",
+				"https://paper-api.alpaca.markets/v2/orders?status=all&limit=100",
 				{
 					method: "GET",
 					headers: {
@@ -28,6 +29,9 @@ const Orders = () => {
 					},
 				}
 			);
+			if (!response.ok) {
+				throw new Error('Failed to fetch orders');
+			}
 			const data = await response.json();
 			setOrders(data);
 			setLoading(false);
@@ -44,48 +48,47 @@ const Orders = () => {
 
 	const columnDefs = useMemo(
 		() => [
-			{ headerName: "Symbol", field: "symbol" },
-			{ headerName: "Type", field: "type" },
-			{ headerName: "Side", field: "side" },
-			{ headerName: "Price", field: "price" },
-			{ headerName: "Quantity", field: "qty" },
-			{ headerName: "Transaction Time", field: "transaction_time" },
-			{ headerName: "Cumulative Quantity", field: "cum_qty" },
+			{ headerName: "Symbol", field: "symbol", filter: true },
+			{ headerName: "Side", field: "side", filter: true },
+			{ headerName: "Type", field: "type", filter: true },
+			{ headerName: "Quantity", field: "qty", filter: "agNumberColumnFilter" },
+			{ headerName: "Status", field: "status", filter: true },
+			{ headerName: "Created At", field: "created_at", filter: "agDateColumnFilter" },
+			{ headerName: "Filled At", field: "filled_at", filter: "agDateColumnFilter" },
 		],
 		[]
 	);
 
+	const defaultColDef = useMemo(() => ({
+		sortable: true,
+		resizable: true,
+	}), []);
+
 	return (
-		<div
-			className="centered-container"
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-				height: "100vh",
-				paddingBottom: "5em",
-			}}
-		>
-			<h1 className="text-white text-4xl font-bold font-poppins p-8">
-				All Orders
-			</h1>
+		<div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-secondary-dark-bg rounded-3xl">
+			<Header title="All Orders" />
 			{loading ? (
-				<>
-					<HashLoader className="" color="#79E6EA" size={60} />
+				<div className="flex flex-col items-center justify-center h-64">
+					<HashLoader color="#79E6EA" size={60} />
 					<p className="mt-8 text-white text-2xl font-semibold animate-pulse">
 						Loading...
 					</p>
-				</>
+				</div>
 			) : error ? (
-				<p>Error: {error.message}</p>
+				<p className="text-red-500 text-center text-xl">Error: {error.message}</p>
 			) : (
 				<div
 					className="ag-theme-quartz-dark"
-					style={{ width: "88.8%", flex: "1" }}
+					style={{ height: "70vh", width: "100%" }}
 				>
 					<AgGridReact
 						rowData={orders}
 						columnDefs={columnDefs}
+						defaultColDef={defaultColDef}
+						pagination={true}
+						paginationPageSize={15}
+						animateRows={true}
+						enableCellChangeFlash={true}
 						key={JSON.stringify(columnDefs)}
 					/>
 				</div>
