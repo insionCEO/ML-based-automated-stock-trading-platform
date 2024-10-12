@@ -15,6 +15,7 @@
 		"@emotion/core": "^11.0.0",
 		"@emotion/react": "^11.13.3",
 		"@emotion/styled": "^11.13.0",
+		"@million/lint": "1.0.0-rc.84",
 		"@mui/icons-material": "^5.15.13",
 		"@mui/material": "^6.0.2",
 		"@mui/x-data-grid": "^7.16.0",

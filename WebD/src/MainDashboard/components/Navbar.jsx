@@ -80,7 +80,7 @@ const Navbar = () => {
 				icon={<AiOutlineMenu />}
 			/>
 			<div className="flex">
-				<NavButton
+				{/* <NavButton
 					title="Cart"
 					customFunc={() =>
 						setIsClicked((prevState) => ({
@@ -90,7 +90,7 @@ const Navbar = () => {
 					}
 					color={currentColor}
 					icon={<FiShoppingCart />}
-				/>
+				/> */}
 
 				<Tippy content="Profile" placement="bottom">
 					<div
@@ -117,7 +117,7 @@ const Navbar = () => {
 						<MdKeyboardArrowDown className="text-gray-400 text-14" />
 					</div>
 				</Tippy>
-				{isClicked.cart && <Cart />}
+				{/* {isClicked.cart && <Cart />} */}
 				{isClicked.userProfile && <UserProfile />}
 			</div>
 		</div>
