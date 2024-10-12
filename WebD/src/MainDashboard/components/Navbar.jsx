@@ -80,7 +80,7 @@ const Navbar = () => {
 				icon={<AiOutlineMenu />}
 			/>
 			<div className="flex">
-				{/* <NavButton
+{/* 				<NavButton
 					title="Cart"
 					customFunc={() =>
 						setIsClicked((prevState) => ({
