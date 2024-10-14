@@ -21,8 +21,12 @@ model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert").t
 labels = ["positive", "negative", "neutral"]
 
 BASE_URL = "https://paper-api.alpaca.markets"
-API_KEY = "PKZMNP63HL85U73H6BYY"
-SECRET_KEY = "UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J"
+
+load_dotenv() #to load the .env file
+
+
+API_KEY = os.getenv('TRADER_API_KEY')
+API_SECRET = os.getenv('TRADER_API_KEY_SECRET')
 
 
 class MLTrader(Strategy):

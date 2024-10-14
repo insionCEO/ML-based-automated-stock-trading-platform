@@ -16,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 const alpaca = new Alpaca({
-	keyId: "PKXQ63AJJLRUQHYJKLIS",
-	secretKey: "uWrne0JlFVcXEn8Be8qpl5dVtg9e06H8bhdXDs8J",
+    keyId: process.env.VITE_KEY_ID, 
+    secretKey: process.env.VITE_SECRET_KEY,
 	paper: true,
 	usePolygon: false,
 });
@@ -265,9 +265,9 @@ app.get("/news", async (req, res) => {
 	const options = {
 		method: "GET",
 		headers: {
-			"APCA-API-KEY-ID": "PKZMNP63HL85U73H6BYY",
+			"APCA-API-KEY-ID": process.env.VITE_APCA_API_KEY_ID,
 			"APCA-API-SECRET-KEY":
-				"UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J",
+				process.env.VITE_APCA_API_SECRET_KEY,
 		},
 	};
 
