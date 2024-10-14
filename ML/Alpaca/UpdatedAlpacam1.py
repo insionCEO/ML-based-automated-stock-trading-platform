@@ -7,9 +7,11 @@ from alpaca.trading.requests import MarketOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce
 import time
 import datetime
-
+from dotenv import load_dotenv
 import pytz
 
+
+load_dotenv()
 eastern = pytz.timezone('US/Eastern')
 
 def is_market_open():
@@ -103,7 +105,9 @@ sp500_symbols = [
     "CSCO", "XOM", "BA", "HON", "VZ", "PFE", "V", "PG", "JNJ"
 ]
 
-trading_client = TradingClient('PK7C5OO9M7HYPW5SVI1T', 'vE2VroALLWqEVzoQdSpjtBGSOaMyHQ2cIf2i1yPr', paper=True)
+client_key = os.getenv('TRADING_CLIENT_KEY')
+client_key_secret = os.getenv('TRADING_CLIENT_KEY_SECRET')
+trading_client = TradingClient(client_key, client_key_secret, paper=True)
 
 for symbol in sp500_symbols:
     run_strategy_for_symbol(symbol, trading_client)

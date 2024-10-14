@@ -8,10 +8,16 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.models import load_model
 import yfinance as yf
+from dotenv import load_dotenv
+
 
 app = Flask(__name__)
 
-trading_client = TradingClient('PKG4VOGE0PVSH7IXL7LV', 'hlxi9zj0PRlnkhzc91muqY1aIoZF6NfMb53MvucR', paper=True)
+load_dotenv()
+
+client_key = os.getenv('ALPACA_CLIENT_KEY')
+client_key_secret = os.getenv('ALPACA_CLIENT_SECRET_KEY')
+trading_client = TradingClient(client_key, client_key_secret, paper=True)
 
 @app.route('/predict_and_trade', methods=['POST'])
 def predict_and_trade():

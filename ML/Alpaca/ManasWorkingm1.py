@@ -6,8 +6,12 @@ from sklearn.model_selection import train_test_split
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import MarketOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce
+from dotenv import load_dotenv
 
-trading_client = TradingClient('PK7C5OO9M7HYPW5SVI1T', 'vE2VroALLWqEVzoQdSpjtBGSOaMyHQ2cIf2i1yPr', paper=True)
+load_dotenv()
+client_key = os.getenv('TRADING_CLIENT_KEY')
+client_key_secret = os.getenv('TRADING_CLIENT_KEY_SECRET')
+trading_client = TradingClient(client_key, client_key_secret, paper=True)
 
 symb = "SPY"
 pos_held = False

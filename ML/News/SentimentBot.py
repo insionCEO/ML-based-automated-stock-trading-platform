@@ -10,7 +10,7 @@ from typing import Tuple
 import torch
 import pymongo
 from app import estimate_sentiment
-
+from dotenv import load_dotenv
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
