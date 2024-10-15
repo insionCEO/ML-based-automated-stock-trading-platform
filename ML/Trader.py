@@ -10,9 +10,12 @@
 # from lumibot.traders import Trader
 # from datetime import datetime
 # from alpaca_trade_api import REST
+#from dotenv import load_dotenv
+#load_dotenv() #to load the .env file
 
-# API_KEY = "PKZMNP63HL85U73H6BYY"
-# API_SECRET = "UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J"
+
+# API_KEY = os.getenv('TRADER_API_KEY')
+# API_SECRET = os.getenv('TRADER_API_KEY_SECRET')
 # BASE_URL = "https://paper-api.alpaca.markets"
 
 # ALPACA_CREDS = {
@@ -147,9 +150,13 @@ from lumibot.brokers import Alpaca
 from lumibot.backtesting import YahooDataBacktesting
 from lumibot.strategies.strategy import Strategy
 from datetime import datetime
+from dotenv import load_dotenv
 
-API_KEY = "PKZMNP63HL85U73H6BYY" 
-API_SECRET = "UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J" 
+load_dotenv() #to load the .env file
+
+
+API_KEY = os.getenv('TRADER_API_KEY')
+API_SECRET = os.getenv('TRADER_API_KEY_SECRET')
 BASE_URL = "https://paper-api.alpaca.markets"
 
 ALPACA_CREDS = {

@@ -5,6 +5,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.15.6",
     "@mui/material": "^5.15.6",
+    "dotenv": "^16.4.5",
     "react-apexcharts": "^1.4.1"
   }
 }

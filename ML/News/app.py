@@ -4,13 +4,17 @@ from datetime import datetime, timedelta
 from alpaca_trade_api.rest import REST
 from transformers import pipeline
 import threading
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+
+load_dotenv()
+
 CORS(app, origins="http://localhost:5173")
 
 BASE_URL = "https://paper-api.alpaca.markets"
-API_KEY = "PKZMNP63HL85U73H6BYY"
-SECRET_KEY = "UoE2qOlDId6PIU0j08L5qOtH2tgZNYuFTf6RQ42J"
+API_KEY = os.getenv('TRADER_API_KEY')
+SECRET_KEY = os.getenv('TRADER_API_SECRET')
 
 api = REST(key_id=API_KEY, secret_key=SECRET_KEY, base_url=BASE_URL)
 
