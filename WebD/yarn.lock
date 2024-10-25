@@ -2628,9 +2628,9 @@ hoist-non-react-statics@^3.3.1:
     react-is "^16.7.0"
 
 hono@^4.3.2:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/hono/-/hono-4.6.4.tgz#fbca01aa2b68dd4aea49d6eddf6b97a91cd9019f"
-  integrity sha512-T5WqBkTOcIQblqBKB5mpzaH/A+dSpvVe938xZJCHOmOuYfF7DSwE/9/10+BMvwSPq9N/f6LiQ38HxrZSQOsXKw==
+  version "4.6.6"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-4.6.6.tgz#f863eb0efde76bc137157347ce7747a3b2457bb3"
+  integrity sha512-euUj5qwvtkG+p38GFs0LYacwaoS2hYRAGn9ysAggiwT2QBcPnT1XYUCW3hatW4C1KzAXTYuQ08BlVDJtAGuhlg==
 
 iconv-lite@0.6:
   version "0.6.3"
