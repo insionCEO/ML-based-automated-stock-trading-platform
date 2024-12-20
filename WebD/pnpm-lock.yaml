@@ -54,8 +54,8 @@ importers:
         specifier: ^3.47.0
         version: 3.53.0
       axios:
-        specifier: ^1.6.8
-        version: 1.7.7
+        specifier: ^1.7.8
+        version: 1.7.8
       cal-heatmap:
         specifier: 4.2.4
         version: 4.2.4
@@ -244,8 +244,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/parser@7.25.9':
-    resolution: {integrity: sha512-aI3jjAAO1fh7vY/pBGsn1i9LDbRP43+asrRlkPuTXW5yHXtd1NgTEMudbBoDDxrf1daEEfPJqR+JBMakzrR4Dg==}
+  '@babel/parser@7.26.2':
+    resolution: {integrity: sha512-DWMCZH9WA4Maitz2q21SRKHo9QXZxkDsbNZoVD62gusNtNBBqDg9i7uOhASfTfIGNzW+O+r7+jAlM8dwphcJKQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -277,20 +277,16 @@ packages:
     resolution: {integrity: sha512-WaMsgi6Q8zMgMth93GvWPXkhAIEobfsIkLTacoVZoK1J0CevIPGYY2Vo5YvJGqyHqXM6P4ppOYGsIRU8MM9pFQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.25.2':
-    resolution: {integrity: sha512-YTnYtra7W9e6/oAZEHj0bJehPRUlLH9/fbpT5LfB0NhQXyALCRkRs3zH9v07IYhkgpqX6Z78FnuccZr/l4Fs4Q==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/types@7.25.6':
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.25.9':
-    resolution: {integrity: sha512-OwS2CM5KocvQ/k7dFJa8i5bNGJP0hXWfVCfDkqRFP1IreH1JDC7wG6eCYCi0+McbfT8OR/kNqsI0UU0xP9H6PQ==}
+  '@babel/types@7.26.0':
+    resolution: {integrity: sha512-Z/yiTPj+lDVnF7lWeKCIJzaIkI0vYO87dMpZ4bg4TDrFe4XXLFWL1TbXU27gBP3QccxV9mZICCrnjnYlJjXHOA==}
     engines: {node: '>=6.9.0'}
 
-  '@clack/core@0.3.4':
-    resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
+  '@clack/core@0.3.5':
+    resolution: {integrity: sha512-5cfhQNH+1VQ2xLQlmzXMqUoiaH0lRBq9/CLW9lTyMbuKLC3+xEK01tHVvyut++mLOn5urSHmkm6I0Lg9MaJSTQ==}
 
   '@clack/prompts@0.7.0':
     resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
@@ -671,8 +667,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@million/install@1.0.11':
-    resolution: {integrity: sha512-koRlY6tCYa6isBUTheP0pL7PC31pBY1QlL8F/Yaorcx6gIyZSJNVqTGBDqLvDeeV8QcmD/S9mswSazI/FsyGKQ==}
+  '@million/install@1.0.13':
+    resolution: {integrity: sha512-gFslYuzCem83FHMo4ZIWXmRWmyABXmTBQxodwnP4AeWtLjdvymOp8JB5+b/A4eZX79heFZuw9eqBpERo9zgvtg==}
     hasBin: true
 
   '@million/lint@1.0.0-rc.84':
@@ -1214,8 +1210,8 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
 
-  axios@1.7.7:
-    resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
+  axios@1.7.8:
+    resolution: {integrity: sha512-Uu0wb7KNqK2t5K+YQyVCLM76prD5sRFjKHbJYCP1J7JFGEQ6nN7HWn9+04LAeiJ3ji54lgS/gZCH1oxyrf1SPw==}
 
   babel-plugin-macros@3.1.0:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
@@ -1359,8 +1355,8 @@ packages:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
     engines: {node: '>=10'}
 
-  cross-spawn@7.0.3:
-    resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
+  cross-spawn@7.0.6:
+    resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
   crypto-random-string@2.0.0:
@@ -1552,8 +1548,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  effect@3.10.3:
-    resolution: {integrity: sha512-+Z5bUhzTeqYlfoPsfXMZG1pYadqLBKARD3xwMIoEAESsOhKFOrUsHHNCy2ZZW3/6oa4wokgT01k1zavA4BAQ4w==}
+  effect@3.10.19:
+    resolution: {integrity: sha512-Bc+unZVpHQ/0QkydshNk97OjDXT17Y1M4rBjDZaEPjD6YmlcZxhadEo325OfdPQKWCKEHTdRGtX8/bfQ0RLTIw==}
 
   electron-to-chromium@1.5.18:
     resolution: {integrity: sha512-1OfuVACu+zKlmjsNdcJuVQuVE61sZOLbNM4JAQ1Rvh6EOj0/EUKhMJjRH73InPlXSh8HIJk1cVZ8pyOV/FMdUQ==}
@@ -1620,8 +1616,8 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
 
-  fast-check@3.22.0:
-    resolution: {integrity: sha512-8HKz3qXqnHYp/VCNn2qfjHdAdcI8zcSqOyX64GOMukp7SL2bfzfeDKjSd+UyECtejccaZv3LcvZTm9YDD22iCQ==}
+  fast-check@3.23.1:
+    resolution: {integrity: sha512-u/MudsoQEgBUZgR5N1v87vEgybeVYus9VnDVaIkxkkGP2jt54naghQ3PCQHJiogS8U/GavZCUPFfx3Xkp+NaHw==}
     engines: {node: '>=8.0.0'}
 
   fast-glob@3.3.2:
@@ -2376,8 +2372,8 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
-  sugar-high@0.7.1:
-    resolution: {integrity: sha512-hwEXr/gtUvi+jfgjgxbuiRD5EX5C1/eQrW/RoZ0Dm+993p46ECB5HBjMfc20FEbsXKQHtueHtYoe2ofb6V+83A==}
+  sugar-high@0.7.5:
+    resolution: {integrity: sha512-lfGxo0il0Mx4WLdXEt0WsJ8V3QkQWssXnolj5xBurzlGJW07LuwmJWKtS0B2WJ5XWz1439RHngXAmzsnLD0rFA==}
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -2461,8 +2457,8 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  tslib@2.8.0:
-    resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   type-fest@0.20.2:
     resolution: {integrity: sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==}
@@ -2734,7 +2730,7 @@ snapshots:
   '@babel/helper-simple-access@7.24.7':
     dependencies:
       '@babel/traverse': 7.25.6
-      '@babel/types': 7.25.9
+      '@babel/types': 7.26.0
     transitivePeerDependencies:
       - supports-color
 
@@ -2764,9 +2760,9 @@ snapshots:
     dependencies:
       '@babel/types': 7.25.6
 
-  '@babel/parser@7.25.9':
+  '@babel/parser@7.26.2':
     dependencies:
-      '@babel/types': 7.25.9
+      '@babel/types': 7.26.0
 
   '@babel/plugin-transform-react-jsx-self@7.24.7(@babel/core@7.25.2)':
     dependencies:
@@ -2806,31 +2802,25 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@babel/types@7.25.2':
-    dependencies:
-      '@babel/helper-string-parser': 7.25.9
-      '@babel/helper-validator-identifier': 7.25.9
-      to-fast-properties: 2.0.0
-
   '@babel/types@7.25.6':
     dependencies:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@babel/types@7.25.9':
+  '@babel/types@7.26.0':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@clack/core@0.3.4':
+  '@clack/core@0.3.5':
     dependencies:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
   '@clack/prompts@0.7.0':
     dependencies:
-      '@clack/core': 0.3.4
+      '@clack/core': 0.3.5
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
@@ -3097,17 +3087,17 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@million/install@1.0.11':
+  '@million/install@1.0.13':
     dependencies:
       '@antfu/ni': 0.21.12
       '@axiomhq/js': 1.0.0-rc.3
-      '@babel/parser': 7.25.9
-      '@babel/types': 7.25.2
+      '@babel/parser': 7.26.2
+      '@babel/types': 7.26.0
       '@clack/prompts': 0.7.0
       ast-types: 0.14.2
       cli-high: 0.4.3
       diff: 5.2.0
-      effect: 3.10.3
+      effect: 3.10.19
       nanoid: 5.0.7
       recast: 0.23.9
       xycolors: 0.1.2
@@ -3118,7 +3108,7 @@ snapshots:
       '@babel/core': 7.24.6
       '@babel/types': 7.24.6
       '@hono/node-server': 1.13.1(hono@4.6.6)
-      '@million/install': 1.0.11
+      '@million/install': 1.0.13
       '@rollup/pluginutils': 5.1.2(rollup@4.24.0)
       '@rrweb/types': 2.0.0-alpha.16
       babel-plugin-syntax-hermes-parser: 0.21.1
@@ -3574,11 +3564,11 @@ snapshots:
 
   ast-types@0.14.2:
     dependencies:
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   ast-types@0.16.1:
     dependencies:
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   asynckit@0.4.0: {}
 
@@ -3592,7 +3582,7 @@ snapshots:
       postcss: 8.4.45
       postcss-value-parser: 4.2.0
 
-  axios@1.7.7:
+  axios@1.7.8:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.0
@@ -3703,7 +3693,7 @@ snapshots:
   cli-high@0.4.3:
     dependencies:
       '@clack/prompts': 0.7.0
-      sugar-high: 0.7.1
+      sugar-high: 0.7.5
       xycolors: 0.1.2
       yargs: 17.7.2
 
@@ -3763,7 +3753,7 @@ snapshots:
       path-type: 4.0.0
       yaml: 1.10.2
 
-  cross-spawn@7.0.3:
+  cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
       shebang-command: 2.0.0
@@ -3966,9 +3956,9 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  effect@3.10.3:
+  effect@3.10.19:
     dependencies:
-      fast-check: 3.22.0
+      fast-check: 3.23.1
 
   electron-to-chromium@1.5.18: {}
 
@@ -4064,7 +4054,7 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
-  fast-check@3.22.0:
+  fast-check@3.23.1:
     dependencies:
       pure-rand: 6.1.0
 
@@ -4094,7 +4084,7 @@ snapshots:
 
   foreground-child@3.3.0:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
   form-data@4.0.0:
@@ -4562,7 +4552,7 @@ snapshots:
       esprima: 4.0.1
       source-map: 0.6.1
       tiny-invariant: 1.3.3
-      tslib: 2.8.0
+      tslib: 2.8.1
 
   regenerator-runtime@0.11.1: {}
 
@@ -4756,7 +4746,7 @@ snapshots:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
 
-  sugar-high@0.7.1: {}
+  sugar-high@0.7.5: {}
 
   supports-color@5.5.0:
     dependencies:
@@ -4854,7 +4844,7 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  tslib@2.8.0: {}
+  tslib@2.8.1: {}
 
   type-fest@0.20.2: {}
 
