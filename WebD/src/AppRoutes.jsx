@@ -37,7 +37,7 @@ const AppRoutes = () => {
 			<Route path="/contact" element={<Contact />} />
 			<Route
 				path="/dashboardv2/*"
-				element={<ProtectedRoute element={<Dashv2 />} />}
+				element={<Dashv2 />}  
 			/>
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>
