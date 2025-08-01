@@ -61,7 +61,7 @@ importers:
         version: 4.2.4
       emailjs:
         specifier: ^4.0.3
-        version: 4.0.3(typescript@5.5.4)
+        version: 4.0.3(typescript@5.9.2)
       localforage:
         specifier: ^1.10.0
         version: 1.10.0
@@ -117,8 +117,8 @@ importers:
         specifier: ^6.1.8
         version: 6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       typescript:
-        specifier: ^5.4.2
-        version: 5.5.4
+        specifier: ^5.9.2
+        version: 5.9.2
     devDependencies:
       '@types/react':
         specifier: ^18.2.66
@@ -215,16 +215,16 @@ packages:
     resolution: {integrity: sha512-pO9KhhRcuUyGnJWwyEgnRJTSIZHiT+vMD0kPeD+so0l7mxkMT19g3pjY9GTnHySck/hDzq+dtW/4VgnMkippsQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-string-parser@7.25.9':
-    resolution: {integrity: sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==}
+  '@babel/helper-string-parser@7.27.1':
+    resolution: {integrity: sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.24.7':
     resolution: {integrity: sha512-rR+PBcQ1SMQDDyF6X0wxtG8QyLCgUB0eRAGguqRLfkCA87l7yAP7ehq8SNj96OOGTO8OBV70KhuFYcIkHXOg0w==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-validator-identifier@7.25.9':
-    resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
+  '@babel/helper-validator-identifier@7.27.1':
+    resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-option@7.24.8':
@@ -244,8 +244,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/parser@7.26.2':
-    resolution: {integrity: sha512-DWMCZH9WA4Maitz2q21SRKHo9QXZxkDsbNZoVD62gusNtNBBqDg9i7uOhASfTfIGNzW+O+r7+jAlM8dwphcJKQ==}
+  '@babel/parser@7.28.0':
+    resolution: {integrity: sha512-jVZGvOxOuNSsuQuLRTh13nU0AogFlw32w/MT+LV6D3sP5WdbW61E77RnkbaO2dUvmPAYrBDJXGn5gGS6tH4j8g==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -283,6 +283,10 @@ packages:
 
   '@babel/types@7.26.0':
     resolution: {integrity: sha512-Z/yiTPj+lDVnF7lWeKCIJzaIkI0vYO87dMpZ4bg4TDrFe4XXLFWL1TbXU27gBP3QccxV9mZICCrnjnYlJjXHOA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/types@7.28.2':
+    resolution: {integrity: sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ==}
     engines: {node: '>=6.9.0'}
 
   '@clack/core@0.3.5':
@@ -1040,6 +1044,9 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
+  '@standard-schema/spec@1.0.0':
+    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
   '@tanstack/react-table@8.20.5':
     resolution: {integrity: sha512-WEHopKw3znbUZ61s9i0+i9g8drmDo6asTWbrQh8Us63DAk/M0FkmIqERew6P71HI75ksZ2Pxyuf4vvKh9rAkiA==}
     engines: {node: '>=12'}
@@ -1548,8 +1555,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  effect@3.10.19:
-    resolution: {integrity: sha512-Bc+unZVpHQ/0QkydshNk97OjDXT17Y1M4rBjDZaEPjD6YmlcZxhadEo325OfdPQKWCKEHTdRGtX8/bfQ0RLTIw==}
+  effect@3.17.4:
+    resolution: {integrity: sha512-VD+5bYdIN088c1fCESqYvOKQ22O2dUptO+Chy7SGMqthIVcYBvVlYSgUQT976XJaHOV2Fd0TaW94EYWHOQsbOw==}
 
   electron-to-chromium@1.5.18:
     resolution: {integrity: sha512-1OfuVACu+zKlmjsNdcJuVQuVE61sZOLbNM4JAQ1Rvh6EOj0/EUKhMJjRH73InPlXSh8HIJk1cVZ8pyOV/FMdUQ==}
@@ -1616,8 +1623,8 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
 
-  fast-check@3.23.1:
-    resolution: {integrity: sha512-u/MudsoQEgBUZgR5N1v87vEgybeVYus9VnDVaIkxkkGP2jt54naghQ3PCQHJiogS8U/GavZCUPFfx3Xkp+NaHw==}
+  fast-check@3.23.2:
+    resolution: {integrity: sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==}
     engines: {node: '>=8.0.0'}
 
   fast-glob@3.3.2:
@@ -2199,8 +2206,8 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
-  recast@0.23.9:
-    resolution: {integrity: sha512-Hx/BGIbwj+Des3+xy5uAtAbdCyqK9y9wbBcDFDYanLS9JnMqf7OeF87HQwUimE87OEc72mr6tkKUKMBBL+hF9Q==}
+  recast@0.23.11:
+    resolution: {integrity: sha512-YTUo+Flmw4ZXiWfQKGcwwc11KnoRAYgzAE2E7mXKCjSviTKShtxBsN6YUUBB2gtaBzKzeKunxhUwNHQuRryhWA==}
     engines: {node: '>= 4'}
 
   regenerator-runtime@0.11.1:
@@ -2467,8 +2474,8 @@ packages:
   typedarray-to-buffer@3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
 
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2730,17 +2737,17 @@ snapshots:
   '@babel/helper-simple-access@7.24.7':
     dependencies:
       '@babel/traverse': 7.25.6
-      '@babel/types': 7.26.0
+      '@babel/types': 7.28.2
     transitivePeerDependencies:
       - supports-color
 
   '@babel/helper-string-parser@7.24.8': {}
 
-  '@babel/helper-string-parser@7.25.9': {}
+  '@babel/helper-string-parser@7.27.1': {}
 
   '@babel/helper-validator-identifier@7.24.7': {}
 
-  '@babel/helper-validator-identifier@7.25.9': {}
+  '@babel/helper-validator-identifier@7.27.1': {}
 
   '@babel/helper-validator-option@7.24.8': {}
 
@@ -2760,9 +2767,9 @@ snapshots:
     dependencies:
       '@babel/types': 7.25.6
 
-  '@babel/parser@7.26.2':
+  '@babel/parser@7.28.0':
     dependencies:
-      '@babel/types': 7.26.0
+      '@babel/types': 7.28.2
 
   '@babel/plugin-transform-react-jsx-self@7.24.7(@babel/core@7.25.2)':
     dependencies:
@@ -2810,8 +2817,13 @@ snapshots:
 
   '@babel/types@7.26.0':
     dependencies:
-      '@babel/helper-string-parser': 7.25.9
-      '@babel/helper-validator-identifier': 7.25.9
+      '@babel/helper-string-parser': 7.27.1
+      '@babel/helper-validator-identifier': 7.27.1
+
+  '@babel/types@7.28.2':
+    dependencies:
+      '@babel/helper-string-parser': 7.27.1
+      '@babel/helper-validator-identifier': 7.27.1
 
   '@clack/core@0.3.5':
     dependencies:
@@ -3091,15 +3103,15 @@ snapshots:
     dependencies:
       '@antfu/ni': 0.21.12
       '@axiomhq/js': 1.0.0-rc.3
-      '@babel/parser': 7.26.2
+      '@babel/parser': 7.28.0
       '@babel/types': 7.26.0
       '@clack/prompts': 0.7.0
       ast-types: 0.14.2
       cli-high: 0.4.3
       diff: 5.2.0
-      effect: 3.10.19
+      effect: 3.17.4
       nanoid: 5.0.7
-      recast: 0.23.9
+      recast: 0.23.11
       xycolors: 0.1.2
 
   '@million/lint@1.0.0-rc.84(rollup@4.24.0)':
@@ -3428,6 +3440,8 @@ snapshots:
       rrweb-snapshot: 2.0.0-alpha.17
 
   '@socket.io/component-emitter@3.1.2': {}
+
+  '@standard-schema/spec@1.0.0': {}
 
   '@tanstack/react-table@8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -3956,15 +3970,16 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  effect@3.10.19:
+  effect@3.17.4:
     dependencies:
-      fast-check: 3.23.1
+      '@standard-schema/spec': 1.0.0
+      fast-check: 3.23.2
 
   electron-to-chromium@1.5.18: {}
 
-  emailjs@4.0.3(typescript@5.5.4):
+  emailjs@4.0.3(typescript@5.9.2):
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.9.2
 
   emoji-regex@8.0.0: {}
 
@@ -4054,7 +4069,7 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
-  fast-check@3.23.1:
+  fast-check@3.23.2:
     dependencies:
       pure-rand: 6.1.0
 
@@ -4546,7 +4561,7 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  recast@0.23.9:
+  recast@0.23.11:
     dependencies:
       ast-types: 0.16.1
       esprima: 4.0.1
@@ -4852,7 +4867,7 @@ snapshots:
     dependencies:
       is-typedarray: 1.0.0
 
-  typescript@5.5.4: {}
+  typescript@5.9.2: {}
 
   unique-string@2.0.0:
     dependencies:
