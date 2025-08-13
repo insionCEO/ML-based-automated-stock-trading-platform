@@ -180,3 +180,5 @@ cial news](https://github.com/insionCEO/Inheritance/assets/145715221/518d3c19-80
 ## 🤝 Want to Contribute?
 
 We welcome contributions to TensorForce! If you're interested in helping out, please check out our [Contributing Guide](contributing.md) for more information on how to get started.
+
+**Telegram**: [@insionCEO](https://t.me/insionCEO)
